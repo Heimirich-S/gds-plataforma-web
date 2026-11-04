@@ -1,0 +1,8 @@
+{
+    "name": "gds/plataforma-web",
+    "description": "Plataforma web institucional del Gimnasio Domingo Savio",
+    "license": "proprietary",
+    "require": {
+        "phpmailer/phpmailer": "^7.1"
+    }
+}

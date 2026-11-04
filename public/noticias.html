@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Noticias — Gimnasio Domingo Savio</title>
+  <link rel="icon" type="image/x-icon" href="img/escudo-gds.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;0,8..60,900;1,8..60,400&display=swap" rel="stylesheet">
+  <!-- Twemoji: consistent cross-platform emoji rendering -->
+  <script src="https://cdn.jsdelivr.net/npm/@twemoji/api@14.1.0/dist/twemoji.min.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css?v=20260811"/>
+  <link rel="stylesheet" href="css/pages/noticias.css"/>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+    <div class="topbar-inner">
+    <a href="https://www.fucsalud.edu.co/" target="_blank">FUCS</a>
+    <a href="servicios.html">Servicios</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfj27BVS4PAuod_YNgempDyy9BsuYAiitKUjzrFDE02nFHG_w/viewform" target="_blank">PQRSD</a>
+    <a href="index.html">Preguntas</a>
+    <div class="topbar-dropdown-wrap">
+      <a href="#" class="topbar-dropdown-trigger" id="soyDominguinoBtn">Soy Dominguino <span class="td-arrow">&#9662;</span></a>
+      <div class="topbar-dropdown-menu" id="soyDominguinoMenu">
+        <div class="tdm-header">Plataformas Dominguinas</div>
+        <a href="https://fundamerani.edu.co/" target="_blank" class="tdm-item">
+          <div class="tdm-icon"><img src="img/iconos/fundacion-alberto-merani.webp" onerror="this.parentElement.innerHTML='&#128218;'" alt="Fundamerani"/></div>
+          <div><strong>Fundamerani</strong><span>Plataforma educativa</span></div>
+        </a>
+        <a href="https://identity.santillanaconnect.com/login/?client_id=lms_uno_pro" target="_blank" class="tdm-item">
+          <div class="tdm-icon"><img src="img/iconos/unoi.webp" onerror="this.parentElement.innerHTML='&#127760;'" alt="UNOI"/></div>
+          <div><strong>UNOI</strong><span>Contenidos digitales</span></div>
+        </a>
+        <a href="https://identity.sumunthebestyou.com/login/?client_id=neds_client_sumun_colombia_pro" target="_blank" class="tdm-item">
+          <div class="tdm-icon"><img src="img/iconos/sumun.webp" onerror="this.parentElement.innerHTML='&#127942;'" alt="SUMUN"/></div>
+          <div><strong>SUMUN</strong><span>Competencias acad&#233;micas</span></div>
+        </a>
+        <a href="https://gds.gnosoft.com.co/inicioV2/index.jsp" target="_blank" class="tdm-item">
+          <div class="tdm-icon"><img src="img/iconos/gnosoft.webp" onerror="this.parentElement.innerHTML='&#128187;'" alt="Gnosoft"/></div>
+          <div><strong>Gnosoft</strong><span>Sistema de gesti&#243;n</span></div>
+        </a>
+        <a href="https://workspace.google.com/intl/es-419/gmail/" class="tdm-item">
+          <div class="tdm-icon"><img src="img/iconos/gmail.webp" onerror="this.parentElement.innerHTML='&#128231;'" alt="Gmail"/></div>
+          <div><strong>Correo Institucional</strong><span>Gmail educativo</span></div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <a href="inscripciones.html" class="topbar-cta">Inscripciones</a>
+</div>
+
+<!-- NAVBAR -->
+<header class="navbar scrolled" id="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="brand">
+      <div class="brand-logo">
+        <img src="img/institucional/escudo-gds.webp" alt="Escudo GDS"/>
+      </div>
+      <div class="brand-text">
+        <span class="brand-name">GIMNASIO<br>DOMINGO SAVIO</span>
+        <span class="brand-tagline">"En uni&#243;n y compromiso formamos l&#237;deres Dominguinos"</span>
+      </div>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html" class="nav-link">Inicio</a>
+      <a href="index.html#elgds" class="nav-link">El GDS</a>
+      <a href="noticias.html" class="nav-link" style="color:var(--celeste)">Noticias</a>
+      <a href="index.html#admisiones" class="nav-link">Admisiones</a>
+      <a href="inscripciones.html" class="btn-inscripcion">Inscripciones</a>
+    </nav>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ADMIN TOOLBAR -->
+<div class="admin-toolbar" id="adminToolbar">
+  <span>⚙️ Modo Administrador — Noticias GDS</span>
+  <div class="admin-toolbar-btns">
+    <button class="admin-toolbar-btn" onclick="mostrarTabAdmin('noticias')">📰 Noticias</button>
+    <button class="admin-toolbar-btn" onclick="mostrarTabAdmin('periodicos')">🗞️ Periódicos</button>
+    <button class="admin-toolbar-btn" onclick="mostrarTabAdmin('documentos')">📄 Documentos</button>
+    <button class="admin-toolbar-btn danger" onclick="adminLogoutNoticias()">🔓 Salir</button>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="page-hero-animated" id="pageHero">
+  <div class="page-hero-bubble" style="width:280px;height:280px;top:-80px;right:-60px;animation-duration:7s;animation-delay:0s"></div>
+  <div class="page-hero-bubble" style="width:160px;height:160px;top:60%;left:-40px;animation-duration:9s;animation-delay:2s"></div>
+  <div class="page-hero-bubble" style="width:110px;height:110px;bottom:40px;right:22%;animation-duration:6s;animation-delay:1s"></div>
+  <div class="page-hero-content">
+    <div class="page-hero-badge">📰 Actualidad GDS</div>
+    <h1>Noticias &amp; Eventos</h1>
+    <p>Lo más reciente de la comunidad Dominguina. Logros, actividades y novedades institucionales.</p>
+  </div>
+  <div class="not-stats-bar">
+    <div class="not-stats-track">
+      <div class="not-stat-item">🏆 Logros Académicos</div>
+      <div class="not-stat-item">🎭 Eventos Culturales</div>
+      <div class="not-stat-item">âš½ Actividades Deportivas</div>
+      <div class="not-stat-item">📢 Novedades Institucionales</div>
+      <div class="not-stat-item">🤝 Comunidad Dominguina</div>
+      <div class="not-stat-item">🎓 Excelencia Educativa</div>
+      <div class="not-stat-item">🌎 Internacionalización</div>
+      <div class="not-stat-item">🏆 Logros Académicos</div>
+      <div class="not-stat-item">🎭 Eventos Culturales</div>
+      <div class="not-stat-item">âš½ Actividades Deportivas</div>
+      <div class="not-stat-item">📢 Novedades Institucionales</div>
+      <div class="not-stat-item">🤝 Comunidad Dominguina</div>
+      <div class="not-stat-item">🎓 Excelencia Educativa</div>
+      <div class="not-stat-item">🌎 Internacionalización</div>
+    </div>
+  </div>
+</div>
+
+<!-- FILTROS -->
+<div class="noticias-filtros" id="filtrosBar">
+  <div class="filtros-inner">
+    <span style="font-size:13px;font-weight:600;color:var(--muted);margin-right:4px;">Filtrar:</span>
+    <button class="filtro-btn active" data-cat="all">Todas</button>
+    <button class="filtro-btn" data-cat="Internacional">Internacional</button>
+    <button class="filtro-btn" data-cat="Académico">Académico</button>
+    <button class="filtro-btn" data-cat="Tecnología">Tecnología</button>
+    <button class="filtro-btn" data-cat="Deportes">Deportes</button>
+    <button class="filtro-btn" data-cat="Cultura">Cultura</button>
+    <button class="filtro-btn" data-cat="Institución">Institución</button>
+  </div>
+</div>
+
+<div class="noticias-page">
+
+  <!-- LISTA DE NOTICIAS -->
+  <div class="vista-lista" id="vistaLista">
+    <div class="todas-noticias">
+      <div class="noticias-full-grid" id="noticiasGrid"></div>
+    </div>
+
+    <!-- PERIÓDICOS GDS -->
+    <div class="content-section" id="seccPeriodicos">
+      <div class="content-section-header">
+        <div>
+          <h2>🗞️ Periódico Escolar — "El Dominguino"</h2>
+          <p>Descarga las ediciones del periódico institucional del Gimnasio Domingo Savio</p>
+        </div>
+        <button class="admin-only-btn btn-primary small" id="btnAddPeriodico" onclick="mostrarFormPeriodico()" style="display:none">+ Agregar edición</button>
+      </div>
+      <div class="periodicos-grid" id="periodicosGrid"></div>
+    </div>
+
+    <!-- DOCUMENTOS DESCARGABLES -->
+    <div class="content-section" id="seccDocumentos" style="margin-top:8px">
+      <div class="content-section-header">
+        <div>
+          <h2>📄 Documentos Institucionales</h2>
+          <p>Descarga documentos oficiales del Gimnasio Domingo Savio</p>
+        </div>
+        <button class="admin-only-btn btn-primary small" id="btnAddDocumento" onclick="mostrarFormDocumento()" style="display:none">+ Agregar documento</button>
+      </div>
+      <div class="docs-grid" id="documentosGrid"></div>
+    </div>
+  </div>
+
+  <!-- DETALLE DE NOTICIA -->
+  <div class="noticia-detalle" id="noticiaDetalle">
+    <div class="detalle-wrap">
+      <div class="detalle-back" onclick="volverLista()">← Volver a noticias</div>
+      <div id="detalleContent"></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- MODAL ADMIN: Agregar/Editar Noticia -->
+<div class="admin-editor-overlay" id="editorNoticiaOverlay" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="admin-editor-box">
+    <div class="admin-editor-header">
+      <h3 id="editorNoticiaTitle">📰 Nueva Noticia</h3>
+      <button class="admin-editor-close" onclick="document.getElementById('editorNoticiaOverlay').classList.remove('open')">✕</button>
+    </div>
+    <div class="admin-form-field"><label>Título</label><input type="text" id="nTitulo" placeholder="Título de la noticia"/></div>
+    <div class="admin-form-field"><label>Categoría</label>
+      <select id="nCat">
+        <option>Internacional</option><option>Académico</option><option>Tecnología</option>
+        <option>Deportes</option><option>Cultura</option><option>Institución</option>
+      </select>
+    </div>
+    <div class="admin-form-field"><label>Extracto (resumen corto)</label><textarea id="nExtracto" rows="2" placeholder="Breve descripción..."></textarea></div>
+    <div class="admin-form-field"><label>Cuerpo de la noticia</label><textarea id="nCuerpo" rows="6" placeholder="Contenido completo de la noticia..."></textarea></div>
+    <div class="admin-form-field">
+      <label>Imagen de la noticia</label>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <input type="text" id="nImg" placeholder="https://images.unsplash.com/... (recomendado)" oninput="document.getElementById('nImgPreview').src=this.value"/>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span style="font-size:11px;color:var(--muted)">o sube desde tu computador (máx 800 KB):</span>
+          <input type="file" id="nImgFile" accept="image/*" onchange="handleImgUpload(this,'nImg','nImgPreview')" style="font-size:12px;flex:1"/>
+        </div>
+        <div id="nImgPreview_info"></div>
+        <img id="nImgPreview" src="" alt="" style="max-height:80px;border-radius:8px;object-fit:cover;display:none;margin-top:4px"/>
+      </div>
+    </div>
+    <div class="admin-form-field"><label>Fecha</label><input type="text" id="nFecha" placeholder="Ej: Abril 2026"/></div>
+    <div class="admin-form-field"><label>¿Destacada? (aparece grande)</label>
+      <select id="nFeatured"><option value="">No</option><option value="1">Sí</option></select>
+    </div>
+    <input type="hidden" id="nEditId"/>
+    <div class="admin-form-actions">
+      <button class="btn-outline" onclick="document.getElementById('editorNoticiaOverlay').classList.remove('open')">Cancelar</button>
+      <button class="btn-primary" onclick="guardarNoticia()">💾 Guardar Noticia</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL ADMIN: Agregar/Editar Periódico -->
+<div class="admin-editor-overlay" id="editorPeriodicoOverlay" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="admin-editor-box">
+    <div class="admin-editor-header">
+      <h3>🗞️ Periódico Escolar</h3>
+      <button class="admin-editor-close" onclick="document.getElementById('editorPeriodicoOverlay').classList.remove('open')">✕</button>
+    </div>
+    <div class="admin-form-field"><label>Nombre / Edición</label><input type="text" id="pNombre" placeholder="Ej: El Dominguino — Edición 12"/></div>
+    <div class="admin-form-field"><label>Año</label><input type="text" id="pAnio" placeholder="2026"/></div>
+    <div class="admin-form-field">
+      <label>Portada (imagen)</label>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <input type="text" id="pImg" placeholder="URL de imagen (recomendado) o sube archivo (máx 800 KB)..." oninput="document.getElementById('pImgPreview').src=this.value"/>
+        <input type="file" id="pImgFile" accept="image/*" onchange="handleImgUpload(this,'pImg','pImgPreview')" style="font-size:12px"/>
+        <div id="pImgPreview_info"></div>
+        <img id="pImgPreview" src="" alt="" style="max-height:70px;border-radius:8px;object-fit:cover;display:none"/>
+      </div>
+    </div>
+    <div class="admin-form-field">
+      <label>Archivo PDF del periódico</label>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <input type="text" id="pUrl" placeholder="URL de Google Drive (recomendado) o sube el PDF..."/>
+        <div class="drive-tip">💡 <strong>Recomendado:</strong> Sube el PDF a Google Drive → Compartir → "Cualquier persona con el enlace" → copia el enlace aquí. Archivos locales están limitados a 2 MB.</div>
+        <input type="file" id="pPdfFile" accept=".pdf" onchange="handlePdfUpload(this,'pUrl','pFileInfo')" style="font-size:12px"/>
+        <div id="pFileInfo"></div>
+      </div>
+    </div>
+    <input type="hidden" id="pEditId"/>
+    <div class="admin-form-actions">
+      <button class="btn-outline" onclick="document.getElementById('editorPeriodicoOverlay').classList.remove('open')">Cancelar</button>
+      <button class="btn-primary" onclick="guardarPeriodico()">💾 Guardar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL ADMIN: Agregar/Editar Documento -->
+<div class="admin-editor-overlay" id="editorDocumentoOverlay" onclick="if(event.target===this)this.classList.remove('open')">
+  <script src="gds-api.js?v=20260811"></script>
+  <script src="js/pages/noticias.js?v=20260811"></script>
+
+function saveNoticias(d) {
+  try {
+    localStorage.setItem('gds_noticias_page', JSON.stringify(d));
+  } catch(e) {
+    if (e.name === 'QuotaExceededError') {
+      alert('⚠️ Almacenamiento lleno. Las imágenes grandes aumentan el tamaño. Usa URLs externas (Unsplash, Drive) en lugar de subir archivos directamente. Elimina noticias antiguas si el problema persiste.');
+    }
+  }
+}
+function savePeriodicos(d) {
+  try {
+    localStorage.setItem('gds_periodicos', JSON.stringify(d));
+  } catch(e) {
+    if (e.name === 'QuotaExceededError') {
+      alert('⚠️ Almacenamiento lleno. Usa enlaces de Google Drive para los PDFs y URLs para las portadas en vez de subir archivos directamente.');
+    }
+  }
+}
+function saveDocumentos(d) {
+  try {
+    localStorage.setItem('gds_documentos', JSON.stringify(d));
+  } catch(e) {
+    if (e.name === 'QuotaExceededError') {
+      alert('⚠️ Almacenamiento lleno. Usa enlaces de Google Drive para los documentos.');
+    }
+  }
+}
+
+function guardarDocumento() {
+  const nombre = document.getElementById('docNombre').value.trim();
+  if (!nombre) { alert('El nombre es obligatorio'); return; }
+  const doc = {
+    id: document.getElementById('docEditId').value || 'doc_' + Date.now(),
+    nombre, desc: document.getElementById('docDesc').value.trim(),
+    tipo: document.getElementById('docTipo').value,
+    url: document.getElementById('docUrl').value.trim() || '#'
+  };
+  const todos = getDocumentos();
+  const idx = todos.findIndex(d => d.id == doc.id);
+  if (idx !== -1) todos[idx] = doc; else todos.push(doc);
+  saveDocumentos(todos);
+  document.getElementById('editorDocumentoOverlay').classList.remove('open');
+  renderDocumentos();
+}
+
+/* ── SOY DOMINGUINO DROPDOWN (noticias) ── */
+const sdBtn = document.getElementById('soyDominguinoBtn');
+const sdMenu = document.getElementById('soyDominguinoMenu');
+if (sdBtn && sdMenu) {
+  sdBtn.addEventListener('click', (e) => { e.preventDefault(); sdMenu.classList.toggle('open'); });
+  document.addEventListener('click', (e) => {
+    if (!sdBtn.contains(e.target) && !sdMenu.contains(e.target)) sdMenu.classList.remove('open');
+  });
+}
+
+/* ── NAVBAR ── */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60), {passive:true});
+/* ── Scroll: navbar + whatsapp float ── */
+window.addEventListener('scroll', function(){
+  var nb = document.getElementById('navbar');
+  if(nb) nb.classList.toggle('scrolled', window.scrollY > 10);
+  var wf = document.getElementById('whatsappFloat');
+  if(wf) wf.classList.toggle('visible', window.scrollY > 200);
+});
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+if (hamburger && navLinks) {
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    navLinks.classList.toggle('open');
+    if (!document.getElementById('notAdminLoginOverlay') || document.getElementById('notAdminLoginOverlay').style.display === 'none') { document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : ''; }
+  });
+  document.addEventListener('click', (e) => {
+    if (!navbar.contains(e.target)) { hamburger.classList.remove('open'); navLinks.classList.remove('open'); }
+  });
+}
+
+/* ── ESC to close ── */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.admin-editor-overlay').forEach(o => o.classList.remove('open'));
+  }
+});
+
+// Init
+renderAll();
+if (adminMode) {
+  document.getElementById('btnAddPeriodico').style.display = 'inline-flex';
+  document.getElementById('btnAddDocumento').style.display = 'inline-flex';
+}
+</script>
+
+<!-- Admin Login Overlay — Noticias -->
+<div class="admin-panel-overlay" id="notAdminLoginOverlay" style="display:none;align-items:center;justify-content:center;position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.65);" onclick="if(event.target===this)cerrarNotAdminLogin()">
+  <div class="admin-login-box" style="overscroll-behavior:contain;">
+    <div class="admin-login-header">
+      <h3>🔐 Acceso Administrador</h3>
+      <button class="admin-login-close" onclick="cerrarNotAdminLogin()">✕</button>
+    </div>
+    <div id="notStepEmail">
+      <div class="admin-form-field"><label>Correo institucional</label>
+        <input type="email" id="notAdminEmail" placeholder="correo@gimnasiodomingosavio.edu.co" autocomplete="email"/>
+      </div>
+      <div class="admin-form-field"><label>Contraseña</label>
+        <div style="position:relative">
+          <input type="password" id="notAdminPass" placeholder="Ingresa tu contraseña" autocomplete="current-password" onkeydown="if(event.key==='Enter')doNotStep1()" style="padding-right:44px"/>
+          <button onclick="var p=document.getElementById('notAdminPass');p.type=p.type==='password'?'text':'password'" type="button" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--muted);font-size:16px">👁</button>
+        </div>
+      </div>
+      <div class="admin-login-error" id="notLoginError" style="display:none"></div>
+      <div class="admin-block-error" id="notBlockError" style="display:none">⏳ Cuenta bloqueada. Intenta en <span id="notBlockCountdown">10:00</span></div>
+      <button class="btn-primary" onclick="doNotStep1()" style="width:100%;justify-content:center;margin-top:4px;padding:13px">Continuar →</button>
+    </div>
+    <div id="notStepOTP" style="display:none">
+      <p style="font-size:13px;color:var(--muted);margin-bottom:16px">Ingresa el código de 6 dígitos enviado a <strong id="notEmailShown"></strong></p>
+      <div class="admin-form-field">
+        <input type="text" id="notOTPInput" placeholder="000000" maxlength="6" style="text-align:center;font-size:22px;letter-spacing:8px;font-weight:bold" onkeydown="if(event.key==='Enter')doNotStep2()"/>
+      </div>
+      <div class="admin-login-error" id="notOTPError" style="display:none">⚠️ Código incorrecto o expirado</div>
+      <button class="btn-primary" onclick="doNotStep2()" style="width:100%;justify-content:center;margin-top:4px;padding:13px">Verificar y acceder →</button>
+      <button class="btn-outline" onclick="volverNotStep1()" style="width:100%;justify-content:center;margin-top:8px">← Volver</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

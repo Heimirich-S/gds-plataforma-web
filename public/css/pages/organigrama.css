@@ -1,0 +1,92 @@
+/* Estilos especificos de organigrama.html. */
+
+/* HERO institucional */
+.org-page-hero::before {
+  content:''; position:absolute; inset:0; z-index:1; opacity:.5; pointer-events:none;
+  background-image:repeating-linear-gradient(115deg,rgba(255,255,255,.03) 0 1px,transparent 1px 5px);
+}
+.org-hero-seal {
+  display:inline-flex; align-items:center; gap:8px;
+  padding:6px 16px 6px 6px; border-radius:99px; margin-bottom:18px;
+  background:rgba(255,255,255,.06); border:1px solid rgba(221,187,116,.35);
+  font-size:11.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--bronce-claro,#ddbb74);
+  animation:heroFadeUp .6s ease both;
+}
+.org-hero-seal img {
+  width:24px; height:24px; border-radius:50%; display:block;
+  box-shadow:0 0 0 1.5px rgba(221,187,116,.5);
+  animation:orgSealFloat 4s ease-in-out infinite;
+}
+@keyframes orgSealFloat { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-3px); } }
+.org-hero-rule {
+  width:64px; height:2px; margin:6px auto 18px; position:relative; overflow:hidden;
+  background:linear-gradient(90deg,transparent,var(--bronce-claro,#ddbb74),transparent);
+  animation:heroFadeUp .6s .15s ease both;
+}
+.org-hero-rule::after {
+  content:''; position:absolute; inset:0; width:40%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.9),transparent);
+  animation:orgRuleShine 3.2s ease-in-out infinite;
+}
+@keyframes orgRuleShine { 0% { transform:translateX(-150%); } 60%,100% { transform:translateX(350%); } }
+@media (prefers-reduced-motion: reduce) {
+  .org-hero-seal img, .org-hero-rule::after { animation:none; }
+}
+
+.org-page-body { background:var(--fondo); padding:60px 20px 80px; }
+
+/* PROMOCIONES */
+.promo-tabs { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-bottom:36px; }
+.promo-tab-btn { position:relative; padding:8px 18px; border-radius:20px; border:1.5px solid var(--fondo-2); background:white; color:var(--azul); font-size:13px; font-weight:700; cursor:pointer; transition:all var(--ease); font-family:var(--font-body); }
+.promo-tab-btn:hover { border-color:var(--celeste); }
+.promo-tab-btn.active { background:var(--azul); border-color:var(--azul); color:white; box-shadow:0 0 0 3px rgba(184,135,59,.22); }
+.promo-grid { display:grid; grid-template-columns:1fr; gap:58px; max-width:1080px; margin:0 auto; padding:6px; }
+.promo-card {
+  --frame-a:#8a4f2c; --frame-b:#a5613a; --frame-c:#4a2716; --stud:#ddbb74;
+  position:relative; border-radius:5px; padding:22px;
+  max-width:100%; margin:0 auto;
+  background:
+    repeating-linear-gradient(118deg,rgba(0,0,0,.12) 0 2px,transparent 2px 8px),
+    linear-gradient(155deg,var(--frame-b),var(--frame-a) 55%,var(--frame-c));
+  background-blend-mode:multiply,normal;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.07),
+    inset 0 2px 3px rgba(255,255,255,.2),
+    inset 0 -4px 7px rgba(0,0,0,.45),
+    0 22px 34px -14px rgba(19,41,80,.4),
+    0 4px 10px rgba(0,0,0,.16);
+  transition:box-shadow .4s ease;
+}
+.promo-card::before {
+  content:''; position:absolute; inset:11px; pointer-events:none; opacity:.85;
+  background-image:
+    radial-gradient(circle 3px at 9px 9px,var(--stud) 97%,transparent 100%),
+    radial-gradient(circle 3px at calc(100% - 9px) 9px,var(--stud) 97%,transparent 100%),
+    radial-gradient(circle 3px at 9px calc(100% - 9px),var(--stud) 97%,transparent 100%),
+    radial-gradient(circle 3px at calc(100% - 9px) calc(100% - 9px),var(--stud) 97%,transparent 100%);
+}
+.promo-card:hover {
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.09),inset 0 2px 3px rgba(255,255,255,.24),
+    inset 0 -4px 7px rgba(0,0,0,.5),0 30px 46px -16px rgba(19,41,80,.48),0 6px 14px rgba(0,0,0,.2);
+}
+.promo-card-img {
+  position:relative; z-index:1; display:block;
+  width:100%; height:auto; max-height:640px;
+  object-fit:contain; margin:0 auto;
+  background:var(--fondo-2); outline:5px solid var(--stud); outline-offset:-5px;
+  box-shadow:inset 0 0 0 9px rgba(0,0,0,.25);
+}
+.promo-card-info {
+  position:relative; z-index:1; margin-top:16px; text-align:center; padding:10px 14px;
+  background:linear-gradient(180deg,#2c2015,#1c140d); border-radius:3px;
+  box-shadow:inset 0 0 0 1px rgba(221,187,116,.3),0 3px 8px rgba(0,0,0,.28);
+}
+.promo-card-info h4 { font-family:var(--font-display); font-size:15px; color:#ddbb74; margin-bottom:1px; letter-spacing:.02em; }
+.promo-card-info span { font-size:11.5px; color:rgba(255,255,255,.55); }
+.promo-card.frame-v1 { --frame-a:#8a4f2c; --frame-b:#a5613a; --frame-c:#4a2716; --stud:#ddbb74; }
+.promo-card.frame-v2 { --frame-a:#5f4b34; --frame-b:#7c674c; --frame-c:#332619; --stud:#b8873b; }
+.promo-card.frame-v3 { --frame-a:#a97a3c; --frame-b:#c99a54; --frame-c:#623f1c; --stud:#f2debe; }
+.promo-card.frame-v4 { --frame-a:#2c2621; --frame-b:#403630; --frame-c:#141210; --stud:#ddbb74; }
+.promo-empty { text-align:center; color:var(--muted); font-size:14px; padding:40px 20px; }

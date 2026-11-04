@@ -1,0 +1,95 @@
+/* Correcciones visuales especificas de index.html. */
+
+/* Hero mobile full-width background fix */
+@media (max-width:768px) {
+  .hero-bg-img {
+    background-size:cover !important;
+    background-position:center center !important;
+    width:100% !important;
+  }
+}
+
+/* Slider arrow centering fix */
+.slider-prev,
+.slider-next {
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  line-height:1 !important;
+}
+.slider-prev *,
+.slider-next * { line-height:1; }
+
+/* Org row center alignment when last row has fewer items */
+.org-row { justify-content:center !important; }
+.org-docentes-grid { justify-content:center !important; }
+
+/* Bigger org avatars */
+.org-avatar { width:100px !important; height:100px !important; }
+.org-avatar img { width:100% !important; height:100% !important; }
+
+/* Bigger docente avatars */
+.org-avatar-sm { width:58px !important; height:58px !important; }
+.org-avatar-sm img { width:100% !important; height:100% !important; }
+
+/* Horario default time fix */
+/* Modal scroll trap fix */
+.modal-box,
+.gnb-modal-box,
+.gds-modal-box,
+.faq-dropdown-box,
+.admin-panel-box,
+.admin-login-box,
+.admin-editor-box,
+.horario-modal-box,
+.qs-side-panel {
+  overscroll-behavior:contain !important;
+}
+
+/* Fundadoras mobile horizontal */
+@media (max-width:768px) {
+  .fundadoras-card {
+    flex-direction:row !important;
+    width:100% !important;
+    overflow-x:auto !important;
+    -webkit-overflow-scrolling:touch !important;
+    gap:12px !important;
+    align-items:flex-start !important;
+    padding:14px !important;
+  }
+  .fundadoras-text { flex:0 0 auto !important; min-width:130px !important; }
+  .fundadora-item { flex:0 0 auto !important; min-width:90px !important; }
+  .fundadora-avatar { width:72px !important; height:72px !important; }
+}
+
+/* Org docentes horizontal scroll on mobile */
+@media (max-width:768px) {
+  .org-docentes-grid {
+    display:flex !important;
+    flex-wrap:nowrap !important;
+    overflow-x:auto !important;
+    -webkit-overflow-scrolling:touch !important;
+    gap:10px !important;
+    justify-content:flex-start !important;
+    padding-bottom:10px !important;
+  }
+  .org-docente-card { flex:0 0 120px !important; width:120px !important; }
+  .org-avatar-sm { width:70px !important; height:70px !important; min-width:70px !important; }
+}
+@media (max-width:480px) {
+  .org-docente-card { flex:0 0 110px !important; width:110px !important; }
+  .org-avatar-sm { width:64px !important; height:64px !important; }
+}
+
+/* Slider arrows */
+.slider-prev,
+.slider-next {
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+}
+
+/* Mobile nav compact */
+@media (max-width:768px) {
+  .nav-links { justify-content:flex-start !important; }
+}

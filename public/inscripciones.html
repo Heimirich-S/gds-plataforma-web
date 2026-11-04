@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Inscripciones — Gimnasio Domingo Savio</title>
+  <link rel="icon" type="image/x-icon" href="img/escudo-gds.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  <!-- Twemoji: consistent cross-platform emoji rendering -->
+  <script src="https://cdn.jsdelivr.net/npm/@twemoji/api@14.1.0/dist/twemoji.min.js" crossorigin="anonymous"></script>
+  <!-- EmailJS SDK v4 — envío real del OTP -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <link rel="stylesheet" href="style.css?v=20260811"/>
+  <link rel="stylesheet" href="css/pages/inscripciones.css"/>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+    <div class="topbar-inner">
+    <a href="https://www.fucsalud.edu.co/" target="_blank">FUCS</a>
+    <a href="servicios.html">Servicios</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfj27BVS4PAuod_YNgempDyy9BsuYAiitKUjzrFDE02nFHG_w/viewform" target="_blank">PQRSD</a>
+    <a href="index.html">Preguntas</a>
+    <div class="topbar-dropdown-wrap">
+      <a href="#" class="topbar-dropdown-trigger" id="soyDominguinoBtn">Soy Dominguino <span class="td-arrow">&#9662;</span></a>
+      <div class="topbar-dropdown-menu" id="soyDominguinoMenu">
+        <div class="tdm-header">Plataformas Dominguinas</div>
+        <a href="https://fundamerani.edu.co/" target="_blank" class="tdm-item">
+          <div class="tdm-icon"><img src="img/iconos/fundacion-alberto-merani.svg" onerror="this.parentElement.innerHTML='&#128218;'" alt="Fundamerani"/></div>
+          <div><strong>Fundamerani</strong><span>Plataforma educativa</span></div>
+        </a>
+        <a href="https://identity.santillanaconnect.com/login/?client_id=lms_uno_pro" target="_blank" class="tdm-item">
+          <div class="tdm-icon"><img src="img/iconos/unoi.svg" onerror="this.parentElement.innerHTML='&#127760;'" alt="UNOI"/></div>
+          <div><strong>UNOI</strong><span>Contenidos digitales</span></div>
+        </a>
+        <a href="https://identity.sumunthebestyou.com/login/?client_id=neds_client_sumun_colombia_pro" target="_blank" class="tdm-item">
+          <div class="tdm-icon"><img src="img/iconos/sumun.svg" onerror="this.parentElement.innerHTML='&#127942;'" alt="SUMUN"/></div>
+          <div><strong>SUMUN</strong><span>Competencias acad&#233;micas</span></div>
+        </a>
+        <a href="https://gds.gnosoft.com.co/inicioV2/index.jsp" target="_blank" class="tdm-item">
+          <div class="tdm-icon"><img src="img/iconos/gnosoft.svg" onerror="this.parentElement.innerHTML='&#128187;'" alt="Gnosoft"/></div>
+          <div><strong>Gnosoft</strong><span>Sistema de gesti&#243;n</span></div>
+        </a>
+        <a href="https://workspace.google.com/intl/es-419/gmail/" class="tdm-item">
+          <div class="tdm-icon"><img src="img/iconos/gmail.svg" onerror="this.parentElement.innerHTML='&#128231;'" alt="Gmail"/></div>
+          <div><strong>Correo Institucional</strong><span>Gmail educativo</span></div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <a href="#formulario" class="topbar-cta">Inscripciones</a>
+</div>
+
+<!-- NAVBAR -->
+<header class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="brand">
+      <div class="brand-logo">
+        <img src="img/escudo-gds.png" alt="Escudo GDS"/>
+      </div>
+      <div class="brand-text">
+        <span class="brand-name">GIMNASIO<br>DOMINGO SAVIO</span>
+        <span class="brand-tagline">"En uni&#243;n y compromiso formamos l&#237;deres Dominguinos"</span>
+      </div>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html" class="nav-link">Inicio</a>
+      <a href="index.html#elgds" class="nav-link">El GDS</a>
+      <a href="#formulario" class="nav-link">Formulario</a>
+      <a href="#descuentos" class="nav-link">Descuentos</a>
+      <a href="#costos" class="nav-link">Útiles Escolares</a>
+      <a href="#faq" class="nav-link">FAQ</a>
+      <a href="#formulario" class="btn-inscripcion">Inscribirse</a>
+    <button class="gds-admin-entry" onclick="adminCheckAuthInsc()" title="Panel de Administración GDS" style="background:none;border:1px solid rgba(255,255,255,.2);border-radius:8px;color:var(--azul);cursor:pointer;display:inline-flex;align-items:center;gap:7px;padding:6px 14px;font-size:13px;font-family:inherit;transition:background .2s,color .2s,transform .2s;" onmouseover="this.style.background='var(--fondo)';this.style.color='var(--celeste)';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='none';this.style.color='var(--azul)';this.style.transform='none'">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      Administrador
+    </button>
+    </nav>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <div class="breadcrumb-inner">
+    <a href="index.html">Inicio</a>
+    <span>›</span>
+    <span>Admisiones</span>
+    <span>›</span>
+    <span style="color:var(--azul);font-weight:bold;">Inscripciones</span>
+  </div>
+</div>
+
+<!-- ADMIN TOOLBAR -->
+<div class="insc-admin-toolbar" id="inscAdminToolbar">
+  <span>⚙️ Modo Admin — Inscripciones</span>
+  <div class="insc-admin-btns">
+    <button class="insc-admin-btn" onclick="abrirPanelAdmin()">📋 Panel Admin</button>
+    <button class="insc-admin-btn" onclick="toggleEditMode()">✏️ Editar costos</button>
+    <button class="insc-admin-btn success" onclick="descargarPostulados()">📥 Descargar postulados</button>
+    <button class="insc-admin-btn danger" onclick="adminLogoutInsc()">📄 Salir</button>
+  </div>
+</div>
+
+<!-- PAGE HERO ANIMADO -->
+<div class="page-hero-animated" id="pageHero">
+  <!-- Burbujas decorativas -->
+  <div class="page-hero-bubble" style="width:300px;height:300px;top:-80px;right:-60px;animation-duration:7s;animation-delay:0s"></div>
+  <div class="page-hero-bubble" style="width:180px;height:180px;top:60%;left:-40px;animation-duration:9s;animation-delay:2s"></div>
+  <div class="page-hero-bubble" style="width:120px;height:120px;bottom:40px;right:20%;animation-duration:6s;animation-delay:1s"></div>
+  <div class="page-hero-bubble" style="width:80px;height:80px;top:30%;left:25%;animation-duration:11s;animation-delay:3s"></div>
+
+  <div class="page-hero-content">
+    <div class="page-hero-badge">🎓 Admisiones 2026—2027</div>
+    <h1>Proceso de<br><em style="font-style:normal;color:#67d4ff">Inscripción</em></h1>
+    <p>Sigue estos sencillos pasos para unirte a la familia dominguina. ¡Cupos limitados!</p>
+    <div class="page-hero-cta">
+      <a href="#formulario" class="btn-primary large" style="box-shadow:0 8px 28px rgba(0,144,200,.45)">Inscribirse ahora —</a>
+    </div>
+  </div>
+
+  <!-- CINTA INFINITA DE TEXTOS -->
+  <div class="page-hero-ticker">
+    <div class="ticker-track-wrap">
+      <div class="ticker-track" id="tickerTrack">
+        <div class="ticker-item"><div class="ticker-dot"></div>Inscripciones abiertas para todos los grados</div>
+        <div class="ticker-item"><div class="ticker-dot"></div>Descuento especial Preescolar 2026</div>
+        <div class="ticker-item"><div class="ticker-dot"></div>Proceso 100% en línea</div>
+        <div class="ticker-item"><div class="ticker-dot"></div>PBX: 5750230 | CEL: 315 7859157</div>
+        <div class="ticker-item"><div class="ticker-dot"></div>Cupos limitados · ¡Inscríbete ya!</div>
+        <div class="ticker-item"><div class="ticker-dot"></div>Más de 75 años formando líderes dominguinos</div>
+        <!-- Duplicado para loop continuo -->
+        <div class="ticker-item"><div class="ticker-dot"></div>Inscripciones abiertas para todos los grados</div>
+        <div class="ticker-item"><div class="ticker-dot"></div>Descuento especial Preescolar 2026</div>
+        <div class="ticker-item"><div class="ticker-dot"></div>Proceso 100% en línea</div>
+        <div class="ticker-item"><div class="ticker-dot"></div>PBX: 5750230 | CEL: 315 7859157</div>
+        <div class="ticker-item"><div class="ticker-dot"></div>Cupos limitados · ¡Inscríbete ya!</div>
+        <div class="ticker-item"><div class="ticker-dot"></div>Más de 75 años formando líderes dominguinos</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROCESO MINI STEPS -->
+<section class="section" style="background:var(--fondo);padding-top:50px;padding-bottom:20px;">
+  <div class="container">
+    <div class="section-header" style="margin-bottom:28px;">
+      <span class="section-badge">Como funciona</span>
+      <h2 class="section-title">6 Pasos para inscribirte</h2>
+    </div>
+    <div class="pasos-mini">
+      <div class="paso-mini"><div class="paso-mini-num">1</div><h5>Consulta fechas</h5></div>
+      <div class="paso-mini"><div class="paso-mini-num">2</div><h5>Llena el formulario</h5></div>
+      <div class="paso-mini"><div class="paso-mini-num">3</div><h5>Pago inscripcion</h5></div>
+      <div class="paso-mini"><div class="paso-mini-num">4</div><h5>Seleccion</h5></div>
+      <div class="paso-mini"><div class="paso-mini-num">5</div><h5>Documentos</h5></div>
+      <div class="paso-mini"><div class="paso-mini-num">6</div><h5>Matricula</h5></div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMULARIO -->
+<section class="form-section" id="formulario">
+  <div class="form-container">
+
+    <div id="formSuccess" class="form-success">
+      Solicitud enviada exitosamente. Nos comunicaremos contigo en menos de 24 horas. Gracias por confiar en el Gimnasio Domingo Savio.
+    </div>
+
+    <div class="form-card">
+      <div class="form-header">
+        <h2>Formulario de Inscripcion</h2>
+        <p>Completa todos los campos marcados con (*). La informacion sera tratada de forma confidencial.</p>
+      </div>
+      <form class="form-body" id="inscripcionForm" novalidate>
+
+        <!-- Datos del aspirante -->
+        <fieldset>
+          <legend>Datos del Aspirante</legend>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="nombres">Nombres <span class="req">*</span></label>
+              <input type="text" id="nombres" name="nombres" placeholder="Nombres del aspirante" required/>
+            </div>
+            <div class="form-group">
+              <label for="apellidos">Apellidos <span class="req">*</span></label>
+              <input type="text" id="apellidos" name="apellidos" placeholder="Apellidos del aspirante" required/>
+            </div>
+            <div class="form-group">
+              <label for="tipo_doc">Tipo de documento <span class="req">*</span></label>
+              <select id="tipo_doc" name="tipo_doc" required>
+                <option value="">Seleccionar...</option>
+                <option>Registro Civil</option>
+                <option>Tarjeta de Identidad</option>
+                <option>Cedula de Ciudadania</option>
+                <option>Pasaporte</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="num_doc">Numero de documento</label>
+              <input type="text" id="num_doc" name="num_doc" placeholder="Numero de documento"/>
+            </div>
+            <div class="form-group">
+              <label for="fecha_nac">Fecha de nacimiento <span class="req">*</span></label>
+              <input type="date" id="fecha_nac" name="fecha_nac" required/>
+            </div>
+            <div class="form-group">
+              <label for="lugar_nac">Lugar de nacimiento</label>
+              <input type="text" id="lugar_nac" name="lugar_nac" placeholder="Ciudad, Departamento"/>
+            </div>
+            <div class="form-group full">
+              <label>Genero</label>
+              <div class="radio-group">
+                <label class="radio-label"><input type="radio" name="genero" value="M"/> Masculino</label>
+                <label class="radio-label"><input type="radio" name="genero" value="F"/> Femenino</label>
+                <label class="radio-label"><input type="radio" name="genero" value="O"/> Otro</label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Nivel academico -->
+        <fieldset>
+          <legend>Nivel Academico</legend>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="grado">Grado al que aspira <span class="req">*</span></label>
+              <select id="grado" name="grado" required>
+                <option value="">Seleccionar grado...</option>
+                <optgroup label="Preescolar">
+                  <option>Prejardin</option>
+                  <option>Jardin</option>
+                  <option>Transicion (Preescolar)</option>
+                </optgroup>
+                <optgroup label="Primaria">
+                  <option>Primero (1°)</option>
+                  <option>Segundo (2°)</option>
+                  <option>Tercero (3°)</option>
+                  <option>Cuarto (4°)</option>
+                  <option>Quinto (5°)</option>
+                </optgroup>
+                <optgroup label="Secundaria">
+                  <option>Sexto (6°)</option>
+                  <option>Septimo (7°)</option>
+                  <option>Octavo (8°)</option>
+                  <option>Noveno (9°)</option>
+                </optgroup>
+                <optgroup label="Media">
+                  <option>Decimo (10°)</option>
+                  <option>Once (11°)</option>
+                </optgroup>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="ano_lectivo">Año lectivo <span class="req">*</span></label>
+              <select id="ano_lectivo" name="ano_lectivo" required>
+                <option value="">Seleccionar...</option>
+                <option selected>2026</option>
+                <option>2027</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="inst_anterior">Institución educativa anterior</label>
+              <input type="text" id="inst_anterior" name="inst_anterior" placeholder="Nombre del colegio anterior"/>
+            </div>
+            <div class="form-group">
+              <label for="ciudad_anterior">Ciudad</label>
+              <input type="text" id="ciudad_anterior" name="ciudad_anterior" placeholder="Ciudad"/>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Acudiente / Padre de familia -->
+        <fieldset>
+          <legend>Acudiente / Padre de Familia</legend>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="acudiente_nombre">Nombres y apellidos <span class="req">*</span></label>
+              <input type="text" id="acudiente_nombre" name="acudiente_nombre" placeholder="Nombre completo" required/>
+            </div>
+            <div class="form-group">
+              <label for="parentesco">Parentesco <span class="req">*</span></label>
+              <select id="parentesco" name="parentesco" required>
+                <option value="">Seleccionar...</option>
+                <option>Padre</option>
+                <option>Madre</option>
+                <option>Abuelo/a</option>
+                <option>Tio/a</option>
+                <option>Hermano/a mayor</option>
+                <option>Otro</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="tel_principal">Teléfono principal <span class="req">*</span></label>
+              <input type="tel" id="tel_principal" name="tel_principal" placeholder="300 000 0000" required/>
+            </div>
+            <div class="form-group">
+              <label for="tel_alt">Teléfono alternativo</label>
+              <input type="tel" id="tel_alt" name="tel_alt" placeholder="300 000 0000"/>
+            </div>
+            <div class="form-group">
+              <label for="email">Correo electrónico <span class="req">*</span></label>
+              <input type="email" id="email" name="email" placeholder="correo@ejemplo.com" required/>
+            </div>
+            <div class="form-group">
+              <label for="ocupacion">Ocupación</label>
+              <input type="text" id="ocupacion" name="ocupacion" placeholder="Ocupacion del acudiente"/>
+            </div>
+            <div class="form-group full">
+              <label for="direccion">Dirección de residencia <span class="req">*</span></label>
+              <input type="text" id="direccion" name="direccion" placeholder="Calle, barrio, ciudad" required/>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Como se entero -->
+        <fieldset>
+          <legend>Como se Entero del GDS</legend>
+          <div class="form-group">
+            <div class="check-group">
+              <label class="check-label"><input type="checkbox" name="referido" value="redes"/> Redes sociales (Facebook / Instagram)</label>
+              <label class="check-label"><input type="checkbox" name="referido" value="recomendacion"/> Recomendacion de un conocido</label>
+              <label class="check-label"><input type="checkbox" name="referido" value="google"/> Busqueda en Google</label>
+              <label class="check-label"><input type="checkbox" name="referido" value="pagina"/> Pagina web del colegio</label>
+              <label class="check-label"><input type="checkbox" name="referido" value="exestudiante"/> Soy ex-estudiante o tengo un familiar</label>
+              <label class="check-label"><input type="checkbox" name="referido" value="otro"/> Otro medio</label>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- Documentos requeridos PDF -->
+        <fieldset>
+          <legend>Documentos Requeridos</legend>
+          <p style="font-size:12px;color:var(--muted);margin-bottom:18px;line-height:1.5;">Adjunta los siguientes documentos en formato <strong>PDF</strong>. Cada archivo tiene un peso máximo de <strong>6MB</strong>. Si aún no los tienes listos puedes completar el formulario y enviarlos luego por WhatsApp.</p>
+
+          <!-- Documento del estudiante -->
+          <div class="form-group" style="margin-bottom:20px;">
+            <label>Documento del Estudiante <span class="req">*</span>
+              <span style="font-size:11px;font-weight:400;color:var(--muted);display:block;margin-top:2px;">Registro civil, tarjeta de identidad o cédula según la edad del estudiante</span>
+            </label>
+            <!-- Tamaño recomendado: PDF, máximo 6MB -->
+            <div class="pdf-dropzone" id="dz_doc_estudiante" onclick="document.getElementById('file_doc_estudiante').click()">
+              <span class="pdf-dz-icon">📄</span>
+              <span class="pdf-dz-label" id="lbl_doc_estudiante">Clic aquí o arrastra el PDF · máx. 6MB</span>
+            </div>
+            <input type="file" id="file_doc_estudiante" name="doc_estudiante_file" accept=".pdf,application/pdf" style="display:none" onchange="handleInscPdf(this,'doc_estudiante','dz_doc_estudiante','lbl_doc_estudiante','err_doc_estudiante')"/>
+            <div class="pdf-error" id="err_doc_estudiante"></div>
+          </div>
+
+          <!-- Observador de la institución anterior -->
+          <div class="form-group" style="margin-bottom:20px;">
+            <label>Observador de la Institución Anterior <span class="req">*</span>
+              <span style="font-size:11px;font-weight:400;color:var(--muted);display:block;margin-top:2px;">Documento emitido por el colegio anterior con el seguimiento del estudiante</span>
+            </label>
+            <!-- Tamaño recomendado: PDF, máximo 6MB -->
+            <div class="pdf-dropzone" id="dz_observador" onclick="document.getElementById('file_observador').click()">
+              <span class="pdf-dz-icon">📄</span>
+              <span class="pdf-dz-label" id="lbl_observador">Clic aquí o arrastra el PDF · máx. 6MB</span>
+            </div>
+            <input type="file" id="file_observador" name="doc_observador_file" accept=".pdf,application/pdf" style="display:none" onchange="handleInscPdf(this,'doc_observador','dz_observador','lbl_observador','err_observador')"/>
+            <div class="pdf-error" id="err_observador"></div>
+          </div>
+
+          <!-- Boletín de calificaciones -->
+          <div class="form-group" style="margin-bottom:8px;">
+            <label>Boletín de Calificaciones (3° o 4° período) <span class="req">*</span>
+              <span style="font-size:11px;font-weight:400;color:var(--muted);display:block;margin-top:2px;">Boletín del último período cursado en la institución anterior</span>
+            </label>
+            <!-- Tamaño recomendado: PDF, máximo 6MB -->
+            <div class="pdf-dropzone" id="dz_boletin" onclick="document.getElementById('file_boletin').click()">
+              <span class="pdf-dz-icon">📄</span>
+              <span class="pdf-dz-label" id="lbl_boletin">Clic aquí o arrastra el PDF · máx. 6MB</span>
+            </div>
+            <input type="file" id="file_boletin" name="doc_boletin_file" accept=".pdf,application/pdf" style="display:none" onchange="handleInscPdf(this,'doc_boletin','dz_boletin','lbl_boletin','err_boletin')"/>
+            <div class="pdf-error" id="err_boletin"></div>
+          </div>
+        </fieldset>
+
+        <!-- Observaciones -->
+        <fieldset>
+          <legend>Informacion Adicional</legend>
+          <div class="form-group">
+            <label for="observaciones">Observaciones o condiciones especiales</label>
+            <textarea id="observaciones" name="observaciones" placeholder="Condiciones medicas, necesidades educativas especiales, preguntas adicionales..."></textarea>
+          </div>
+          <div class="form-group" style="margin-top:16px;">
+            <label class="check-label">
+              <input type="checkbox" id="terminos" required/>
+              <span>Acepto el tratamiento de datos personales segun la politica de privacidad del Gimnasio Domingo Savio. <span class="req">*</span></span>
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="form-footer">
+          <button type="button" class="btn-secondary" onclick="document.getElementById('inscripcionForm').reset()">Limpiar</button>
+          <button type="submit" class="btn-primary">Enviar Solicitud</button>
+        </div>
+
+      </form>
+
+    </div><!-- /form-card -->
+
+  </div>
+</section>
+
+<!-- BECAS Y DESCUENTOS -->
+<section class="descuentos-section" id="descuentos">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">Beneficios</span>
+      <h2 class="section-title">Becas y Descuentos</h2>
+      <p class="section-sub">Programas de apoyo financiero del Gimnasio Domingo Savio para su comunidad — Política PE-GD-D06</p>
+    </div>
+
+    <div class="desc-eyebrow-row">
+      <h3 class="desc-subtitle">Becas</h3>
+      <span class="desc-req-tag strict">Sujetas a requisitos específicos</span>
+    </div>
+    <p class="desc-subtext">Son la ayuda financiera que el Gimnasio Domingo Savio otorga a sus estudiantes, previo cumplimiento de los requisitos del reglamento y la aprobación del Comité de Becas y la Junta Directiva. Las cuatro modalidades son mutuamente excluyentes: no se pueden acumular entre sí.</p>
+
+    <div class="becas-grid">
+      <div class="beca-card beca-rend">
+        <div class="beca-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></div>
+        <h4>Beca por Rendimiento Académico</h4>
+        <div class="beca-tiers">
+          <div class="beca-tier-row"><span class="tier-label">1er puesto</span><span class="tier-val editable-cell" data-desc-key="desc_pct_0a">20%</span></div>
+          <div class="beca-tier-row"><span class="tier-label">2do puesto</span><span class="tier-val editable-cell" data-desc-key="desc_pct_0b">15%</span></div>
+          <div class="beca-tier-row"><span class="tier-label">3er puesto</span><span class="tier-val editable-cell" data-desc-key="desc_pct_0c">10%</span></div>
+        </div>
+        <p>Exonera un porcentaje del valor de la pensión a los tres mejores promedios de cada grado, desde 2° de primaria hasta 11°.</p>
+        <span class="beca-chip">Promedio mínimo 8.0 · Sin sanciones disciplinarias</span>
+      </div>
+
+      <div class="beca-card beca-inst">
+        <div class="beca-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+        <h4>Beca por Relación Institucional</h4>
+        <div class="beca-pct editable-cell" data-desc-key="desc_pct_1">Hasta 50%</div>
+        <p>Exoneración en el pago de la pensión para los hijos de docentes y del personal administrativo del GDS, en virtud de su vínculo con la institución.</p>
+        <span class="beca-chip">Promedio mínimo 7.0 · Sin materias perdidas</span>
+      </div>
+
+      <div class="beca-card beca-soc">
+        <div class="beca-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <h4>Beca por Necesidades Socioeconómicas</h4>
+        <div class="beca-pct editable-cell" data-desc-key="desc_pct_2">Hasta 50%</div>
+        <p>Estímulo económico discrecional para estudiantes de escasos recursos con buen rendimiento, dando prioridad a familias de los estratos 1, 2 y 3. El estudiante debe llevar mínimo un año cursado en la institución.</p>
+        <span class="beca-chip">Promedio mínimo 7.0 · Solo casos evaluados</span>
+      </div>
+
+      <div class="beca-card beca-herm">
+        <div class="beca-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h4>Beca Hermanos</h4>
+        <div class="beca-pct editable-cell" data-desc-key="desc_pct_3">10%</div>
+        <p>Exoneración en la pensión para los estudiantes que tengan más de dos hermanos, por línea materna y/o paterna, estudiando activamente en el GDS.</p>
+        <span class="beca-chip">Promedio mínimo 7.0 · +2 hermanos activos</span>
+      </div>
+    </div>
+
+    <p class="desc-note-strip">Para obtener y mantener cualquiera de estas becas, el estudiante debe estar a paz y salvo por todo concepto con la institución.</p>
+
+    <div class="desc-eyebrow-row" style="margin-top:56px;">
+      <h3 class="desc-subtitle">Descuentos</h3>
+      <span class="desc-req-tag loose">Sin requisitos rigurosos</span>
+    </div>
+    <p class="desc-subtext">A diferencia de las becas, los descuentos se aplican por el simple cumplimiento de una condición general y se establecen mediante Acuerdo de la Junta Directiva, con su respectivo valor y vigencia. Actualmente el reglamento contempla una sola modalidad de descuento.</p>
+
+    <div class="descuento-card">
+      <div class="beca-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M9 16l2 2 4-4"/></svg></div>
+      <div class="descuento-pct editable-cell" data-desc-key="desc_pct_4">5%</div>
+      <h4>Descuento por Pago Anticipado</h4>
+      <p>Exonera el 5% del valor de la pensión a las familias que cancelen por adelantado el total del año escolar. Aprobado por la Junta Directiva según Acta 183 del 2 de noviembre de 2019.</p>
+    </div>
+
+    <div class="policy-note">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+      <p>En ningún caso las ayudas económicas podrán superar el 50% del valor de la pensión, salvo excepciones aprobadas por la Junta Directiva. Becas y descuentos son incompatibles entre sí y no acumulables. Consulta el reglamento completo en la Coordinación Académica.</p>
+    </div>
+  </div>
+</section>
+
+<!-- UTILES ESCOLARES -->
+<section class="utiles-section" id="costos">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">Útiles Escolares</span>
+      <h2 class="section-title">Lista de Útiles 2026</h2>
+      <p class="section-sub">Selecciona el grado para ver la lista completa de útiles</p>
+    </div>
+    <div class="utiles-tabs" id="utilesTabs"></div>
+    <div class="utiles-grados-grid" id="utilesGradosGrid"></div>
+  </div>
+</section>
+
+<!-- Modal detalle de útiles por grado -->
+<div class="utiles-modal-overlay" id="utilesModalOverlay" onclick="if(event.target===this)cerrarUtilesModal()">
+  <div class="utiles-modal-box">
+    <div class="utiles-modal-head">
+      <button class="utiles-modal-close" onclick="cerrarUtilesModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+      <div class="um-icon" id="utilesModalIcon"></div>
+      <div class="um-nivel" id="utilesModalNivel"></div>
+      <h3 id="utilesModalTitulo"></h3>
+    </div>
+    <div class="utiles-modal-body">
+      <ul class="utiles-modal-list" id="utilesModalLista"></ul>
+      <a class="utiles-modal-precio-btn" id="utilesModalPrecioBtn" href="https://wa.me/573157859157" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A7.85 7.85 0 0 0 12.05 4a7.94 7.94 0 0 0-6.9 11.89L4 20l4.24-1.11a7.9 7.9 0 0 0 3.8.97h.01a7.94 7.94 0 0 0 5.55-13.54zm-5.55 12.2a6.6 6.6 0 0 1-3.36-.92l-.24-.14-2.5.66.67-2.44-.16-.25a6.59 6.59 0 0 1 10.2-8.2 6.55 6.55 0 0 1 1.94 4.67 6.6 6.6 0 0 1-6.55 6.62zm3.6-4.93c-.2-.1-1.17-.58-1.35-.64s-.31-.1-.44.1-.5.64-.61.77-.23.15-.42.05a5.4 5.4 0 0 1-1.6-.98 6 6 0 0 1-1.1-1.37c-.12-.2 0-.3.09-.4s.2-.23.29-.35a1.3 1.3 0 0 0 .2-.34.37.37 0 0 0 0-.35c-.05-.1-.44-1.06-.6-1.45s-.32-.33-.44-.34h-.38a.72.72 0 0 0-.53.25 2.2 2.2 0 0 0-.68 1.63c0 .96.7 1.89.8 2.02s1.37 2.1 3.33 2.94a11.4 11.4 0 0 0 1.11.41 2.68 2.68 0 0 0 1.23.08c.37-.06 1.17-.48 1.34-.94s.17-.86.12-.94-.19-.14-.4-.24z"/></svg>Precio: Consultar por WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">Preguntas frecuentes</span>
+      <h2 class="section-title">Resolvemos tus dudas</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-question">Cuales son los documentos requeridos para la inscripcion? <span class="faq-arrow">&#8964;</span></div>
+        <div class="faq-answer">Se requiere: fotocopia del registro civil o tarjeta de identidad del estudiante, fotocopia del documento del acudiente, foto reciente 3x4, boletin del ultimo periodo del colegio anterior y certificado de vacunas (para preescolar).</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Cuales son los horarios de atencion? <span class="faq-arrow">&#8964;</span></div>
+        <div class="faq-answer">Lunes a viernes de 7:00 a.m. a 12:00 m. y de 1:00 p.m. a 5:00 p.m. Sabados de 8:00 a.m. a 12:00 m. durante el periodo de inscripciones.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Cuanto tiempo dura el proceso de admision? <span class="faq-arrow">&#8964;</span></div>
+        <div class="faq-answer">El proceso completo desde la inscripcion hasta la confirmacion del cupo toma entre 5 y 10 dias habiles, dependiendo del grado solicitado y la disponibilidad de cupos.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Hay cupos disponibles para todos los grados? <span class="faq-arrow">&#8964;</span></div>
+        <div class="faq-answer">Los cupos son limitados y se asignan por orden de llegada segun el cumplimiento de requisitos. Te recomendamos inscribirte con anticipacion. Llama al 5750230 para verificar disponibilidad.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">El pago de la inscripcion se devuelve si no quedamos? <span class="faq-arrow">&#8964;</span></div>
+        <div class="faq-answer">El valor de la inscripcion cubre los costos del proceso de seleccion y evaluacion. En caso de no quedar admitido, se podra estudiar cada caso particular con la coordinacion academica.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Ofrecen ruta escolar? <span class="faq-arrow">&#8964;</span></div>
+        <div class="faq-answer">Si, el colegio cuenta con servicio de ruta escolar en diferentes sectores de Cucuta y el area metropolitana. Consulta disponibilidad y costos directamente en la institucion.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="idx-cta-strip">
+  <div class="idx-cta-orb idx-cta-orb-1"></div>
+  <div class="idx-cta-orb idx-cta-orb-2"></div>
+  <span class="idx-cta-sparkle">✨</span>
+  <span class="idx-cta-sparkle">✨</span>
+  <span class="idx-cta-sparkle">✨</span>
+  <div class="idx-cta-content">
+    <h2>¿Aún tienes<br><span>preguntas?</span></h2>
+    <p>Nuestro equipo de admisiones está listo para orientarte en cada paso del proceso de inscripción.</p>
+    <div class="idx-cta-cards">
+      <div class="idx-cta-card">
+        <div class="idx-cta-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <strong>Ubicación</strong><span>Calle 9 #9E-77, La Riviera</span>
+      </div>
+      <div class="idx-cta-card">
+        <div class="idx-cta-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+        <strong>Teléfono</strong><span>PBX 5750230 · CEL 315 785 9157</span>
+      </div>
+      <div class="idx-cta-card">
+        <div class="idx-cta-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <strong>Atención</strong><span>Lun—Vie 7:00 am — 5:00 pm</span>
+      </div>
+    </div>
+    <div class="idx-cta-btns">
+      <a href="tel:+573006218906" class="btn-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Llamar ahora
+      </a>
+      <a href="mailto:educacion@gimnasiodomingosavio.edu.co" class="btn-ghost">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Enviar correo
+      </a>
+      <a href="https://wa.me/573157859157" target="_blank" class="btn-whatsapp">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER igual al index -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo-img"><img src="img/escudo-gds.png" alt="Escudo GDS"/></div>
+      <div>
+        <h3 class="footer-name">GIMNASIO<br>DOMINGO SAVIO</h3>
+        <p class="footer-tagline">"En uni&#243;n y compromiso formamos l&#237;deres Dominguinos"</p>
+      </div>
+    </div>
+        <div class="footer-links">
+      <div class="footer-col">
+        <h4>El GDS</h4>
+        <a href="index.html#elgds">Nuestra Historia</a>
+        <a href="organigrama.html">Organigrama</a>
+        <a href="index.html#comunidad">Comunidad</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfj27BVS4PAuod_YNgempDyy9BsuYAiitKUjzrFDE02nFHG_w/viewform" target="_blank">PQRSD</a>
+      </div>
+      <div class="footer-col">
+        <h4>P&aacute;ginas</h4>
+        <a href="inscripciones.html">Inscripciones</a>
+        <a href="noticias.html">Noticias</a>
+        <a href="servicios.html">Servicios</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <a href="https://share.google/I69GVxqzzaAgVojLO" target="_blank">Calle 9 #9E-77, La Riviera</a>
+        <a href="tel:5750230">PBX 5750230</a>
+        <a href="tel:3157859157">CEL 315 7859157</a>
+        <a href="mailto:educacion@gimnasiodomingosavio.edu.co">educacion@gimnasiodomingosavio.edu.co</a>
+      </div>
+      <!-- Redes sociales en columna derecha -->
+      <div class="footer-col footer-col-social">
+        <h4>Redes Sociales</h4>
+        <div class="footer-social-grid">
+          <a href="https://www.facebook.com/share/1CM7g1wcfe/" target="_blank" class="social-btn-sq fb" title="Facebook">
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            <span>Facebook</span>
+          </a>
+          <a href="https://www.instagram.com/gimnasiodomingosavio?igsh=d2Fydjk0OWlyendr" target="_blank" class="social-btn-sq ig" title="Instagram">
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            <span>Instagram</span>
+          </a>
+          <a href="https://wa.me/573157859157" target="_blank" class="social-btn-sq wa" title="WhatsApp">
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            <span>WhatsApp</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Gimnasio Domingo Savio · Cúcuta, Norte de Santander, Colombia</p>
+  </div>
+</footer>
+
+
+
+<!-- Admin Login for inscripciones -->
+<div class="admin-login-overlay" id="adminLoginInsc">
+  <div class="admin-login-box">
+    <div class="admin-login-header">
+      <div class="admin-login-escudo">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCb34ts2xAVQuTYKlJO5GRmAtrKpC0oRpdmg&s" alt="GDS" onerror="this.parentElement.innerHTML='🎓'"/>
+      </div>
+      <div class="admin-login-title">Panel Administrativo</div>
+      <div class="admin-login-sub">Gimnasio Domingo Savio</div>
+      <div class="admin-login-badge">🔒 Acceso restringido</div>
+    </div>
+    <div class="admin-login-body">
+      <div id="inscStepEmail">
+        <div class="admin-login-field">
+          <label>📥 Correo electrónico admin</label>
+          <input type="email" id="inscAdminEmail" placeholder="correo@gimnasiodomingosavio.edu.co" autocomplete="email"/>
+        </div>
+        <div class="admin-login-field">
+          <label>🔒 Contraseña</label>
+          <div style="position:relative">
+            <input type="password" id="inscAdminPass" placeholder="Ingresa tu contraseña" autocomplete="current-password" onkeydown="if(event.key==='Enter')doInscStep1()" style="padding-right:44px"/>
+            <button type="button" onclick="toggleInscPassVis()" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:1rem;color:var(--muted);padding:0" id="inscPassBtn">👁</button>
+          </div>
+        </div>
+        <div class="admin-login-error" id="inscLoginError" style="display:none">⚠️ Credenciales incorrectas</div>
+        <div class="admin-login-error" id="inscBlockError" style="display:none;background:rgba(192,57,43,.1);border:1px solid #c0392b;border-radius:8px;padding:10px;font-size:12px;color:#c0392b;margin-bottom:10px;">🚫 IP bloqueada. Intenta en <span id="inscBlockCountdown">10:00</span> min.</div>
+        <button class="btn-primary" onclick="doInscStep1()" style="width:100%;justify-content:center;margin-top:4px;padding:13px">Continuar →'</button>
+        <button class="btn-outline" onclick="cerrarInscAdminLogin()" style="width:100%;justify-content:center;margin-top:8px;font-size: 0.8125rem">Cancelar</button>
+      </div>
+      <div id="inscStepOTP" style="display:none">
+        <div style="text-align:center;margin-bottom:18px;">
+          <div style="font-size:36px;margin-bottom:8px">📥</div>
+          <p style="font-size:13px;color:var(--muted)">Se envió un código a <strong id="inscEmailShown"></strong>. Revisa tu bandeja.</p>
+        </div>
+        <div class="admin-login-field">
+          <label>📥 Código de verificación</label>
+          <input type="text" id="inscOTPInput" placeholder="000000" maxlength="6" style="text-align:center;font-size:22px;letter-spacing:8px;font-weight:bold" onkeydown="if(event.key==='Enter')doInscStep2()"/>
+        </div>
+        <div class="admin-login-error" id="inscOTPError" style="display:none">⚠️ Código incorrecto o expirado</div>
+        <button class="btn-primary" onclick="doInscStep2()" style="width:100%;justify-content:center;margin-top:4px;padding:13px">Verificar y acceder →'</button>
+        <button class="btn-outline" onclick="volverInscStep1()" style="width:100%;justify-content:center;margin-top:8px;font-size: 0.8125rem">› Volver</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Admin Panel Modal Inscripciones -->
+<div class="admin-panel-overlay" id="inscAdminPanelOverlay" onclick="if(event.target===this)cerrarInscAdminPanel()">
+  <div class="admin-panel-box">
+    <div class="admin-panel-drag"></div>
+    <div class="admin-panel-title">⚙️ Panel Admin — Inscripciones</div>
+    <div class="admin-panel-sub">Selecciona qué deseas gestionar:</div>
+    <div class="admin-panel-grid">
+      <div class="admin-panel-card" onclick="abrirEditorCostos()">
+        <span class="admin-panel-card-icon">👁</span>
+        <h4>Costos y Descuentos</h4>
+        <p>Editar tarifas, matrículas y descuentos</p>
+      </div>
+      <div class="admin-panel-card" onclick="abrirEditorUtilesInsc()">
+        <span class="admin-panel-card-icon">📚</span>
+        <h4>Útiles Escolares</h4>
+        <p>Agregar, editar o eliminar útiles por grado</p>
+      </div>
+      <div class="admin-panel-card" onclick="abrirEditorPostulados()">
+        <span class="admin-panel-card-icon">📥</span>
+        <h4>Postulados</h4>
+        <p>Ver y descargar solicitudes recibidas</p>
+      </div>
+      </div>
+    <button class="admin-logout-btn" onclick="adminLogoutInsc()">📄 Cerrar sesión</button>
+  </div>
+</div>
+
+<!-- Editor Docentes Inscripciones -->
+<div class="admin-editor-overlay" id="editorDocentesInscOverlay" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="admin-editor-box">
+    <div class="admin-editor-header">
+      <h3>👁›🎓 Gestionar Docentes</h3>
+      <button class="admin-editor-close" onclick="document.getElementById('editorDocentesInscOverlay').classList.remove('open')">✕</button>
+    </div>
+    <div class="admin-items-list" id="docentesInscList"></div>
+    <button class="admin-add-btn" onclick="mostrarFormDocenteInsc()">+ Agregar Docente</button>
+    <div id="formDocenteInsc" style="display:none;margin-top:16px;background:var(--fondo);border-radius:var(--radio);padding:18px;">
+      <div class="admin-form-field"><label>Nombre Completo</label><input type="text" id="diNombre" placeholder="NOMBRE APELLIDO"/></div>
+      <div class="admin-form-field"><label>Cargo / Materia</label><input type="text" id="diCargo" placeholder="Ej: Titular 5°A · Matemáticas"/></div>
+      <div class="admin-form-field"><label>Nivel</label><input type="text" id="diNivel" placeholder="Ej: Primaria, Secundaria"/></div>
+      <div class="admin-form-field"><label>URL Foto (opcional)</label><input type="text" id="diFoto" placeholder="https://..."/></div>
+      <input type="hidden" id="diEditId"/>
+      <div class="admin-form-actions">
+        <button class="btn-outline" onclick="document.getElementById('formDocenteInsc').style.display='none'">Cancelar</button>
+        <button class="btn-primary" onclick="guardarDocenteInsc()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Editor Útiles Escolares Inscripciones -->
+<div class="admin-editor-overlay" id="editorUtilesInscOverlay" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="admin-editor-box">
+    <div class="admin-editor-header">
+      <h3>📚 Gestionar Útiles Escolares</h3>
+      <button class="admin-editor-close" onclick="document.getElementById('editorUtilesInscOverlay').classList.remove('open')">✕</button>
+    </div>
+    <div class="admin-form-field">
+      <label>Grado</label>
+      <select id="utGradoSelect" onchange="renderUtilesInscList()"></select>
+    </div>
+    <div class="admin-items-list" id="utilesInscList" style="margin-top:14px;"></div>
+    <button class="admin-add-btn" onclick="mostrarFormUtilInsc()">+ Agregar Util</button>
+    <div id="formUtilInsc" style="display:none;margin-top:16px;background:var(--fondo);border-radius:var(--radio);padding:18px;">
+      <div class="admin-form-field"><label>Nombre del útil</label><input type="text" id="uiItem" placeholder="Ej: Cuaderno cuadriculado 100 hojas"/></div>
+      <div class="admin-form-field"><label>Cantidad</label><input type="text" id="uiCantidad" placeholder="Ej: 3 ó 1 caja"/></div>
+      <input type="hidden" id="uiEditIdx"/>
+      <div class="admin-form-actions">
+        <button class="btn-outline" onclick="document.getElementById('formUtilInsc').style.display='none'">Cancelar</button>
+        <button class="btn-primary" onclick="guardarUtilInsc()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Editor Directivos Inscripciones -->
+<div class="admin-editor-overlay" id="editorDirectivosInscOverlay" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="admin-editor-box">
+    <div class="admin-editor-header">
+      <h3>⚙️ Gestionar Directivos</h3>
+      <button class="admin-editor-close" onclick="document.getElementById('editorDirectivosInscOverlay').classList.remove('open')">✕</button>
+    </div>
+    <div class="admin-items-list" id="directivosInscList"></div>
+    <button class="admin-add-btn" onclick="mostrarFormDirectivoInsc()">+ Agregar Directivo</button>
+    <div id="formDirectivoInsc" style="display:none;margin-top:16px;background:var(--fondo);border-radius:var(--radio);padding:18px;">
+      <div class="admin-form-field"><label>Nombre Completo</label><input type="text" id="dri2Nombre" placeholder="NOMBRE APELLIDO"/></div>
+      <div class="admin-form-field"><label>Cargo</label><input type="text" id="dri2Cargo" placeholder="Ej: Rector"/></div>
+      <div class="admin-form-field"><label>Tipo de rol</label>
+        <select id="dri2Rol"><option value="rector">Rector</option><option value="academica">Directora/Director Académico</option><option value="administrativa">Directora/Director Administrativo</option><option value="otro">Otro</option></select>
+      </div>
+      <div class="admin-form-field"><label>URL Foto (opcional)</label><input type="text" id="dri2Foto" placeholder="img/foto.jpg o https://..."/></div>
+      <input type="hidden" id="dri2EditId"/>
+      <div class="admin-form-actions">
+        <button class="btn-outline" onclick="document.getElementById('formDirectivoInsc').style.display='none'">Cancelar</button>
+        <button class="btn-primary" onclick="guardarDirectivoInsc()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Editor Docentes Directivos Inscripciones -->
+<div class="admin-editor-overlay" id="editorDocentesDirectivosInscOverlay" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="admin-editor-box">
+    <div class="admin-editor-header">
+      <h3>📄 Gestionar Docentes Directivos</h3>
+      <button class="admin-editor-close" onclick="document.getElementById('editorDocentesDirectivosInscOverlay').classList.remove('open')">✕</button>
+    </div>
+    <div class="admin-items-list" id="docentesDirectivosInscList"></div>
+    <button class="admin-add-btn" onclick="mostrarFormDocenteDirectivoInsc()">+ Agregar Docente Directivo</button>
+    <div id="formDocenteDirectivoInsc" style="display:none;margin-top:16px;background:var(--fondo);border-radius:var(--radio);padding:18px;">
+      <div class="admin-form-field"><label>Nombre Completo</label><input type="text" id="ddi2Nombre" placeholder="NOMBRE APELLIDO"/></div>
+      <div class="admin-form-field"><label>Cargo</label><input type="text" id="ddi2Cargo" placeholder="Ej: Coordinador Académico"/></div>
+      <div class="admin-form-field"><label>Tipo de rol</label>
+        <select id="ddi2Rol"><option value="convivencia">Coordinación Convivencia</option><option value="academico">Coordinación Académica</option><option value="psicologa">Psicóloga Institucional</option><option value="otro">Otro</option></select>
+      </div>
+      <div class="admin-form-field"><label>URL Foto (opcional)</label><input type="text" id="ddi2Foto" placeholder="img/foto.jpg o https://..."/></div>
+      <input type="hidden" id="ddi2EditId"/>
+      <div class="admin-form-actions">
+        <button class="btn-outline" onclick="document.getElementById('formDocenteDirectivoInsc').style.display='none'">Cancelar</button>
+        <button class="btn-primary" onclick="guardarDocenteDirectivoInsc()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Editor Postulados Inscripciones -->
+<div class="admin-editor-overlay" id="editorPostuladosOverlay" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="admin-editor-box">
+    <div class="admin-editor-header">
+      <h3>📥 Postulados Recibidos</h3>
+      <button class="admin-editor-close" onclick="document.getElementById('editorPostuladosOverlay').classList.remove('open')">✕</button>
+    </div>
+    <div id="postuladosList" style="max-height:400px;overflow-y:auto;"></div>
+    <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;">
+      <button class="admin-add-btn" style="flex:1" onclick="descargarPostulados()">📥 Descargar Excel</button>
+      <button class="admin-add-btn" style="flex:1;border-color:rgba(192,57,43,.3);color:#c0392b;background:rgba(192,57,43,.06)" onclick="limpiarPostulados()">🗑️ Limpiar todos</button>
+    </div>
+  </div>
+</div>
+<a href="https://wa.me/573157859157" target="_blank" class="whatsapp-float visible" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script src="gds-api.js?v=20260811"></script>
+<script src="js/common.js?v=20260925"></script>
+<script src="js/pages/inscripciones.js"></script>
+</body>
+</html>

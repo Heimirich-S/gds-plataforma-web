@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Organigrama — Gimnasio Domingo Savio</title>
+  <link rel="icon" type="image/x-icon" href="img/escudo-gds.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  <!-- Twemoji: consistent cross-platform emoji rendering -->
+  <script src="https://cdn.jsdelivr.net/npm/@twemoji/api@14.1.0/dist/twemoji.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* ══════════════════════════════════════════════════════════
+       HERO — usa el mismo sistema animado del resto del sitio
+       (burbujas flotantes + degradado en movimiento, .page-hero-*
+       en style.css) para que se sienta "vivo" igual que Noticiaas,
+       con una capa extra de acabado institucional encima: sello de
+       75 años, línea dorada con brillo y textura fina tipo lienzo.
+       ══════════════════════════════════════════════════════════ */
+    .org-page-hero::before {
+      content:''; position:absolute; inset:0; z-index:1; opacity:.5; pointer-events:none;
+      background-image: repeating-linear-gradient(115deg, rgba(255,255,255,.03) 0 1px, transparent 1px 5px);
+    }
+    .org-hero-seal {
+      display:inline-flex; align-items:center; gap:8px;
+      padding:6px 16px 6px 6px; border-radius:99px; margin-bottom:18px;
+      background:rgba(255,255,255,.06); border:1px solid rgba(221,187,116,.35);
+      font-size:11.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+      color: var(--bronce-claro, #ddbb74);
+      animation: heroFadeUp .6s ease both;
+    }
+    .org-hero-seal img {
+      width:24px; height:24px; border-radius:50%; display:block;
+      box-shadow:0 0 0 1.5px rgba(221,187,116,.5);
+      animation: orgSealFloat 4s ease-in-out infinite;
+    }
+    @keyframes orgSealFloat { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-3px); } }
+    .org-hero-rule {
+      width:64px; height:2px; margin:6px auto 18px; position:relative; overflow:hidden;
+      background:linear-gradient(90deg, transparent, var(--bronce-claro,#ddbb74), transparent);
+      animation: heroFadeUp .6s .15s ease both;
+    }
+    .org-hero-rule::after {
+      content:''; position:absolute; inset:0; width:40%;
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,.9), transparent);
+      animation: orgRuleShine 3.2s ease-in-out infinite;
+    }
+    @keyframes orgRuleShine { 0% { transform:translateX(-150%); } 60%,100% { transform:translateX(350%); } }
+    @media (prefers-reduced-motion: reduce) {
+      .org-hero-seal img, .org-hero-rule::after { animation:none; }
+    }
+
+    .org-page-body { background: var(--fondo); padding: 60px 20px 80px; }
+
+    /* ══════════════════════════════════════════════════════════
+       PROMOCIONES — pared de retratos con marcos de madera reales
+       (3D vía CSS, sin librerías externas: gradientes + box-shadow
+       en capas simulan el bisel, el veteado y el filo dorado).
+       ══════════════════════════════════════════════════════════ */
+    .promo-tabs { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-bottom:36px; }
+    .promo-tab-btn { position:relative; padding:8px 18px; border-radius:20px; border:1.5px solid var(--fondo-2); background:white; color:var(--azul); font-size:13px; font-weight:700; cursor:pointer; transition:all var(--ease); font-family:var(--font-body); }
+    .promo-tab-btn:hover { border-color:var(--celeste); }
+    .promo-tab-btn.active { background:var(--azul); border-color:var(--azul); color:white; box-shadow:0 0 0 3px rgba(184,135,59,.22); }
+
+    .promo-grid { display:grid; grid-template-columns:1fr; gap:58px; max-width:1080px; margin:0 auto; padding:6px; }
+
+    .promo-card {
+      --frame-a:#8a4f2c; --frame-b:#a5613a; --frame-c:#4a2716; --stud:#ddbb74;
+      position:relative; border-radius:5px; padding:22px;
+      max-width:100%; margin:0 auto;
+      background:
+        repeating-linear-gradient(118deg, rgba(0,0,0,.12) 0 2px, transparent 2px 8px),
+        linear-gradient(155deg, var(--frame-b), var(--frame-a) 55%, var(--frame-c));
+      background-blend-mode: multiply, normal;
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.07),
+        inset 0 2px 3px rgba(255,255,255,.2),
+        inset 0 -4px 7px rgba(0,0,0,.45),
+        0 22px 34px -14px rgba(19,41,80,.4),
+        0 4px 10px rgba(0,0,0,.16);
+      transition: box-shadow .4s ease;
+    }
+    .promo-card::before {
+      content:''; position:absolute; inset:11px; pointer-events:none; opacity:.85;
+      background-image:
+        radial-gradient(circle 3px at 9px 9px, var(--stud) 97%, transparent 100%),
+        radial-gradient(circle 3px at calc(100% - 9px) 9px, var(--stud) 97%, transparent 100%),
+        radial-gradient(circle 3px at 9px calc(100% - 9px), var(--stud) 97%, transparent 100%),
+        radial-gradient(circle 3px at calc(100% - 9px) calc(100% - 9px), var(--stud) 97%, transparent 100%);
+    }
+    .promo-card:hover {
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.09), inset 0 2px 3px rgba(255,255,255,.24),
+        inset 0 -4px 7px rgba(0,0,0,.5), 0 30px 46px -16px rgba(19,41,80,.48), 0 6px 14px rgba(0,0,0,.2);
+    }
+    /* La foto se muestra COMPLETA, sin recortar a nadie: el marco se
+       acopla al tamaño real de la imagen (sea panorámica o no) en vez
+       de forzar un recorte 3:2. max-height es solo un tope de cordura
+       para fotos verticales, no cambia el ancho. */
+    .promo-card-img {
+      position:relative; z-index:1; display:block;
+      width:100%; height:auto; max-height:640px;
+      object-fit:contain; margin:0 auto;
+      background:var(--fondo-2); outline:5px solid var(--stud); outline-offset:-5px;
+      box-shadow: inset 0 0 0 9px rgba(0,0,0,.25);
+    }
+    .promo-card-info {
+      position:relative; z-index:1; margin-top:16px; text-align:center; padding:10px 14px;
+      background:linear-gradient(180deg,#2c2015,#1c140d); border-radius:3px;
+      box-shadow: inset 0 0 0 1px rgba(221,187,116,.3), 0 3px 8px rgba(0,0,0,.28);
+    }
+    .promo-card-info h4 { font-family:var(--font-display); font-size:15px; color:#ddbb74; margin-bottom:1px; letter-spacing:.02em; }
+    .promo-card-info span { font-size:11.5px; color:rgba(255,255,255,.55); }
+
+    /* Variantes de madera — asignadas de forma estable por promoción
+       (mismo id → mismo marco siempre), para que la "pared" luzca
+       natural a medida que se agregan más generaciones. */
+    .promo-card.frame-v1 { --frame-a:#8a4f2c; --frame-b:#a5613a; --frame-c:#4a2716; --stud:#ddbb74; } /* Caoba */
+    .promo-card.frame-v2 { --frame-a:#5f4b34; --frame-b:#7c674c; --frame-c:#332619; --stud:#b8873b; } /* Nogal */
+    .promo-card.frame-v3 { --frame-a:#a97a3c; --frame-b:#c99a54; --frame-c:#623f1c; --stud:#f2debe; } /* Roble miel */
+    .promo-card.frame-v4 { --frame-a:#2c2621; --frame-b:#403630; --frame-c:#141210; --stud:#ddbb74; } /* ͉bano y oro */
+
+    .promo-empty { text-align:center; color:var(--muted); font-size:14px; padding:40px 20px; }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <a href="https://www.fucsalud.edu.co/" target="_blank">FUCS</a>
+    <a href="servicios.html">Servicioos</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfj27BVS4PAuod_YNgempDyy9BsuYAiitKUjzrFDE02nFHG_w/viewform" target="_blank">PQRSD</a>
+    <a href="index.html">Preguntas</a>
+    <div class="topbar-dropdown-wrap">
+      <a href="#" class="topbar-dropdown-trigger" id="soyDominguinoBtn">Soy Dominguino <span class="td-arrow">▾</span></a>
+      <div class="topbar-dropdown-menu" id="soyDominguinoMenu">
+        <div class="tdm-header">Plataformas Dominguinas</div>
+        <a href="https://fundamerani.edu.co/" target="_blank" class="tdm-item">
+          <div class="tdm-icon"><img src="img/iconos/fundacion-alberto-merani.webp" onerror="this.parentElement.innerHTML='📚'" alt="Fundamerani"/></div>
+          <div><strong>Fundamerani</strong><span>Plataforma educativa</span></div>
+        </a>
+        <a href="https://identity.santillanaconnect.com/login/?client_id=lms_uno_pro" target="_blank" class="tdm-item">
+          <div class="tdm-icon"><img src="img/iconos/unoi.webp" onerror="this.parentElement.innerHTML='🌐'" alt="UNOI"/></div>
+          <div><strong>UNOI</strong><span>Contenidos digitales</span></div>
+        </a>
+        <a href="https://identity.sumunthebestyou.com/login/?client_id=neds_client_sumun_colombia_pro" target="_blank" class="tdm-item">
+          <div class="tdm-icon"><img src="img/iconos/sumun.webp" onerror="this.parentElement.innerHTML='🏆'" alt="SUMUN"/></div>
+          <div><strong>SUMUN</strong><span>Competencias académicas</span></div>
+        </a>
+        <a href="https://gds.gnosoft.com.co/inicioV2/index.jsp" target="_blank" class="tdm-item">
+          <div class="tdm-icon"><img src="img/iconos/gnosoft.webp" onerror="this.parentElement.innerHTML='💻'" alt="Gnosoft"/></div>
+          <div><strong>Gnosoft</strong><span>Sistema de gestión</span></div>
+        </a>
+        <a href="https://workspace.google.com/intl/es-419/gmail/" class="tdm-item">
+          <div class="tdm-icon"><img src="img/iconos/gmail.webp" onerror="this.parentElement.innerHTML='📧'" alt="Gmail"/></div>
+          <div><strong>Correo Institucional</strong><span>Gmail educativo</span></div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <a href="inscripciones.html" class="topbar-cta">Inscripciones</a>
+</div>
+
+<!-- NAVBAR -->
+<header class="navbar scrolled" id="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="brand">
+      <div class="brand-logo">
+        <img src="img/institucional/escudo-gds.webp" alt="Escudo GDS"/>
+      </div>
+      <div class="brand-text">
+        <span class="brand-name">GIMNASIO<br>DOMINGO SAVIO</span>
+        <span class="brand-tagline">"En unión y compromiso formamos líderes Dominguinos"</span>
+      </div>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html" class="nav-link">Inicio</a>
+      <a href="index.html#elgds" class="nav-link">El GDS</a>
+      <a href="organigrama.html" class="nav-link" style="color:var(--celeste)">Organigrama</a>
+      <a href="index.html#admisiones" class="nav-link">Admisiones</a>
+      <a href="inscripciones.html" class="btn-inscripcion">Inscripciones</a>
+    <button class="gds-admin-entry" onclick="adminCheckAuthOrg()" title="Panel de Administración GDS" style="background:none;border:1px solid rgba(255,255,255,.2);border-radius:8px;color:var(--azul);cursor:pointer;display:inline-flex;align-items:center;gap:7px;padding:6px 14px;font-size:13px;font-family:inherit;transition:background .2s,color .2s,transform .2s;" onmouseover="this.style.background='var(--fondo)';this.style.color='var(--celeste)';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='none';this.style.color='var(--azul)';this.style.transform='none'">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      Administrador
+    </button>
+    </nav>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ADMIN TOOLBAR -->
+<div class="admin-toolbar" id="adminToolbar">
+  <span>⚙️ Modo Administrador — Organigrama GDS</span>
+  <div class="admin-toolbar-btns">
+    <button class="admin-toolbar-btn" onclick="document.getElementById('editorDirectivosOverlay').classList.add('open')">🏛️ Directivos</button>
+    <button class="admin-toolbar-btn" onclick="document.getElementById('editorDocentesDirectivosOverlay').classList.add('open')">📋 Docentes Directivos</button>
+    <button class="admin-toolbar-btn" onclick="document.getElementById('editorAdministrativosOverlay').classList.add('open')">🗂️ Administrativos</button>
+    <button class="admin-toolbar-btn" onclick="document.getElementById('editorDocentesOverlay').classList.add('open')">👩‍🏫 Docentes</button>
+    <button class="admin-toolbar-btn" onclick="document.getElementById('editorPromocionesOverlay').classList.add('open')">🎓 Promociones 11°</button>
+    <button class="admin-toolbar-btn danger" onclick="adminLogoutOrg()">🔓 Salir</button>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="page-hero-animated org-page-hero">
+  <div class="page-hero-bubble" style="width:260px;height:260px;top:-70px;right:-50px;animation-duration:7s;animation-delay:0s"></div>
+  <div class="page-hero-bubble" style="width:150px;height:150px;top:55%;left:-40px;animation-duration:9s;animation-delay:1.5s"></div>
+  <div class="page-hero-bubble" style="width:100px;height:100px;bottom:30px;right:20%;animation-duration:6s;animation-delay:.8s"></div>
+  <div class="page-hero-content">
+    <span class="org-hero-seal"><img src="img/institucional/escudo-gds.webp" alt="" onerror="this.style.display='none'"/>Fundados en 1949 · 75 años de trayectoria</span>
+    <h1>Organigrama Institucional</h1>
+    <div class="org-hero-rule"></div>
+    <p>Conoce a las personas que lideran y dan vida al Gimnasio Domingo Savio</p>
+  </div>
+  <div class="page-hero-ticker">
+    <div class="ticker-track-wrap">
+      <div class="ticker-track">
+        <span class="ticker-item"><span class="ticker-dot"></span>75 años de trayectoria</span>
+        <span class="ticker-item"><span class="ticker-dot"></span>Fundados en 1949</span>
+        <span class="ticker-item"><span class="ticker-dot"></span>Equipo Directivo</span>
+        <span class="ticker-item"><span class="ticker-dot"></span>Cuerpo Docente</span>
+        <span class="ticker-item"><span class="ticker-dot"></span>Generaciones Dominguinas</span>
+        <span class="ticker-item"><span class="ticker-dot"></span>75 años de trayectoria</span>
+        <span class="ticker-item"><span class="ticker-dot"></span>Fundados en 1949</span>
+        <span class="ticker-item"><span class="ticker-dot"></span>Equipo Directivo</span>
+        <span class="ticker-item"><span class="ticker-dot"></span>Cuerpo Docente</span>
+        <span class="ticker-item"><span class="ticker-dot"></span>Generaciones Dominguinas</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENIDO ORGANIGRAMA -->
+<section class="org-page-body">
+  <div class="container">
+
+    <div class="org-level-label">Directivos Administrativos</div>
+    <div class="org-row org-row-3" id="directivosAdminRow"></div>
+
+    <button class="org-toggle-btn" id="orgToggleBtn" onclick="toggleOrg()">
+      <span>Ver Docentes Administrativos y Cuerpo Docente</span>
+      <span class="org-toggle-icon">▾</span>
+    </button>
+
+    <div id="orgExpandible" style="max-height:0; overflow:hidden; opacity:0; transition: all .6s ease;">
+      <div class="org-connector-line"></div>
+      <div class="org-level-label">Docentes Administrativos</div>
+      <div class="org-row org-row-3" id="docentesDirectivosRow"></div>
+
+      <div class="org-connector-line"></div>
+      <div class="org-level-label">Personal Administrativo</div>
+      <div class="org-row org-row-4" id="administrativosRow"></div>
+
+      <div class="org-connector-line"></div>
+      <div class="org-level-label">Cuerpo Docente</div>
+      <div class="org-docentes-grid" id="cuerpoDocenteGrid"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROMOCIONES GRADO 11° -->
+<section class="org-page-body" style="padding-top:10px;">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">Memoria Institucional</span>
+      <h2 class="section-title">Promociones de Grado 11°</h2>
+      <p class="section-sub">Fotografías oficiales de cada generación de bachilleres del Gimnasio Domingo Savio</p>
+    </div>
+
+    <div class="promo-tabs" id="promoTabs"></div>
+    <div class="promo-grid" id="promoGrid"></div>
+  </div>
+</section>
+
+
+<!-- ═══ ADMIN: GESTIONAR DOCENTES ═══ -->
+<div class="admin-editor-overlay" id="editorDocentesOverlay" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="admin-editor-box">
+    <div class="admin-editor-header">
+      <h3>👩‍🏫 Gestionar Docentes</h3>
+      <button class="admin-editor-close" onclick="document.getElementById('editorDocentesOverlay').classList.remove('open')">✕</button>
+    </div>
+    <div class="admin-items-list" id="docentesList"></div>
+    <button class="admin-add-btn" onclick="mostrarFormDocente()">+ Agregar Docente</button>
+
+    <div id="formDocente" style="display:none;margin-top:16px;background:var(--fondo);border-radius:var(--radio);padding:18px;">
+      <div class="admin-form-field"><label>Nombre Completo</label><input type="text" id="dNombre" placeholder="NOMBRE APELLIDO"/></div>
+      <div class="admin-form-field"><label>Cargo / Materia</label><input type="text" id="dCargo" placeholder="Ej: Titular 5°A"/></div>
+      <div class="admin-form-field"><label>Nivel</label><input type="text" id="dNivel" placeholder="Ej: Primaria"/></div>
+      <div class="admin-form-field">
+        <label>Foto</label>
+        <input type="file" accept="image/*" onchange="procesarFotoAdmin(this, 'dFoto')" style="margin-bottom:5px; display: block; font-size: 12px;">
+        <input type="text" id="dFoto" placeholder="URL o Base64 generado"/>
+      </div>
+      <input type="hidden" id="dEditId"/>
+      <div class="admin-form-actions">
+        <button class="btn-outline" onclick="document.getElementById('formDocente').style.display='none'">Cancelar</button>
+        <button class="btn-primary" onclick="guardarDocente()">Guardar Docente</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ADMIN: GESTIONAR DIRECTIVOS ═══ -->
+<div class="admin-editor-overlay" id="editorDirectivosOverlay" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="admin-editor-box">
+    <div class="admin-editor-header">
+      <h3>🏛️ Gestionar Directivos Administrativos</h3>
+      <button class="admin-editor-close" onclick="document.getElementById('editorDirectivosOverlay').classList.remove('open')">✕</button>
+    </div>
+    <div class="admin-items-list" id="directivosList"></div>
+    <button class="admin-add-btn" onclick="mostrarFormDirectivo()">+ Agregar Directivo</button>
+
+    <div id="formDirectivo" style="display:none;margin-top:16px;background:var(--fondo);border-radius:var(--radio);padding:18px;">
+      <div class="admin-form-field"><label>Nombre Completo</label><input type="text" id="dirNombre" placeholder="NOMBRE APELLIDO"/></div>
+      <div class="admin-form-field"><label>Cargo</label><input type="text" id="dirCargo" placeholder="Ej: Rector, Directora Académica"/></div>
+      <div class="admin-form-field">
+        <label>Tipo de rol</label>
+        <select id="dirRol">
+          <option value="rector">Rector</option>
+          <option value="academica">Directora/Director Académico</option>
+          <option value="administrativa">Directora/Director Administrativo</option>
+          <option value="otro">Otro</option>
+        </select>
+      </div>
+      <div class="admin-form-field">
+        <label>Foto</label>
+        <input type="file" accept="image/*" onchange="procesarFotoAdmin(this, 'dirFoto')" style="margin-bottom:5px; display: block; font-size: 12px;">
+        <input type="text" id="dirFoto" placeholder="img/foto.webp o URL"/>
+      </div>
+      <input type="hidden" id="dirEditId"/>
+      <div class="admin-form-actions">
+        <button class="btn-outline" onclick="document.getElementById('formDirectivo').style.display='none'">Cancelar</button>
+        <button class="btn-primary" onclick="guardarDirectivo()">Guardar Directivo</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ADMIN: GESTIONAR DOCENTES DIRECTIVOS ═══ -->
+<div class="admin-editor-overlay" id="editorDocentesDirectivosOverlay" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="admin-editor-box">
+    <div class="admin-editor-header">
+      <h3>📋 Gestionar Docentes Directivos</h3>
+      <button class="admin-editor-close" onclick="document.getElementById('editorDocentesDirectivosOverlay').classList.remove('open')">✕</button>
+    </div>
+    <div class="admin-items-list" id="docentesDirectivosList"></div>
+    <button class="admin-add-btn" onclick="mostrarFormDocenteDirectivo()">+ Agregar Docente Directivo</button>
+
+    <div id="formDocenteDirectivo" style="display:none;margin-top:16px;background:var(--fondo);border-radius:var(--radio);padding:18px;">
+      <div class="admin-form-field"><label>Nombre Completo</label><input type="text" id="ddNombre" placeholder="NOMBRE APELLIDO"/></div>
+      <div class="admin-form-field"><label>Cargo</label><input type="text" id="ddCargo" placeholder="Ej: Coord. Convivencia, Psicóloga Institucional"/></div>
+      <div class="admin-form-field">
+        <label>Foto</label>
+        <input type="file" accept="image/*" onchange="procesarFotoAdmin(this, 'ddFoto')" style="margin-bottom:5px; display: block; font-size: 12px;">
+        <input type="text" id="ddFoto" placeholder="img/foto.webp o URL"/>
+      </div>
+      <input type="hidden" id="ddEditId"/>
+      <div class="admin-form-actions">
+        <button class="btn-outline" onclick="document.getElementById('formDocenteDirectivo').style.display='none'">Cancelar</button>
+        <button class="btn-primary" onclick="guardarDocenteDirectivo()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ADMIN: GESTIONAR PERSONAL ADMINISTRATIVO ═══ -->
+<div class="admin-editor-overlay" id="editorAdministrativosOverlay" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="admin-editor-box">
+    <div class="admin-editor-header">
+      <h3>🗂️ Gestionar Personal Administrativo</h3>
+      <button class="admin-editor-close" onclick="document.getElementById('editorAdministrativosOverlay').classList.remove('open')">✕</button>
+    </div>
+    <div class="admin-items-list" id="administrativosList"></div>
+    <button class="admin-add-btn" onclick="mostrarFormAdministrativo()">+ Agregar Administrativo</button>
+
+    <div id="formAdministrativo" style="display:none;margin-top:16px;background:var(--fondo);border-radius:var(--radio);padding:18px;">
+      <div class="admin-form-field"><label>Nombre Completo</label><input type="text" id="admNombre" placeholder="NOMBRE APELLIDO"/></div>
+      <div class="admin-form-field"><label>Cargo</label><input type="text" id="admCargo" placeholder="Ej: Secretaria General, Tesorero"/></div>
+      <div class="admin-form-field">
+        <label>Foto</label>
+        <input type="file" accept="image/*" onchange="procesarFotoAdmin(this, 'admFoto')" style="margin-bottom:5px; display: block; font-size: 12px;">
+        <input type="text" id="admFoto" placeholder="img/foto.webp o URL"/>
+      </div>
+      <input type="hidden" id="admEditId"/>
+      <div class="admin-form-actions">
+        <button class="btn-outline" onclick="document.getElementById('formAdministrativo').style.display='none'">Cancelar</button>
+        <button class="btn-primary" onclick="guardarAdministrativo()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ADMIN: GESTIONAR PROMOCIONES GRADO 11° ═══ -->
+<div class="admin-editor-overlay" id="editorPromocionesOverlay" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="admin-editor-box">
+    <div class="admin-editor-header">
+      <h3>🎓 Gestionar Promociones de Grado 11°</h3>
+      <button class="admin-editor-close" onclick="document.getElementById('editorPromocionesOverlay').classList.remove('open')">✕</button>
+    </div>
+    <div class="admin-items-list" id="promocionesList"></div>
+    <button class="admin-add-btn" onclick="mostrarFormPromocion()">+ Agregar Promoción</button>
+
+    <div id="formPromocion" style="display:none;margin-top:16px;background:var(--fondo);border-radius:var(--radio);padding:18px;">
+      <div class="admin-form-field"><label>Año de la promoción</label><input type="text" id="promAnio" placeholder="Ej: 2025" maxlength="4"/></div>
+      <div class="admin-form-field"><label>Nombre del grupo (opcional)</label><input type="text" id="promNombreGrupo" placeholder="Ej: Promoción XXV"/></div>
+      <div class="admin-form-field">
+        <!-- Tamaño recomendado de la foto de promoción: 1200 x 800 px (horizontal, ratio 3:2) -->
+        <label>Foto grupal (recomendado 1200͗800 px)</label>
+        <input type="file" accept="image/*" onchange="procesarFotoAdmin(this, 'promFoto')" style="margin-bottom:5px; display: block; font-size: 12px;">
+        <input type="text" id="promFoto" placeholder="img/promocion-2025.webp o URL"/>
+      </div>
+      <input type="hidden" id="promEditId"/>
+      <div class="admin-form-actions">
+        <button class="btn-outline" onclick="document.getElementById('formPromocion').style.display='none'">Cancelar</button>
+        <button class="btn-primary" onclick="guardarPromocion()">Guardar Promoción</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo-img"><img src="img/institucional/escudo-gds.webp" alt="Escudo GDS"/></div>
+      <div>
+        <h3 class="footer-name">GIMNASIO<br>DOMINGO SAVIO</h3>
+        <p class="footer-tagline">"En unión y compromiso formamos líderes Dominguinos"</p>
+      </div>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>El GDS</h4>
+        <a href="index.html#elgds">Nuestra Historia</a>
+        <a href="organigrama.html">Organigrama</a>
+        <a href="index.html#comunidad">Comunidad</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfj27BVS4PAuod_YNgempDyy9BsuYAiitKUjzrFDE02nFHG_w/viewform" target="_blank">PQRSD</a>
+      </div>
+      <div class="footer-col">
+        <h4>Páginas</h4>
+        <a href="inscripciones.html">Inscripciones</a>
+        <a href="noticias.html">Noticiaas</a>
+        <a href="servicios.html">Servicioos</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <a href="https://share.google/I69GVxqzzaAgVojLO" target="_blank">Calle 9 #9E-77, La Riviera</a>
+        <a href="tel:5750230">PBX 5750230</a>
+        <a href="tel:3157859157">CEL 315 7859157</a>
+        <a href="mailto:educacion@gimnasiodomingosavio.edu.co">educacion@gimnasiodomingosavio.edu.co</a>
+      </div>
+      <div class="footer-col footer-col-social">
+        <h4>Redes Sociales</h4>
+        <div class="footer-social-grid">
+          <a href="https://www.facebook.com/share/1CM7g1wcfe/" target="_blank" class="social-btn-sq fb" title="Facebook">
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            <span>Facebook</span>
+          </a>
+          <a href="https://www.instagram.com/gimnasiodomingosavio?igsh=d2Fydjk0OWlyendr" target="_blank" class="social-btn-sq ig" title="Instagram">
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            <span>Instagram</span>
+          </a>
+          <a href="https://wa.me/573157859157" target="_blank" class="social-btn-sq wa" title="WhatsApp">
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            <span>WhatsApp</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Gimnasio Domingo Savio · Cúcuta, Norte de Santander, Colombia</p>
+  </div>
+</footer>
+
+<a href="https://wa.me/573157859157" target="_blank" class="whatsapp-float visible" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- ═══ ADMIN LOGIN (OTP) ═══ -->
+<div class="admin-panel-overlay" id="orgAdminLoginOverlay" onclick="if(event.target===this)cerrarOrgAdminLogin()" style="align-items:center;justify-content:center;align-items:center;">
+  <div class="admin-login-box" style="overscroll-behavior:contain;transform:none;border-radius:16px;">
+    <div class="admin-login-header">
+      <h3>🔐 Acceso Administrador</h3>
+      <button class="admin-login-close" onclick="cerrarOrgAdminLogin()">✕</button>
+    </div>
+    <div id="orgStepEmail">
+      <div class="admin-form-field"><label>Correo institucional</label>
+        <input type="email" id="orgAdminEmail" placeholder="correo@gimnasiodomingosavio.edu.co" autocomplete="email"/>
+      </div>
+      <div class="admin-form-field"><label>Contraseña</label>
+        <div style="position:relative">
+          <input type="password" id="orgAdminPass" placeholder="Ingresa tu contraseña" autocomplete="current-password" onkeydown="if(event.key==='Enter')doOrgStep1()" style="padding-right:44px"/>
+          <button onclick="var p=document.getElementById('orgAdminPass');p.type=p.type==='password'?'text':'password'" type="button" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--muted);font-size:16px">👁</button>
+        </div>
+      </div>
+      <div class="admin-login-error" id="orgLoginError" style="display:none"></div>
+      <div class="admin-block-error" id="orgBlockError" style="display:none">⏳ Cuenta bloqueada. Intenta en <span id="orgBlockCountdown">10:00</span></div>
+      <button class="btn-primary" onclick="doOrgStep1()" style="width:100%;justify-content:center;margin-top:4px;padding:13px">Continuar →</button>
+    </div>
+    <div id="orgStepOTP" style="display:none">
+      <p style="font-size:13px;color:var(--muted);margin-bottom:16px">Ingresa el código de 6 dígitos enviado a <strong id="orgEmailShown"></strong></p>
+      <div class="admin-form-field">
+        <input type="text" id="orgOTPInput" placeholder="000000" maxlength="6" style="text-align:center;font-size:22px;letter-spacing:8px;font-weight:bold" onkeydown="if(event.key==='Enter')doOrgStep2()"/>
+      </div>
+      <div class="admin-login-error" id="orgOTPError" style="display:none">⚠️ Código incorrecto o expirado</div>
+      <button class="btn-primary" onclick="doOrgStep2()" style="width:100%;justify-content:center;margin-top:4px;padding:13px">Verificar y acceder →</button>
+      <button class="btn-outline" onclick="volverOrgStep1()" style="width:100%;justify-content:center;margin-top:8px">← Volver</button>
+    </div>
+  </div>
+</div>
+
+<script src="gds-api.js"></script>
+<script src="js/pages/organigrama.js"></script>
+</body>
+</html>

@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/x-icon" href="img/escudo-gds.png">
+  <title>Servicioos — Gimnasio Domingo Savio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@twemoji/api@14.1.0/dist/twemoji.min.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="css/pages/servicios.css"/>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+    <div class="topbar-inner">
+    <a href="https://www.fucsalud.edu.co/" target="_blank">FUCS</a>
+    <a href="servicios.html" target="_blank">Servicioos</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfj27BVS4PAuod_YNgempDyy9BsuYAiitKUjzrFDE02nFHG_w/viewform" target="_blank">PQRSD</a>
+    <a href="index.html" target="_blank">Preguntas</a>
+    <div class="topbar-dropdown-wrap">
+      <a href="#" class="topbar-dropdown-trigger" id="soyDominguinoBtn">Soy Dominguino <span class="td-arrow">&#9662;</span></a>
+      <div class="topbar-dropdown-menu" id="soyDominguinoMenu">
+        <div class="tdm-header">Plataformas Dominguinas</div>
+        <a href="https://fundamerani.edu.co/" target="_blank" class="tdm-item">
+          <div class="tdm-icon"><img src="img/iconos/fundacion-alberto-merani.webp" onerror="this.parentElement.innerHTML='&#128218;'" alt="Fundamerani"/></div>
+          <div><strong>Fundamerani</strong><span>Plataforma educativa</span></div>
+        </a>
+        <a href="https://identity.santillanaconnect.com/login/?client_id=lms_uno_pro" target="_blank" class="tdm-item">
+          <div class="tdm-icon"><img src="img/iconos/unoi.webp" onerror="this.parentElement.innerHTML='&#127760;'" alt="UNOI"/></div>
+          <div><strong>UNOI</strong><span>Contenidos digitales</span></div>
+        </a>
+        <a href="https://identity.sumunthebestyou.com/login/?client_id=neds_client_sumun_colombia_pro" target="_blank" class="tdm-item">
+          <div class="tdm-icon"><img src="img/iconos/sumun.webp" onerror="this.parentElement.innerHTML='&#127942;'" alt="SUMUN"/></div>
+          <div><strong>SUMUN</strong><span>Competencias acad&#233;micas</span></div>
+        </a>
+        <a href="https://gds.gnosoft.com.co/inicioV2/index.jsp" target="_blank" class="tdm-item">
+          <div class="tdm-icon"><img src="img/iconos/gnosoft.webp" onerror="this.parentElement.innerHTML='&#128187;'" alt="Gnosoft"/></div>
+          <div><strong>Gnosoft</strong><span>Sistema de gesti&#243;n</span></div>
+        </a>
+        <a href="https://workspace.google.com/intl/es-419/gmail/" class="tdm-item">
+          <div class="tdm-icon"><img src="img/iconos/gmail.webp" onerror="this.parentElement.innerHTML='&#128231;'" alt="Gmail"/></div>
+          <div><strong>Correo Institucional</strong><span>Gmail educativo</span></div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <a href="inscripciones.html" target="_blank" class="topbar-cta">Inscripciones</a>
+</div>
+
+<!-- NAVBAR -->
+<header class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" target="_blank" class="brand">
+      <div class="brand-logo">
+        <img src="img/institucional/escudo-gds.webp" alt="Escudo GDS"/>
+      </div>
+      <div class="brand-text">
+        <span class="brand-name">GIMNASIO<br>DOMINGO SAVIO</span>
+        <span class="brand-tagline">"En uni&#243;n y compromiso formamos l&#237;deres Dominguinos"</span>
+      </div>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <div class="nav-item">
+        <a href="index.html#elgds" class="nav-link">El GDS <span class="chevron">▾</span></a>
+        <div class="dropdown">
+          <span class="dd-group-label">Quiénes somos</span>
+          <a href="index.html#elgds">Historia</a>
+          <div class="dd-divider"></div>
+          <a href="organigrama.html">Organigrama</a>
+          <a href="index.html#comunidad">Perfil Institucional</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="inscripciones.html" target="_blank" class="nav-link">Admisiones <span class="chevron">▾</span></a>
+        <div class="dropdown">
+          <a href="inscripciones.html" target="_blank">Inscripciones</a>
+          <div class="dd-divider"></div>
+          <a href="inscripciones.html#costos">Costos y Pagos</a>
+          <a href="inscripciones.html#descuentos">Descuentos</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="noticias.html" target="_blank" class="nav-link">Actualidad <span class="chevron">▾</span></a>
+        <div class="dropdown">
+          <a href="noticias.html" target="_blank">Noticiaas</a>
+          <div class="dd-divider"></div>
+          <a href="index.html#actualidad">Eventos</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <a href="servicios.html" target="_blank" class="nav-link" style="color:var(--celeste);">Servicioos <span class="chevron">▾</span></a>
+        <div class="dropdown">
+          <a href="#" onclick="abrirModal('biblioteca');return false;">Biblioteca</a>
+          <div class="dd-divider"></div>
+          <a href="#" onclick="abrirModal('laboratorio');return false;">Laboratorio</a>
+          <a href="#" onclick="abrirModal('puntoasistencia');return false;">Punto de Asistencia</a>
+        </div>
+      </div>
+      <a href="inscripciones.html" target="_blank" class="btn-inscripcion">Inscripciones</a>
+    <button class="gds-admin-entry" onclick="adminCheckAuth()" title="Panel de Administración GDS" style="background:none;border:1px solid rgba(255,255,255,.2);border-radius:8px;color:var(--azul);cursor:pointer;display:inline-flex;align-items:center;gap:7px;padding:6px 14px;font-size:13px;font-family:inherit;transition:background .2s,color .2s,transform .2s;" onmouseover="this.style.background='var(--fondo)';this.style.color='var(--celeste)';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='none';this.style.color='var(--azul)';this.style.transform='none'">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      Administrador
+    </button>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ══════ HERO — usa page-hero-animated de style.css ══════ -->
+<div class="page-hero-animated" id="pageHero">
+  <!-- Orbes extra -->
+  <div class="sv-hero-orb sv-hero-orb-1"></div>
+  <div class="sv-hero-orb sv-hero-orb-2"></div>
+  <div class="sv-hero-orb sv-hero-orb-3"></div>
+  <!-- Burbujas base del sistema -->
+  <div class="page-hero-bubble" style="width:300px;height:300px;top:-80px;right:-60px;animation-duration:7s;animation-delay:0s"></div>
+  <div class="page-hero-bubble" style="width:180px;height:180px;top:60%;left:-40px;animation-duration:9s;animation-delay:2s"></div>
+  <!-- ͍conos flotantes -->
+  <div class="sv-float-icons">
+    <span class="sv-fi">📚</span>
+    <span class="sv-fi">🔬</span>
+    <span class="sv-fi">🩺</span>
+    <span class="sv-fi">💻</span>
+    <span class="sv-fi">⚽</span>
+    <span class="sv-fi">🍽️</span>
+  </div>
+  <!-- Contenido hero -->
+  <div class="page-hero-content">
+    <div class="page-hero-badge">🏫 Infraestructura &amp; Bienestar</div>
+    <h1>Nuestros <em style="font-style:normal;color:#7ecde8;">Servicioos</em><br>Institucionales</h1>
+    <p>Espacios diseñados para potenciar el aprendizaje, la salud y el bienestar de toda la comunidad dominguina.</p>
+    <div class="sv-hero-stats">
+      <div class="sv-hero-stat"><strong>6</strong><span>Servicioos</span></div>
+      <div class="sv-hero-stat"><strong>75+</strong><span>Años</span></div>
+      <div class="sv-hero-stat"><strong>1.200</strong><span>Estudiantes</span></div>
+    </div>
+  </div>
+  <!-- Servicioos — chips animados mejorados -->
+  <div class="sv-chip-row">
+    <span class="sv-hero-chip" style="animation-delay:.05s"><span class="chip-icon">📚</span><span class="chip-dot"></span>Biblioteca Institucional</span>
+    <span class="sv-hero-chip" style="animation-delay:.13s"><span class="chip-icon">🔬</span><span class="chip-dot" style="animation-delay:.4s"></span>Laboratorio de Ciencias</span>
+    <span class="sv-hero-chip" style="animation-delay:.21s"><span class="chip-icon">🩺</span><span class="chip-dot" style="animation-delay:.8s"></span>Punto de Asistencia</span>
+    <span class="sv-hero-chip" style="animation-delay:.29s"><span class="chip-icon">💻</span><span class="chip-dot" style="animation-delay:1.2s"></span>Sala de Sistemas</span>
+    <span class="sv-hero-chip" style="animation-delay:.37s"><span class="chip-icon">⚽</span><span class="chip-dot" style="animation-delay:1.6s"></span>Canchas Deportivas</span>
+    <span class="sv-hero-chip" style="animation-delay:.45s"><span class="chip-icon">🍽️</span><span class="chip-dot" style="animation-delay:2s"></span>Cafetería Escolar</span>
+  </div>
+</div>
+
+<!-- Transición suave hero → galería (pequeña) -->
+<div class="sv-fade-band"></div>
+
+<!-- ══════ GALER͍A ══════ -->
+<section class="sv-section" id="servicios">
+  <div class="sv-section-title">
+    <h2>Explora nuestros espacios</h2>
+    <p>Haz clic en cada tarjeta para conocer más sobre el servicio, sus horarios y recursos disponibles.</p>
+    <div class="sv-divider"></div>
+  </div>
+  <div class="sv-grid">
+
+    <!-- Tamaño recomendado para sv-card-bg en tarjeta destacada (Auditorio): 1600x900px o mayor, horizontal (ratio 16:9), se recorta con object-fit:cover dentro de un contenedor de 2 columnas x 380px de alto (270px en celular) -->
+    <button class="sv-card sv-card-featured" onclick="abrirModal('auditorio')" aria-label="Auditorio">
+      <img class="sv-card-bg" src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=1600&q=80" alt="Auditorio"/>
+      <div class="sv-card-overlay"></div>
+      <div class="sv-card-body">
+        <div class="sv-card-icon">🎭</div>
+        <div class="sv-card-tag">Espacio Principal · Eventos Institucionales</div>
+        <div class="sv-card-title">Auditorio</div>
+        <div class="sv-card-desc">Espacio principal para actos cívicos, graduaciones, conferencias y eventos institucionales con capacidad para toda la comunidad educativa.</div>
+        <div class="sv-card-cta">Ver información <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+    </button>
+
+    <button class="sv-card" onclick="abrirModal('biblioteca')" aria-label="Biblioteca">
+      <img class="sv-card-bg" src="img/servicios/biblioteca.webp" alt="Biblioteca"/>
+      <div class="sv-card-overlay"></div>
+      <div class="sv-card-body">
+        <div class="sv-card-icon">📚</div>
+        <div class="sv-card-tag">Conocimiento · Cultura</div>
+        <div class="sv-card-title">Biblioteca</div>
+        <div class="sv-card-desc">Más de 5.000 títulos y zona de lectura silenciosa para estudiantes y docentes.</div>
+        <div class="sv-card-cta">Ver información <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+    </button>
+
+    <button class="sv-card" onclick="abrirModal('laboratorio')" aria-label="Laboratorio">
+      <img class="sv-card-bg" src="https://images.unsplash.com/photo-1554475901-4538ddfbccc2?w=800&q=80" alt="Laboratorio"/>
+      <div class="sv-card-overlay"></div>
+      <div class="sv-card-body">
+        <div class="sv-card-icon">🔬</div>
+        <div class="sv-card-tag">Ciencias · Tecnología</div>
+        <div class="sv-card-title">Laboratorio</div>
+        <div class="sv-card-desc">Instrumentos modernos para prácticas de química, biología y física en todos los niveles.</div>
+        <div class="sv-card-cta">Ver información <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+    </button>
+
+    <!-- Tamaño recomendado para sv-card-bg: 800x600px o mayor, horizontal (ratio ~4:3), se recorta con object-fit:cover dentro de un contenedor de 290px+ de ancho x 320px de alto (270px en celular) -->
+    <button class="sv-card" onclick="abrirModal('puntoasistencia')" aria-label="Punto de Asistencia">
+      <img class="sv-card-bg" src="https://images.unsplash.com/photo-1584982751601-97dcc096659c?w=800&q=80" alt="Punto de Asistencia"/>
+      <div class="sv-card-overlay"></div>
+      <div class="sv-card-body">
+        <div class="sv-card-icon">🩺</div>
+        <div class="sv-card-tag">Salud · Bienestar</div>
+        <div class="sv-card-title">Punto de Asistencia</div>
+        <div class="sv-card-desc">Atención de primeros auxilios y seguimiento de salud durante la jornada escolar.</div>
+        <div class="sv-card-cta">Ver información <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+    </button>
+
+    <button class="sv-card" onclick="abrirModal('sistemas')" aria-label="Sala de Sistemas">
+      <img class="sv-card-bg" src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800&q=80" alt="Sala de Sistemas"/>
+      <div class="sv-card-overlay"></div>
+      <div class="sv-card-body">
+        <div class="sv-card-icon">💻</div>
+        <div class="sv-card-tag">Tecnología · Innovación</div>
+        <div class="sv-card-title">Sala de Sistemas</div>
+        <div class="sv-card-desc">30 computadores actualizados con internet de alta velocidad para clases e investigación.</div>
+        <div class="sv-card-cta">Ver información <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+    </button>
+
+    <button class="sv-card" onclick="abrirModal('canchas')" aria-label="Canchas Deportivas">
+      <img class="sv-card-bg" src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80" alt="Canchas"/>
+      <div class="sv-card-overlay"></div>
+      <div class="sv-card-body">
+        <div class="sv-card-icon">⚽</div>
+        <div class="sv-card-tag">Deporte · Recreación</div>
+        <div class="sv-card-title">Canchas Deportivas</div>
+        <div class="sv-card-desc">Canchas de fútbol, microfútbol y baloncesto para promover la actividad física.</div>
+        <div class="sv-card-cta">Ver información <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+    </button>
+
+    <button class="sv-card" onclick="abrirModal('cafeteria')" aria-label="Cafetería">
+      <img class="sv-card-bg" src="https://images.unsplash.com/photo-1567521464027-f127ff144326?w=800&q=80" alt="Cafetería"/>
+      <div class="sv-card-overlay"></div>
+      <div class="sv-card-body">
+        <div class="sv-card-icon">🍽️</div>
+        <div class="sv-card-tag">Nutrición · Bienestar</div>
+        <div class="sv-card-title">Cafetería</div>
+        <div class="sv-card-desc">Alimentación balanceada con menús nutritivos supervisados por profesionales.</div>
+        <div class="sv-card-cta">Ver información <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+    </button>
+
+    <!-- Tamaño recomendado para sv-card-bg: 800x600px o mayor, horizontal (ratio ~4:3), se recorta con object-fit:cover dentro de un contenedor de 290px+ de ancho x 320px de alto (270px en celular) -->
+    <button class="sv-card" onclick="abrirModal('robotica')" aria-label="Sala de Robótica">
+      <img class="sv-card-bg" src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80" alt="Sala de Robótica"/>
+      <div class="sv-card-overlay"></div>
+      <div class="sv-card-body">
+        <div class="sv-card-icon">🤖</div>
+        <div class="sv-card-tag">Tecnología · STEM</div>
+        <div class="sv-card-title">Sala de Robótica</div>
+        <div class="sv-card-desc">Kits de robótica y programación para el desarrollo de pensamiento lógico y proyectos tecnológicos.</div>
+        <div class="sv-card-cta">Ver información <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+    </button>
+
+    <!-- Tamaño recomendado para sv-card-bg: 800x600px o mayor, horizontal (ratio ~4:3), se recorta con object-fit:cover dentro de un contenedor de 290px+ de ancho x 320px de alto (270px en celular) -->
+    <button class="sv-card" onclick="abrirModal('piscina')" aria-label="Piscina">
+      <img class="sv-card-bg" src="https://images.unsplash.com/photo-1560090995-01632a28895b?w=800&q=80" alt="Piscina"/>
+      <div class="sv-card-overlay"></div>
+      <div class="sv-card-body">
+        <div class="sv-card-icon">🏊</div>
+        <div class="sv-card-tag">Preescolar · Jardín</div>
+        <div class="sv-card-title">Piscina</div>
+        <div class="sv-card-desc">Piscina adaptada para actividades acuáticas de los más pequeños de Preescolar y Jardín, bajo supervisión constante.</div>
+        <div class="sv-card-cta">Ver información <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+    </button>
+
+    <!-- Tamaño recomendado para sv-card-bg: 800x600px o mayor, horizontal (ratio ~4:3), se recorta con object-fit:cover dentro de un contenedor de 290px+ de ancho x 320px de alto (270px en celular) -->
+    <button class="sv-card" onclick="abrirModal('miniparque')" aria-label="Miniparque Infantil">
+      <img class="sv-card-bg" src="https://images.unsplash.com/photo-1597392582469-a697febf3b8c?w=800&q=80" alt="Miniparque Infantil"/>
+      <div class="sv-card-overlay"></div>
+      <div class="sv-card-body">
+        <div class="sv-card-icon">🧸</div>
+        <div class="sv-card-tag">Preescolar · Recreación</div>
+        <div class="sv-card-title">Miniparque Infantil</div>
+        <div class="sv-card-desc">Zona de juegos infantiles segura y colorida, pensada para el desarrollo motor y la recreación de los niños más pequeños.</div>
+        <div class="sv-card-cta">Ver información <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      </div>
+    </button>
+
+  </div>
+</section>
+
+<!-- Transición galería → CTA -->
+<div class="sv-pre-cta"></div>
+
+<!-- ══════ CTA STRIP ANIMADO ══════ -->
+<div class="sv-cta-strip">
+  <div class="sv-cta-orb sv-cta-orb-1"></div>
+  <div class="sv-cta-orb sv-cta-orb-2"></div>
+  <span class="sv-cta-sparkle">✦</span>
+  <span class="sv-cta-sparkle">✦</span>
+  <span class="sv-cta-sparkle">✦</span>
+  <div class="sv-cta-content">
+    <h2>¿Tienes preguntas sobre<br><span>nuestros servicios?</span></h2>
+    <p>Nuestro equipo está listo para orientarte sobre cada uno de los espacios del Gimnasio Domingo Savio.</p>
+    <div class="sv-cta-cards">
+      <div class="sv-cta-card"><div class="sv-cta-card-icon">📍</div><strong>Ubicación</strong><span>Calle 9 #9E-77, La Riviera</span></div>
+      <div class="sv-cta-card"><div class="sv-cta-card-icon">📞</div><strong>Teléfono</strong><span>PBX 5750230 · CEL 315 785 9157</span></div>
+      <div class="sv-cta-card"><div class="sv-cta-card-icon">🕐</div><strong>Atención</strong><span>Lun–Vie 6:30 am – 3:30 pm</span></div>
+    </div>
+    <div class="sv-cta-btns">
+      <a href="https://wa.me/573157859157" class="btn-primary" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Contactar por WhatsApp
+      </a>
+      <a href="index.html" target="_blank" class="btn-ghost">Volver al inicio</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ FOOTER ID͉NTICO AL INDEX ══════ -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo-img"><img src="img/institucional/escudo-gds.webp" alt="Escudo GDS"/></div>
+      <div>
+        <h3 class="footer-name">GIMNASIO DOMINGO SAVIO</h3>
+        <p class="footer-tagline">"En uni&#243;n y compromiso formamos l&#237;deres Dominguinos"</p>
+      </div>
+    </div>
+        <div class="footer-links">
+      <div class="footer-col">
+        <h4>El GDS</h4>
+        <a href="index.html#elgds">Nuestra Historia</a>
+        <a href="organigrama.html">Organigrama</a>
+        <a href="index.html#comunidad">Comunidad</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfj27BVS4PAuod_YNgempDyy9BsuYAiitKUjzrFDE02nFHG_w/viewform" target="_blank">PQRSD</a>
+      </div>
+      <div class="footer-col">
+        <h4>P&aacute;ginas</h4>
+        <a href="inscripciones.html" target="_blank">Inscripciones</a>
+        <a href="noticias.html" target="_blank">Noticiaas</a>
+        <a href="servicios.html" target="_blank">Servicioos</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <a href="https://share.google/I69GVxqzzaAgVojLO" target="_blank">Calle 9 #9E-77, La Riviera</a>
+        <a href="tel:5750230">PBX 5750230</a>
+        <a href="tel:3157859157">CEL 315 7859157</a>
+        <a href="mailto:educacion@gimnasiodomingosavio.edu.co">educacion@gimnasiodomingosavio.edu.co</a>
+      </div>
+      <!-- Redes sociales en columna derecha -->
+      <div class="footer-col footer-col-social">
+        <h4>Redes Sociales</h4>
+        <div class="footer-social-grid">
+          <a href="https://www.facebook.com/share/1CM7g1wcfe/" target="_blank" class="social-btn-sq fb" title="Facebook">
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            <span>Facebook</span>
+          </a>
+          <a href="https://www.instagram.com/gimnasiodomingosavio?igsh=d2Fydjk0OWlyendr" target="_blank" class="social-btn-sq ig" title="Instagram">
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            <span>Instagram</span>
+          </a>
+          <a href="https://wa.me/573157859157" target="_blank" class="social-btn-sq wa" title="WhatsApp">
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            <span>WhatsApp</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Gimnasio Domingo Savio · Cúcuta, Norte de Santander, Colombia</p>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOTANTE -->
+<a href="https://wa.me/573157859157" target="_blank" class="whatsapp-float" id="whatsappFloat" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- ══════ MODAL ══════ -->
+<div class="sv-modal-backdrop" id="svModalBackdrop" onclick="cerrarModalFuera(event)">
+  <div class="sv-modal" id="svModal" role="dialog" aria-modal="true">
+    <div class="sv-modal-img-placeholder" id="svModalImg"></div>
+    <div class="sv-modal-content">
+      <div class="sv-modal-header">
+        <div><div class="sv-modal-tag" id="svModalTag"></div><div class="sv-modal-title" id="svModalTitle"></div></div>
+        <button class="sv-modal-close" onclick="cerrarModal()" aria-label="Cerrar">✕</button>
+      </div>
+      <div class="sv-modal-divider"></div>
+      <div class="sv-modal-chips" id="svModalChips"></div>
+      <div class="sv-modal-body" id="svModalBody"></div>
+      <div class="sv-modal-videos" id="svModalVideos"></div>
+    </div>
+  </div>
+</div>
+
+<script src="gds-api.js"></script>
+<script src="js/pages/servicios.js"></script>
+
+<!-- ══ ADMIN LOGIN — Servicioos (igual que index) ══ -->
+<div class="admin-login-overlay" id="adminLoginOverlay" style="overscroll-behavior:contain;">
+  <div class="admin-login-box">
+    <div class="admin-login-header">
+      <div class="admin-login-escudo"><img src="img/institucional/escudo-gds.webp" alt="GDS" onerror="this.parentElement.innerHTML='🏫'"/></div>
+      <div class="admin-login-title">Panel Administrativo</div>
+      <div class="admin-login-sub">Gimnasio Domingo Savio</div>
+      <div class="admin-login-badge">🔒 Acceso restringido</div>
+    </div>
+    <div class="admin-login-body">
+      <div id="adminStepEmail">
+        <div class="admin-login-field"><label>📧 Correo electrónico admin</label>
+          <input type="email" id="adminEmail" placeholder="correo@gimnasiodomingosavio.edu.co" autocomplete="email"/></div>
+        <div class="admin-login-field"><label>🔑 Contraseña</label>
+          <div style="position:relative">
+            <input type="password" id="adminPass" placeholder="Ingresa tu contraseña" autocomplete="current-password" onkeydown="if(event.key==='Enter')doAdminStep1()" style="padding-right:44px"/>
+            <button type="button" onclick="var p=document.getElementById('adminPass');p.type=p.type==='password'?'text':'password'" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:16px;color:var(--muted);padding:0">👁</button>
+          </div></div>
+        <div class="admin-login-error" id="adminLoginError">⚠️ ⚠️ Credenciales incorrectas</div>
+        <div class="admin-login-error" id="adminBlockError" style="display:none;background:rgba(192,57,43,.1);border:1px solid #c0392b;border-radius:8px;padding:10px;font-size:12px;color:#c0392b;margin-bottom:10px;">🚫 Bloqueada. Intenta en <span id="blockCountdown">10:00</span> min.</div>
+        <button class="btn-primary" onclick="doAdminStep1()" style="width:100%;justify-content:center;margin-top:4px;padding:13px">Continuar →</button>
+        <button class="btn-outline" onclick="cerrarAdminLogin()" style="width:100%;justify-content:center;margin-top:8px;font-size:13px">Cancelar</button>
+      </div>
+      <div id="adminStepOTP" style="display:none">
+        <div style="text-align:center;margin-bottom:18px;"><div style="font-size:36px;margin-bottom:8px">📨</div>
+          <p style="font-size:13px;color:var(--muted)">Código enviado a <strong id="adminEmailShown"></strong>. Revisa tu bandeja.</p></div>
+        <div class="admin-login-field"><label>🔐 Código de verificación</label>
+          <input type="text" id="adminOTPInput" placeholder="000000" maxlength="6" style="text-align:center;font-size:22px;letter-spacing:8px;font-weight:bold" onkeydown="if(event.key==='Enter')doAdminStep2()"/></div>
+        <div class="admin-login-error" id="adminOTPError">⚠️ Código incorrecto o expirado</div>
+        <button class="btn-primary" onclick="doAdminStep2()" style="width:100%;justify-content:center;margin-top:4px;padding:13px">Verificar y acceder →</button>
+        <button class="btn-outline" onclick="volverAdminStep1()" style="width:100%;justify-content:center;margin-top:8px;font-size:13px">← Volver</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ ADMIN PANEL — Servicioos ══ -->
+<div class="admin-panel-overlay" id="adminPanelOverlay">
+  <div class="admin-panel-box">
+    <div class="admin-panel-header">
+      <h2 class="admin-panel-title">⚙️ Panel — Servicioos</h2>
+      <button class="admin-panel-close" onclick="cerrarAdminPanel()">✕</button>
+    </div>
+    <div class="admin-panel-grid">
+      <div class="admin-panel-card" onclick="abrirEditorServicioos()">
+        <span class="admin-panel-card-icon">🏫</span><h4>Servicioos</h4><p>Editar título, descripción, imagen y videos de cada servicio</p>
+      </div>
+      <div class="admin-panel-card" onclick="adminLogout()">
+        <span class="admin-panel-card-icon">🚪</span><h4>Cerrar sesión</h4><p>Salir del modo administrador</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ EDITOR SERVICIOS ══ -->
+<div class="admin-editor-overlay" id="editorServicioosOverlay">
+  <div class="admin-editor-box" style="max-width:600px;">
+    <div class="admin-editor-header">
+      <h3>🏫 Editar Servicioo</h3>
+      <button class="admin-editor-close" onclick="cerrarEditorServicioos()">✕</button>
+    </div>
+    <div class="admin-form-field">
+      <label>Servicioo</label>
+      <select id="edSrvSelect" onchange="cargarDatosServicioo(this.value)" style="width:100%;border:1.5px solid #e5e7eb;border-radius:10px;padding:10px 14px;font-size:14px;font-family:inherit;outline:none;">
+        <option value="auditorio">Auditorio (Principal)</option>
+        <option value="biblioteca">Biblioteca Institucional</option>
+        <option value="laboratorio">Laboratorio de Ciencias</option>
+        <option value="puntoasistencia">Punto de Asistencia</option>
+        <option value="sistemas">Sala de Sistemas</option>
+        <option value="robotica">Sala de Robótica</option>
+        <option value="canchas">Canchas Deportivas</option>
+        <option value="cafeteria">Cafetería Escolar</option>
+        <option value="piscina">Piscina</option>
+        <option value="miniparque">Miniparque Infantil</option>
+      </select>
+    </div>
+    <div class="admin-form-field"><label>Título</label><input type="text" id="edSrvTitulo"/></div>
+    <div class="admin-form-field"><label>Etiqueta (tag)</label><input type="text" id="edSrvTag"/></div>
+    <div class="admin-form-field"><label>URL de imagen</label><input type="text" id="edSrvImg" placeholder="https://..."/></div>
+    <div class="admin-form-field"><label>Descripción</label><textarea id="edSrvCuerpo" rows="5" style="width:100%;border:1.5px solid #e5e7eb;border-radius:10px;padding:10px 14px;font-size:14px;font-family:inherit;outline:none;resize:vertical;box-sizing:border-box;"></textarea></div>
+    <div class="admin-form-actions">
+      <button class="btn-outline" onclick="cerrarEditorServicioos()">Cancelar</button>
+      <button class="btn-primary" onclick="guardarServicioo()">💾 Guardar cambios</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

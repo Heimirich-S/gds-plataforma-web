@@ -1,0 +1,3330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/x-icon" href="img/escudo-gds.png">
+  <title>Gimnasio Domingo Savio — Cúcuta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;0,8..60,900;1,8..60,400&display=swap" rel="stylesheet">
+  <!-- Twemoji: consistent cross-platform emoji rendering -->
+  <script src="https://cdn.jsdelivr.net/npm/@twemoji/api@14.1.0/dist/twemoji.min.js" crossorigin="anonymous"></script>
+  <!-- EmailJS SDK v4 — envío real del OTP -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="js/modules/avatar.js?v=20260925"></script>
+  <link rel="stylesheet" href="style.css?v=20260811"/>
+  <link rel="stylesheet" href="css/pages/index.css"/>
+
+  <!-- Avatar fallback disponible desde el inicio de carga -->
+  <script>
+  function gdsAvatar(img, size) {
+    size = size || 80;
+    var name = img.alt || '?';
+    var parts = name.trim().split(/\s+/);
+    var initials = parts.length >= 2
+      ? (parts[0][0] + parts[parts.length - 1][0]).toUpperCase()
+      : parts[0].substring(0, 2).toUpperCase();
+    var palette = ['#0a2e5c','#0090c8','#1a5276','#117a65','#6c3483','#784212','#1f618d'];
+    var hash = 0;
+    for (var i = 0; i < name.length; i++) { hash = name.charCodeAt(i) + ((hash * 32) - hash); }
+    var color = palette[Math.abs(hash) % palette.length];
+    var half = size / 2, fs = Math.round(size * 0.36);
+    img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(
+      '<svg xmlns="http://www.w3.org/2000/svg" width="'+size+'" height="'+size+'" viewBox="0 0 '+size+' '+size+'">' +
+      '<circle cx="'+half+'" cy="'+half+'" r="'+half+'" fill="'+color+'"/>' +
+      '<text x="50%" y="50%" dominant-baseline="central" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="'+fs+'" font-weight="700" fill="#fff">'+initials+'</text>' +
+      '</svg>'
+    );
+    img.onerror = null;
+  }
+  </script>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <a href="https://www.fucsalud.edu.co/" target="_blank">FUCS</a>
+    <a href="servicios.html" target="_blank">Servicios</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfj27BVS4PAuod_YNgempDyy9BsuYAiitKUjzrFDE02nFHG_w/viewform" target="_blank">PQRSD</a>
+    <a href="#" onclick="abrirFAQ();return false;">Preguntas</a>
+    <div class="topbar-dropdown-wrap">
+      <a href="#" class="topbar-dropdown-trigger" id="soyDominguinoBtn">Soy Dominguino <span class="td-arrow">▾</span></a>
+      <div class="topbar-dropdown-menu" id="soyDominguinoMenu">
+        <div class="tdm-header">Plataformas Dominguinas</div>
+        <a href="https://fundamerani.edu.co/" target="_blank" class="tdm-item">
+          <div class="tdm-icon"><img src="img/iconos/fundacion-alberto-merani.webp" onerror="this.parentElement.innerHTML='📚'" alt="Fundamerani"/></div>
+          <div><strong>Fundamerani</strong><span>Plataforma educativa</span></div>
+        </a>
+        <a href="https://identity.santillanaconnect.com/login/?client_id=lms_uno_pro&next=/connect/authorize%3Fresponse_type%3Dcode%26client_id%3Dlms_uno_pro%26scope%3Dprofile%2Bopenid%2Bemail%2Bexternal.info%26redirect_uri%3Dhttps%253A%252F%252Flms30.uno-internacional.com%252Flogin%252Fsso%252Foauth%252Floginconnect%26state%3DJ2dlc50d2zaujTohLopIcVC4ywbhg4vpELRcqB9u0Zo%26code_challenge%3DNQkrOI-b0C9WW1GanB9g2_1vh1sjbm_YX92372oUo5g%26code_challenge_method%3DS256" target="_blank" class="tdm-item">
+          <div class="tdm-icon"><img src="img/iconos/unoi.webp" onerror="this.parentElement.innerHTML='🌐'" alt="UNOI"/></div>
+          <div><strong>UNOI</strong><span>Contenidos digitales</span></div>
+        </a>
+        <a href="https://identity.sumunthebestyou.com/login/?client_id=neds_client_sumun_colombia_pro&next=/connect/authorize%3Fresponse_type%3Dcode%26client_id%3Dneds_client_sumun_colombia_pro%26scope%3Dopenid%2Bprofile%2Bemail%2Brole%2Bexternal.info%2Bneds%252Ffull_access%26state%3DPg9-FJ6Y4m5cmBwK4MGZ4gwRwPJfYr2V6RdJp48rYzA%253D%26redirect_uri%3Dhttps%253A%252F%252Fedi-sumun-co.stn-neds.com%252Fts%252Flogin%252Foauth2%252Fcode%252Fsumunco%26code_challenge_method%3DS256%26nonce%3DBPwaNHah8YnZigKD2uPxBSe2cbtKIbV2t99S21QgdHE%26code_challenge%3Db2JxAoCyckWxbNc5Y2IHV2nwUN6brFSqzIWLJnWgpO0" target="_blank" class="tdm-item">
+          <div class="tdm-icon"><img src="img/iconos/sumun.webp" onerror="this.parentElement.innerHTML='🏆'" alt="SUMUN"/></div>
+          <div><strong>SUMUN</strong><span>Competencias académicas</span></div>
+        </a>
+        <a href="https://gds.gnosoft.com.co/inicioV2/index.jsp" target="_blank" class="tdm-item">
+          <div class="tdm-icon"><img src="img/iconos/gnosoft.webp" onerror="this.parentElement.innerHTML='💻'" alt="Gnosoft"/></div>
+          <div><strong>Gnosoft</strong><span>Sistema de gestión</span></div>
+        </a>
+        <a href="https://workspace.google.com/intl/es-419/gmail/" class="tdm-item">
+          <div class="tdm-icon"><img src="img/iconos/gmail.webp" onerror="this.parentElement.innerHTML='📧'" alt="Gmail"/></div>
+          <div><strong>Correo Institucional</strong><span>Gmail educativo</span></div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <a href="#inscripciones" class="topbar-cta">Inscripciones</a>
+</div>
+
+<!-- NAVBAR -->
+<header class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" target="_blank" class="brand">
+      <div class="brand-logo">
+        <img src="img/institucional/escudo-gds.webp" alt="Escudo GDS"/>
+      </div>
+      <div class="brand-text">
+        <span class="brand-name">GIMNASIO<br>DOMINGO SAVIO</span>
+        <span class="brand-tagline">"En unión y compromiso formamos líderes Dominguinos"</span>
+      </div>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <!-- El GDS -->
+      <div class="nav-item">
+        <a href="#gnosoftBanner" class="nav-link">El GDS <span class="chevron">▾</span></a>
+        <div class="dropdown">
+          <span class="dd-group-label">Quiénes somos</span>
+          <a href="#elgds">Historia</a>
+          <div class="dd-divider"></div>
+          <a href="organigrama.html" target="_blank">Organigrama</a>
+          <a href="#comunidad">Perfil Institucional</a>
+        </div>
+      </div>
+      <!-- Oportunidades laborales y prácticas -->
+      <div class="nav-item">
+        <a href="#trabaja-con-nosotros" class="nav-link" onclick="abrirTrabajaConNosotros(event)">Trabaja con nosotros</a>
+      </div>
+      <!-- Admisiones -->
+      <div class="nav-item">
+        <a href="#admisiones" class="nav-link">Admisiones <span class="chevron">▾</span></a>
+        <div class="dropdown">
+          <a href="inscripciones.html" target="_blank">Inscripciones</a>
+          <div class="dd-divider"></div>
+          <a href="inscripciones.html#costos">Costos y Pagos</a>
+          <a href="inscripciones.html#descuentos">Descuentos</a>
+          <a href="#" onclick="abrirFAQ();return false;">Preguntas Frecuentes</a>
+        </div>
+      </div>
+      <!-- Actualidad -->
+      <div class="nav-item">
+        <a href="#actualidad" class="nav-link">Actualidad <span class="chevron">▾</span></a>
+        <div class="dropdown">
+          <a href="noticias.html" target="_blank"  target="_blank">Noticias</a>
+          <div class="dd-divider"></div>
+          <a href="#actualidad">Eventos</a>
+        </div>
+      </div>
+      <!-- Educación -->
+      <div class="nav-item">
+        <a href="#educacion" class="nav-link">Educación <span class="chevron">▾</span></a>
+        <div class="dropdown">
+          <a href="#educacion">Horarios</a>
+          <div class="dd-divider"></div>
+          <a href="javascript:void(0)" class="link-educacion" data-nivel="primaria">Primaria</a>
+          <a href="javascript:void(0)" class="link-educacion" data-nivel="secundaria">Secundaria</a>          
+        </div>
+      </div>
+      <!-- Servicios -->
+      <div class="nav-item">
+        <a href="servicios.html" target="_blank" class="nav-link" target="_blank">Servicios</a>
+      </div>
+      <a href="inscripciones.html" target="_blank" class="btn-inscripcion" target="_blank">Inscripciones</a>
+    <button class="gds-admin-entry" onclick="adminCheckAuth()" title="Panel de Administración GDS" style="background:none;border:1px solid rgba(255,255,255,.2);border-radius:8px;color:var(--azul);cursor:pointer;display:inline-flex;align-items:center;gap:7px;padding:6px 14px;font-size:13px;font-family:inherit;transition:background .2s,color .2s,transform .2s;" onmouseover="this.style.background='var(--fondo)';this.style.color='var(--celeste)';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='none';this.style.color='var(--azul)';this.style.transform='none'">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      Administrador
+    </button>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- HERO CAROUSEL — contenedor fijo 600px -->
+<section class="hero" id="hero">
+  <div class="hero-slider" id="heroSlider">
+
+    <!-- Slide 1 -->
+    <div class="hero-slide active">
+      <div class="hero-bg-img" style="background-image:url('img/popup/inscripciones-2026.webp')"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <span class="hero-label">Fundado en 1949</span>
+        <h1 class="hero-title">Formamos<br><em>Líderes</em><br>Dominguinos</h1>
+        <p class="hero-sub">En unión y compromiso, educamos para la vida con valores, excelencia y alegría.</p>
+        <div class="hero-actions">
+          <a href="inscripciones.html" target="_blank" class="btn-primary" target="_blank">Inscríbete ahora</a>
+          <a href="#elgds" class="btn-ghost">Conoce el GDS</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="hero-slide">
+      <div class="hero-bg-img" style="background-image:url('img/popup/descuentos-2026.webp')"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <span class="hero-label">Inscripciones 2026–2027</span>
+        <h1 class="hero-title">Inscripciones<br><em>Abiertas</em><br>Preescolar</h1>
+        <p class="hero-sub">Descuento especial para 2026. Cupos limitados. Asegura el futuro de tu hijo.</p>
+        <div class="hero-actions">
+          <a href="https://wa.me/573157859157" class="btn-primary">Solicitar información</a>
+          <a href="inscripciones.html#costos" class="btn-ghost">Ver costos</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+   <div class="hero-slide">
+      <div class="hero-bg-img" style="background-image:url('img/institucional/fachada-colegio.webp')"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <span class="hero-label">Formación Integral</span>
+        <h1 class="hero-title">Siempre<br><em>Alegres,</em><br>Siempre Amables</h1>
+        <p class="hero-sub">Valores humanísticos, culturales y ecológicos que forjan ciudadanos para el mundo.</p>
+        <div class="hero-actions">
+          <a href="javascript:void(0)" class="btn-primary link-filosofia">Nuestra filosofía</a>
+          <a href="#actualidad" class="btn-ghost">Ver actualidad</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 4 — Paneles Solares (pendiente: agregar imagen real en img/paneles-solares.webp) -->
+    <!-- Tamaño recomendado para hero-bg-img: 1920x1080px o mayor, horizontal (ratio 16:9). Se muestra con background-size:contain (no se recorta) dentro de un contenedor de 100% ancho x 600px alto (520px tablet, 460px móvil) -->
+    <div class="hero-slide">
+      <div class="hero-bg-img" style="background-image:url('img/institucional/energia-verde-2022.webp')"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <span class="hero-label">Compromiso Ambiental</span>
+        <h1 class="hero-title">Energía<br><em>Solar</em><br>en el GDS</h1>
+        <p class="hero-sub">Avanzamos hacia un futuro más sostenible con la instalación de paneles solares en nuestra institución.</p>
+        <div class="hero-actions">
+          <a href="#elgds" class="btn-primary">Conoce más</a>
+          <a href="#actualidad" class="btn-ghost">Ver actualidad</a>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /hero-slider -->
+
+  <div class="slider-controls">
+    <button class="slider-prev" id="sliderPrev" aria-label="Anterior"></button>
+    <div class="slider-dots" id="sliderDots">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+    <button class="slider-next" id="sliderNext" aria-label="Siguiente"></button>
+  </div>
+  <div class="hero-progress"><div class="hero-progress-bar" id="heroProgressBar"></div></div>
+</section>
+
+<!-- ACCESO ŔPIDO GNOSOFT -->
+<div class="gnosoft-banner" id="gnosoftBanner">
+  <div class="gnb-bg" style="background-image:url('img/iconos/gnosoft.webp')"></div>
+  <div class="gnb-overlay"></div>
+
+  <!-- Fila principal: botón toggle -->
+  <div class="gnb-top-row">
+    <button class="gnb-toggle-btn" id="gnbToggleBtn" aria-expanded="false" aria-controls="gnbPlatforms">
+      <div class="gnb-logo">
+        <img src="img/institucional/escudo-gds.webp" alt="GDS" onerror="this.onerror=null;this.style.display='none'" />
+      </div>
+      <span class="gnb-label">Plataformas Dominguinas</span>
+      <svg class="gnb-toggle-arrow" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5 7.5L10 12.5L15 7.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Fila desplegable: plataformas (desktop) -->
+  <div class="gnb-platforms-row" id="gnbPlatforms" aria-hidden="true">
+    <div class="gnb-btns-row">
+      <button class="gnb-btn" onclick="abrirModalGnosoft()">
+        <img src="img/iconos/gnosoft.webp" alt="Gnosoft" onerror="this.style.display='none'"/>
+        <span>Gnosoft</span>
+      </button>
+      <a class="gnb-btn" href="https://fundamerani.edu.co/" target="_blank">
+        <img src="img/iconos/fundacion-alberto-merani.webp" alt="Fundamerani" onerror="this.style.display='none'"/>
+        <span>Fundamerani</span>
+      </a>
+      <a class="gnb-btn" href="https://identity.santillanaconnect.com/login/?client_id=lms_uno_pro&next=/connect/authorize%3Fresponse_type%3Dcode%26client_id%3Dlms_uno_pro%26scope%3Dprofile%2Bopenid%2Bemail%2Bexternal.info%26redirect_uri%3Dhttps%253A%252F%252Flms30.uno-internacional.com%252Flogin%252Fsso%252Foauth%252Floginconnect%26state%3DJ2dlc50d2zaujTohLopIcVC4ywbhg4vpELRcqB9u0Zo%26code_challenge%3DNQkrOI-b0C9WW1GanB9g2_1vh1sjbm_YX92372oUo5g%26code_challenge_method%3DS256" target="_blank">
+        <img src="img/iconos/unoi.webp" alt="UNOI" onerror="this.style.display='none'"/>
+        <span>UNOI</span>
+      </a>
+      <a class="gnb-btn" href="https://identity.sumunthebestyou.com/login/?client_id=neds_client_sumun_colombia_pro&next=/connect/authorize%3Fresponse_type%3Dcode%26client_id%3Dneds_client_sumun_colombia_pro%26scope%3Dopenid%2Bprofile%2Bemail%2Brole%2Bexternal.info%2Bneds%252Ffull_access%26state%3DPg9-FJ6Y4m5cmBwK4MGZ4gwRwPJfYr2V6RdJp48rYzA%253D%26redirect_uri%3Dhttps%253A%252F%252Fedi-sumun-co.stn-neds.com%252Fts%252Flogin%252Foauth2%252Fcode%252Fsumunco%26code_challenge_method%3DS256%26nonce%3DBPwaNHah8YnZigKD2uPxBSe2cbtKIbV2t99S21QgdHE%26code_challenge%3Db2JxAoCyckWxbNc5Y2IHV2nwUN6brFSqzIWLJnWgpO0" target="_blank">
+        <img src="img/iconos/sumun.webp" alt="SUMUN" onerror="this.style.display='none'"/>
+        <span>SUMUN</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Sidebar móvil de plataformas -->
+<div class="gnb-sidebar-overlay" id="gnbSidebarOverlay"></div>
+<aside class="gnb-sidebar" id="gnbSidebar" aria-hidden="true">
+  <button class="gnb-sidebar-close" id="gnbSidebarClose" aria-label="Cerrar">✕</button>
+  <div class="gnb-sidebar-header">
+    <div class="gnb-logo">
+      <img src="img/institucional/escudo-gds.webp" alt="GDS" onerror="this.onerror=null;this.style.display='none'" />
+    </div>
+    <span>Plataformas<br>Dominguinas</span>
+  </div>
+  <div class="gnb-sidebar-items">
+    <button class="gnb-sidebar-item" onclick="abrirModalGnosoft();cerrarGnbSidebar()">
+      <img src="img/iconos/gnosoft.webp" alt="Gnosoft" onerror="this.style.display='none'"/>
+      <span>Gnosoft</span>
+    </button>
+    <a class="gnb-sidebar-item" href="https://fundamerani.edu.co/" target="_blank" onclick="cerrarGnbSidebar()">
+      <img src="img/iconos/fundacion-alberto-merani.webp" alt="Fundamerani" onerror="this.style.display='none'"/>
+      <span>Fundamerani</span>
+    </a>
+    <a class="gnb-sidebar-item" href="https://identity.santillanaconnect.com/login/?client_id=lms_uno_pro" target="_blank" onclick="cerrarGnbSidebar()">
+      <img src="img/iconos/unoi.webp" alt="UNOI" onerror="this.style.display='none'"/>
+      <span>UNOI</span>
+    </a>
+    <a class="gnb-sidebar-item" href="https://identity.sumunthebestyou.com/login/?client_id=neds_client_sumun_colombia_pro" target="_blank" onclick="cerrarGnbSidebar()">
+      <img src="img/iconos/sumun.webp" alt="SUMUN" onerror="this.style.display='none'"/>
+      <span>SUMUN</span>
+    </a>
+  </div>
+</aside>
+
+<!-- MODAL LOGIN GNOSOFT ─────────────────────────────────────────────────── -->
+<div class="gnb-modal-overlay" id="gnosoftModalOverlay" onclick="if(event.target===this)cerrarModalGnosoft()">
+  <div class="gnb-modal-box">
+
+    <!-- Header del modal -->
+    <div class="gnb-modal-header">
+      <button class="gnb-modal-close" onclick="cerrarModalGnosoft()">✕</button>
+      <div class="gnb-modal-logo">
+        <img src="img/iconos/gnosoft.webp" alt="Gnosoft"
+             onerror="this.onerror=null;this.style.display='none';this.insertAdjacentHTML('afterend','<span style=&quot;font-size:28px&quot;>🎓</span>')"/>
+      </div>
+      <div class="gnb-modal-title">Gnosoft Académico</div>
+      <div class="gnb-modal-sub">Gimnasio Domingo Savio</div>
+    </div>
+
+    <!-- Formulario — POST directo a Gnosoft (Spring Security) -->
+    <form id="gnosoftLoginForm"
+          class="gnb-modal-form"
+          onsubmit="return handleGnosoftLogin(event)">
+
+      <div class="gnb-field">
+        <label for="gnbUsuario">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+          Usuario
+        </label>
+        <input type="text"
+               id="gnbUsuario"
+               name="cuenta"
+               placeholder="Tu usuario de Gnosoft"
+               autocomplete="username"
+               required/>
+      </div>
+
+      <div class="gnb-field">
+        <label for="gnbPassword">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          Contraseña
+        </label>
+        <div class="gnb-pass-wrap">
+          <input type="password"
+                 id="gnbPassword"
+                 name="contrasena"
+                 placeholder="Tu contraseña"
+                 autocomplete="current-password"
+                 required/>
+          <button type="button" class="gnb-eye" onclick="toggleGnbPass()" id="gnbEyeBtn">
+            <svg id="gnbEyeIcon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="gnb-modal-note">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/>
+          <line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+        Se abrirá Gnosoft en una nueva pestaña e iniciará sesión automáticamente.
+      </div>
+
+      <button type="submit" class="gnb-submit" id="gnbSubmitBtn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+          <polyline points="10 17 15 12 10 7"/>
+          <line x1="15" y1="12" x2="3" y2="12"/>
+        </svg>
+        Ingresar a Gnosoft
+      </button>
+
+      <a href="https://gds.gnosoft.com.co/inicio/no_sesion/olvido_contrasena.jsp"
+         target="_blank"
+         class="gnb-forgot">¿Olvidaste tu contraseña?</a>
+    </form>
+
+  </div>
+</div>
+
+
+
+<!-- EL GDS (Historia) -->
+<section class="section elgds-section" id="elgds">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">Quiénes somos</span>
+      <h2 class="section-title">El GDS</h2>
+      <p class="section-sub">Somos custodios de los valores inspirados por la vida y obra de Santo Domingo Savio</p>
+    </div>
+    <div class="elgds-grid">
+      <div class="elgds-video">
+        <div class="video-placeholder" id="videoPlaceholder">
+          <img src="img/servicios/preescolar-cielo.webp" alt="Video institucional GDS" class="video-bg-img"/>
+          <div class="video-blur-overlay"></div>
+          <div class="play-ring"><div class="play-btn">&#9654;</div></div>
+          <div class="video-text">
+            <span>Video Institucional</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="elgds-cards">
+        <!-- Card unificada Misión / Visión / Valores -->
+        <div class="mvv-unified-card" id="mvvCard">
+          <div class="mvv-header" onclick="toggleMVV()">
+            <div class="mvv-header-icons">
+              <div class="mvv-icon-badge">🎯</div>
+              <div class="mvv-icon-badge">👁️</div>
+              <div class="mvv-icon-badge">🤝</div>
+            </div>
+            <h3>Misión, Visión y Valores</h3>
+            <div class="mvv-toggle-arrow">▾</div>
+          </div>
+          <div class="mvv-body">
+            <div class="mvv-tab-nav">
+              <button class="mvv-tab-btn active" onclick="switchMVV(event,'mision')"><span>🎯</span>Misión</button>
+              <button class="mvv-tab-btn" onclick="switchMVV(event,'vision')"><span>👁️</span>Visión</button>
+              <button class="mvv-tab-btn" onclick="switchMVV(event,'valores')"><span>🤝</span>Valores</button>
+            </div>
+            <div class="mvv-tab-content active" id="mvv-mision">
+              Somos una Institución educativa que asume con responsabilidad la formación humanista e integral de niños y jóvenes en los campos de la comunicación, investigación, ciencia y tecnología, con principios éticos y valores ciudadanos para aportar a la sociedad líderes que impacten y transformen su realidad, animados por los valores de vida de Santo Domingo Savio.
+            </div>
+            <div class="mvv-tab-content" id="mvv-vision">
+              En el 2030 el Gimnasio Domingo Savio será reconocido por su liderazgo sostenible, innovador y transformador para educar integralmente con énfasis en valores, diversidad e interculturalidad a niños y jóvenes felices, agentes de cambio en diversos contextos con competencias para la vida y talentos que aporten a la construcción de sociedad.
+            </div>
+            <div class="mvv-tab-content" id="mvv-valores">
+              • <strong>Respeto</strong> al ser humano como parte integral de la sociedad.<br>
+              • <strong>Solidaridad</strong> para crear lazos sociales que mejoren la calidad de vida.<br>
+              • <strong>Responsabilidad</strong> como pilar fundamental del proceso formativo.<br>
+              • <strong>Justicia</strong> como valor supremo de toda la moral.<br>
+              • <strong>Empatía</strong> para comprender y compartir los sentimientos de todas las personas.<br>
+              • <strong>Liderazgo</strong> como la capacidad de influir positivamente sobre los demás.
+            </div>
+          </div>
+        </div>
+
+        <!-- Botón para mini sidebar Filosofía Institucional -->
+        <div class="qs-sidebar-trigger" onclick="abrirQSPanel()">
+          <div class="qs-sidebar-trigger-left">
+            <div class="qs-trigger-icon">📖</div>
+            <div>
+              <h3>Filosofía Institucional</h3>
+              <p style="font-size:11px;color:var(--muted);margin:0">Lema · Patrono · Símbolos · Historia</p>
+            </div>
+          </div>
+          <div class="qs-trigger-arrow" style="font-size:18px;font-weight:300;">→</div>
+        </div>
+
+        <!-- Fundadoras — debajo del sidebar -->
+        <div class="fundadoras-card">
+          <div class="fundadoras-text">
+            <div class="fundadoras-title">Nuestras Fundadoras</div>
+            <div class="fundadoras-sub">En gratitud y conmemoración a quienes dieron vida al GDS</div>
+          </div>
+          <div class="fundadora-item">
+            <div class="fundadora-avatar" style="overflow:hidden;border:3px solid rgba(0,144,200,.2);">
+              <img src="img/institucional/fundadora-helena-gamboa.webp" alt="Helena Cortés Gamboa"
+                style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block"
+                onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#132950,#0090c8)';this.parentElement.insertAdjacentHTML('beforeend','<span style=\'color:white;font-weight:700;font-size:18px;\'>HC</span>')"/>
+            </div>
+            <strong>Helena Cortés Gamboa</strong>
+            <span>Fundadora · 1949</span>
+          </div>
+          <div class="fundadora-item">
+            <div class="fundadora-avatar" style="overflow:hidden;border:3px solid rgba(0,144,200,.2);">
+              <img src="img/institucional/fundadora-sofia-gamboa.webp" alt="Sofía Cortés Gamboa"
+                style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;border-radius:50%"
+                onerror="this.onerror=null;if(typeof gdsAvatar==='function'){gdsAvatar(this,80);}else{this.style.display='none';this.parentElement.style.background='#132950';this.parentElement.insertAdjacentHTML('beforeend','<span style=&quot;color:white;font-weight:700;font-size:18px;line-height:1&quot;>SC</span>');}"/>            </div>
+            <strong>Sofía Cortés Gamboa</strong>
+            <span>Fundadora · 1949</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Overlay del mini sidebar -->
+      <div class="qs-panel-overlay" id="qsOverlay" onclick="cerrarQSPanel()"></div>
+      <!-- Mini Sidebar Panel -->
+      <div class="qs-side-panel" id="qsPanel">
+        <div class="qs-panel-header" style="position:relative;">
+          <button class="qs-panel-close" onclick="cerrarQSPanel()">✕</button>
+          <span class="qs-panel-icon">📚</span>
+          <div class="qs-panel-title">Filosofía Institucional</div>
+          <div class="qs-panel-subtitle">Identidad y esencia del Gimnasio Domingo Savio</div>
+        </div>
+        <div class="qs-panel-body">
+          <div class="qs-panel-item" onclick="toggleQSItem(this)">
+            <div class="qs-panel-item-header">
+              <div class="qs-item-icon">✨</div>
+              <div class="qs-item-title">Lema y Consigna</div>
+              <div class="qs-item-chevron">▾</div>
+            </div>
+            <div class="qs-panel-item-body">
+              <div class="qs-panel-item-body-inner">
+                <strong>Nuestro Lema:</strong> "En unión y compromiso formamos líderes dominguinos".<br><br>
+                <strong>Consigna:</strong> Dominguinos: "Siempre Alegres"; Dominguinos: "Siempre Amables"
+              </div>
+            </div>
+          </div>
+          <div class="qs-panel-item" onclick="toggleQSItem(this)">
+            <div class="qs-panel-item-header">
+              <div class="qs-item-icon">⛪</div>
+              <div class="qs-item-title">Nuestro Patrono — Domingo Savio</div>
+              <div class="qs-item-chevron">▾</div>
+            </div>
+            <div class="qs-panel-item-body">
+              <div class="qs-panel-item-body-inner">
+                Domingo Savio nació en Riva de Chieri (Italia) el 2 de abril de 1841. Estudiante en el Oratorio de San Juan Bosco en Turín, su lema fue: <em>"La muerte antes que el pecado"</em>. Se durmió en el Señor el 9 de marzo de 1857, a los 14 años. Fue canonizado tras los milagros que atestiguan su santidad.
+              </div>
+            </div>
+          </div>
+          <div class="qs-panel-item" onclick="toggleQSItem(this)">
+            <div class="qs-panel-item-header">
+              <div class="qs-item-icon">🏳️</div>
+              <div class="qs-item-title">Bandera, Escudo e Himno</div>
+              <div class="qs-item-chevron">▾</div>
+            </div>
+            <div class="qs-panel-item-body">
+              <div class="qs-panel-item-body-inner">
+                <strong>La Bandera:</strong> Dos franjas verticales — azul (vida, respeto y esperanza) y blanca (perfección, pureza y paz), con el escudo en el centro.<br><br>
+                <strong>El Escudo:</strong> Círculo con imagen de Domingo Savio y la fecha de fundación de la institución.
+              </div>
+            </div>
+          </div>
+          <div class="qs-panel-item" onclick="toggleQSItem(this)">
+            <div class="qs-panel-item-header">
+              <div class="qs-item-icon">🎓</div>
+              <div class="qs-item-title">Historia del GDS</div>
+              <div class="qs-item-chevron">▾</div>
+            </div>
+            <div class="qs-panel-item-body">
+              <div class="qs-panel-item-body-inner">
+                El Gimnasio Domingo Savio fue fundado en 1949 por Helena Cortés Gamboa y Sofía Cortés Gamboa, con la firme convicción de brindar una educación integral basada en los valores de Santo Domingo Savio. Con más de 75 años de historia, hemos formado a miles de líderes dominguinos en Cúcuta y Norte de Santander.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- PERFILES / COMUNIDAD -->
+<section class="section perfiles-section" id="comunidad">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">Comunidad</span>
+      <h2 class="section-title">Perfil Institucional</h2>
+    </div>
+    <div class="perfiles-grid">
+      <div class="perfil-card">
+        <div class="perfil-icon-wrap blue-icon">🎓</div>
+        <h3>Perfil del Estudiante</h3>
+        <p>El estudiante dominguino se forma integralmente con base en los valores cristianos, éticos y dominguinos. Es autónomo, solidario, respetuoso, con pensamiento crítico y espíritu de servicio.</p>
+        <div class="perfil-tags"><span>Líder</span><span>Crítico</span><span>Solidario</span><span>Amable</span></div>
+      </div>
+      <div class="perfil-card featured">
+        <div class="perfil-icon-wrap white-icon">📚</div>
+        <h3>Filosofía Dominguina</h3>
+        <p>Alegría, amabilidad y respeto en nuestro actuar. Desde una perspectiva humanística, cultural y ecológica, formamos líderes comprometidos con la sociedad.</p>
+        <button class="btn-primary small" onclick="abrirFilosofia()">Conocer más</button>
+      </div>
+      <div class="perfil-card">
+        <div class="perfil-icon-wrap green-icon">👩‍🏫</div>
+        <h3>Perfil del Docente</h3>
+        <p>Profesional íntegro, comprometido con la formación ética, académica y ciudadana. Creativo, reflexivo e innovador, guía a sus estudiantes con sensibilidad y compromiso.</p>
+        <div class="perfil-tags"><span>Innovador</span><span>͍ntegro</span><span>Empático</span><span>Líder</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ADMISIONES -->
+<section class="section admisiones-section" id="admisiones">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">͚nete al GDS</span>
+      <h2 class="section-title">Admisiones</h2>
+      <p class="section-sub">Conoce nuestro proceso de admisión, costos y beneficios para estudiantes, aspirantes y colaboradores</p>
+    </div>
+    <div class="admisiones-tabs">
+      <button class="tab-btn active" data-tab="aspirantes">Aspirantes</button>
+      <button class="tab-btn" data-tab="estudiante">Estudiante</button>
+    </div>
+
+    <!-- ASPIRANTES -->
+    <div class="tab-content active" id="tab-aspirantes">
+      <div class="proceso-grid">
+        <div class="proceso-step"><div class="step-num">1</div><div class="step-letter">🗓️</div><h4>Consulta el calendario</h4><p>Infórmate sobre las fechas de inscripción para el nivel académico que deseas</p></div>
+        <div class="proceso-step"><div class="step-num">2</div><div class="step-letter">📝</div><h4>Diligencia el formulario</h4><p>Completa el formulario de inscripción con los datos del aspirante</p></div>
+        <div class="proceso-step"><div class="step-num">3</div><div class="step-letter">💳</div><h4>Pago de inscripción</h4><p>Realiza el pago del proceso según las instrucciones</p><a href="https://www.avalpaycenter.com/wps/portal/portal-de-pagos/web/banco-bogota/resultado-busqueda/realizar-pago?idConv=00001234" target="_blank" class="step-link">Clic aquí</a></div>
+        <div class="proceso-step"><div class="step-num">4</div><div class="step-letter">🧠</div><h4>Proceso de selección</h4><p>El equipo pedagógico evalúa y valora el perfil del aspirante</p></div>
+        <div class="proceso-step"><div class="step-num">5</div><div class="step-letter">📂</div><h4>Envía tus documentos</h4><p>Carga los documentos requeridos en nuestra plataforma</p><a href="https://docs.google.com/forms/d/e/1FAIpQLSe9pyryy26i0UuSrBkbwwIW-BPtLWRYRaw6bLWmAt5QB4HcrA/viewform?pli=1" target="_blank" class="step-link">Clic aquí</a></div>
+        <div class="proceso-step"><div class="step-num">6</div><div class="step-letter">🎓</div><h4>Pago de matrícula</h4><p>Formaliza la matrícula y ¡bienvenido a la familia dominguina!</p><a href="https://www.avalpaycenter.com/wps/portal/portal-de-pagos/web/banco-bogota/resultado-busqueda/realizar-pago?idConv=00001234" target="_blank" class="step-link">Clic aquí</a></div>
+      </div>
+      <div class="admisiones-info-box">
+        <div class="aib-icon">📋</div>
+        <div><h4>¿Qué necesitas para inscribirte?</h4><p>Registro civil o tarjeta de identidad · Foto reciente 3͗4 · Boletín del año anterior · Certificado de vacunas (preescolar) · Documento del acudiente</p></div>
+      </div>
+      <div class="admisiones-cta">
+        <a href="inscripciones.html" target="_blank" class="btn-primary large">Iniciar inscripción</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSe9pyryy26i0UuSrBkbwwIW-BPtLWRYRaw6bLWmAt5QB4HcrA/viewform?pli=1" target="_blank" class="btn-secondary large">Enviar formulario directo</a>
+        <button onclick="abrirFAQ()" class="btn-outline large">Preguntas frecuentes</button>
+      </div>
+    </div>
+
+    <!-- ESTUDIANTE -->
+    <div class="tab-content" id="tab-estudiante">
+      <div class="tab-info-banner">
+        <h3>🎒 Portal del Estudiante Dominguino</h3>
+        <p>Accede a todos los recursos académicos, consulta tus calificaciones, revisa horarios y realiza pagos en línea.</p>
+      </div>
+      <div class="portal-cards">
+        <a href="https://gds.gnosoft.com.co/inicioV2/index.jsp" class="portal-card blue"><span class="portal-letter">📑</span><h4>Notas y Boletines</h4><p>Consulta tu rendimiento académico en tiempo real</p></a>
+        <a href="#educacion" class="portal-card dark"><span class="portal-letter">🔔</span><h4>Horarios</h4><p>Revisa tu horario de clases actualizado</p></a>
+        <a href="https://www.avalpaycenter.com/wps/portal/portal-de-pagos/web/banco-bogota/resultado-busqueda/realizar-pago?idConv=00001234" target="_blank" class="portal-card green"><span class="portal-letter">💵</span><h4>Pagos en Línea</h4><p>Realiza tus pagos de forma segura</p></a>
+      </div>
+      <div class="admisiones-info-box" style="margin-top:24px;">
+        <div class="aib-icon">ℹ️</div>
+        <div><h4>¿Eres estudiante nuevo?</h4><p>Si ya fuiste admitido y deseas completar tu matrícula, comunícate con coordinación académica al PBX 5750230.</p></div>
+      </div>
+      <div class="admisiones-cta">
+        <a href="https://gds.gnosoft.com.co/inicioV2/index.jsp" target="_blank" class="btn-primary large">Acceder a Gnosoft</a>
+        <a href="https://identity.santillanaconnect.com/login/?client_id=lms_uno_pro&next=/connect/authorize%3Fresponse_type%3Dcode%26client_id%3Dlms_uno_pro%26scope%3Dprofile%2Bopenid%2Bemail%2Bexternal.info%26redirect_uri%3Dhttps%253A%252F%252Flms30.uno-internacional.com%252Flogin%252Fsso%252Foauth%252Floginconnect%26state%3DJ2dlc50d2zaujTohLopIcVC4ywbhg4vpELRcqB9u0Zo%26code_challenge%3DNQkrOI-b0C9WW1GanB9g2_1vh1sjbm_YX92372oUo5g%26code_challenge_method%3DS256" target="_blank" class="btn-secondary large">Portal UNOI</a>
+        <button onclick="abrirFAQ()" class="btn-outline large">Preguntas frecuentes</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TRABAJA CON NOSOTROS -->
+<section class="section trabaja-section" id="trabaja-con-nosotros">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">͚nete al equipo</span>
+      <h2 class="section-title">Trabaja con nosotros</h2>
+      <p class="section-sub">Encuentra oportunidades laborales y de práctica profesional en el Gimnasio Domingo Savio.</p>
+    </div>
+    <div class="tab-info-banner">
+      <h3>👨‍💼 Trabaja o Practica en el GDS</h3>
+      <p>El Gimnasio Domingo Savio está siempre en búsqueda de talento humano comprometido con la educación de calidad.</p>
+    </div>
+    <div class="colaborador-grid">
+      <div class="colab-card"><div class="colab-icon">💼</div><h4>Vacantes Docentes</h4><p>Buscamos profesionales en educación comprometidos con la formación integral. Envía tu hoja de vida.</p><button class="btn-primary small" onclick="abrirModalColaborador('docente')">Aplicar ahora</button></div>
+      <div class="colab-card"><div class="colab-icon">🎓</div><h4>Prácticas Profesionales</h4><p>Abrimos espacios para estudiantes universitarios en áreas de educación, psicología y administración.</p><button class="btn-primary small" onclick="abrirModalColaborador('practica')">Solicitar práctica</button></div>
+      <div class="colab-card"><div class="colab-icon">🛠️</div><h4>Personal Administrativo</h4><p>Oportunidades en áreas de gestión, secretaría, servicios generales y más. Contáctanos.</p><button class="btn-primary small" onclick="abrirModalColaborador('administrativo')">Aplicar ahora</button></div>
+    </div>
+    <div class="admisiones-cta">
+      <button class="btn-primary large" onclick="abrirModalColaborador('general')">Enviar hoja de vida</button>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfj27BVS4PAuod_YNgempDyy9BsuYAiitKUjzrFDE02nFHG_w/viewform" target="_blank" class="btn-secondary large">PQRSD</a>
+      <button onclick="abrirFAQ()" class="btn-outline large">Preguntas frecuentes</button>
+    </div>
+  </div>
+</section>
+
+<!-- NOTICIAS -->
+<section class="section noticias-section" id="actualidad">
+  <div class="container">
+    <div class="section-header" style="position:relative">
+      <span class="section-badge">Novedades</span>
+      <h2 class="section-title">Actualidad</h2>
+      <p class="section-sub">Lo más reciente del Gimnasio Domingo Savio</p>
+    </div>
+
+    <!-- Aviso importante -->
+    <div class="noticias-aviso">
+      <span>💡</span>
+      <div>
+        <strong>¿Sabías que?</strong> Los <strong>Documentos Institucionales</strong> (Políticas de Bioseguridad, Protocolos, etc.) y los <strong>Periódicos GDS "El Dominguino"</strong> están disponibles para descargar en <a href="noticias.html" target="_blank" style="color:var(--celeste);font-weight:700;">Ver Todas las Noticias</a>. ¡Son completamente gratuitos!
+      </div>
+    </div>
+
+    <!-- Noticias dinámicas: se sincronizan automáticamente con noticias.html (misma fuente de datos, clave gds_noticias_page) -->
+    <div class="noticias-grid" id="noticiasIndexGrid"></div>
+
+    <div class="section-cta" style="margin-top:28px;">
+      <a href="noticias.html" target="_blank" class="btn-secondary">Ver todas las noticias · Documentos y Periódicos GDS</a>
+    </div>
+  </div>
+</section>
+
+<!-- MODAL COLABORADOR — Formulario de postulación con hoja de vida PDF -->
+<div class="modal-overlay" id="colaboradorModal" style="z-index:9600;" onclick="if(event.target===this)cerrarModalColaborador()">
+  <div class="modal-box" style="max-width:640px;max-height:92vh;overflow-y:auto;">
+    <div class="modal-header">
+      <h3 id="colaboradorModalTitulo" style="font-family:var(--font-display);font-size:20px;color:var(--azul);">💼 Postulación — Vacante Docente</h3>
+      <button class="modal-close-btn" onclick="cerrarModalColaborador()">✕</button>
+    </div>
+    <div class="modal-body" style="padding:0 28px 28px;">
+
+      <p style="font-size:13px;color:var(--muted);margin-bottom:20px;">Completa el formulario con tu información personal y adjunta tu hoja de vida en PDF (máximo 4MB). Nos pondremos en contacto contigo a la brevedad.</p>
+
+      <!-- Info personal -->
+      <div class="form-group-row" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+        <div class="form-field">
+          <label class="form-label">Nombres <span style="color:#e74c3c">*</span></label>
+          <input type="text" id="col_nombres" class="form-input" placeholder="Tus nombres"/>
+        </div>
+        <div class="form-field">
+          <label class="form-label">Apellidos <span style="color:#e74c3c">*</span></label>
+          <input type="text" id="col_apellidos" class="form-input" placeholder="Tus apellidos"/>
+        </div>
+      </div>
+
+      <div class="form-group-row" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+        <div class="form-field">
+          <label class="form-label">Tipo de documento <span style="color:#e74c3c">*</span></label>
+          <select id="col_tipo_doc" class="form-input">
+            <option value="">Selecciona</option>
+            <option value="CC">Cédula de Ciudadanía</option>
+            <option value="CE">Cédula de Extranjería</option>
+            <option value="PA">Pasaporte</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label class="form-label">Número de documento <span style="color:#e74c3c">*</span></label>
+          <input type="text" id="col_num_doc" class="form-input" placeholder="Sin puntos ni espacios"/>
+        </div>
+      </div>
+
+      <div class="form-group-row" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+        <div class="form-field">
+          <label class="form-label">Teléfono / Celular <span style="color:#e74c3c">*</span></label>
+          <input type="tel" id="col_telefono" class="form-input" placeholder="Ej: 315 7859157"/>
+        </div>
+        <div class="form-field">
+          <label class="form-label">Correo electrónico <span style="color:#e74c3c">*</span></label>
+          <input type="email" id="col_email" class="form-input" placeholder="tucorreo@email.com"/>
+        </div>
+      </div>
+
+      <div class="form-field" style="margin-bottom:14px;">
+        <label class="form-label">́rea de interés <span style="color:#e74c3c">*</span></label>
+        <select id="col_area" class="form-input">
+          <option value="">Selecciona un área</option>
+          <option value="Docencia - Preescolar">Docencia — Preescolar / Jardín</option>
+          <option value="Docencia - Primaria">Docencia — Básica Primaria</option>
+          <option value="Docencia - Secundaria">Docencia — Básica Secundaria</option>
+          <option value="Docencia - Media">Docencia — Media Académica</option>
+          <option value="Docencia - Inglés">Docencia — Inglés</option>
+          <option value="Docencia - Ed. Física">Docencia — Educación Física</option>
+          <option value="Docencia - Artes">Docencia — Artes / Música</option>
+          <option value="Práctica Profesional">Práctica Profesional</option>
+          <option value="Administrativo">Personal Administrativo</option>
+          <option value="Otro">Otro</option>
+        </select>
+      </div>
+
+      <div class="form-field" style="margin-bottom:20px;">
+        <label class="form-label">Mensaje o comentario adicional</label>
+        <textarea id="col_mensaje" class="form-input" rows="3" placeholder="Cuéntanos brevemente tu experiencia o cualquier información adicional relevante..." style="resize:vertical;min-height:80px;"></textarea>
+      </div>
+
+      <!-- Subida de PDF -->
+      <div class="form-field" style="margin-bottom:24px;">
+        <!-- Tamaño máximo del PDF de hoja de vida: 4MB -->
+        <label class="form-label">Hoja de vida (PDF) <span style="color:#e74c3c">*</span></label>
+        <div id="colHvDropzone" style="border:2px dashed var(--celeste);border-radius:12px;padding:24px;text-align:center;cursor:pointer;background:var(--fondo);transition:border-color .2s,background .2s;" onclick="document.getElementById('colHvFile').click()">
+          <div style="font-size:32px;margin-bottom:8px;">📄</div>
+          <div id="colHvLabel" style="font-size:13px;color:var(--muted);">Haz clic aquí o arrastra tu PDF<br><span style="font-size:11px;">Máximo 4MB · Solo PDF</span></div>
+        </div>
+        <input type="file" id="colHvFile" accept=".pdf,application/pdf" style="display:none" onchange="handleColHvFile(this)"/>
+        <div id="colHvError" style="display:none;color:#e74c3c;font-size:12px;margin-top:6px;"></div>
+      </div>
+
+      <div id="colaboradorMsgExito" style="display:none;background:#e8f8f0;border:1.5px solid #2ecc71;border-radius:10px;padding:14px 18px;margin-bottom:16px;font-size:13px;color:#1a7a4a;font-weight:600;">
+        ✅ Tu postulación fue enviada con éxito. Te contactaremos pronto.
+      </div>
+      <div id="colaboradorMsgError" style="display:none;background:#fdf0f0;border:1.5px solid #e74c3c;border-radius:10px;padding:14px 18px;margin-bottom:16px;font-size:13px;color:#c0392b;font-weight:600;"></div>
+
+      <div style="display:flex;gap:12px;justify-content:flex-end;flex-wrap:wrap;">
+        <button class="btn-outline" onclick="cerrarModalColaborador()">Cancelar</button>
+        <button class="btn-primary" id="colBtnEnviar" onclick="enviarFormColaborador()">
+          Enviar postulación →
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL NOTICIA -->
+<div class="modal-overlay" id="noticiaModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="cerrarNoticia()">✕</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<!-- EDUCACION / HORARIOS -->
+<section class="section horarios-section" id="educacion">
+  <div class="horarios-inner">
+    <div class="horario-half primaria" id="horarioPrimaria">
+      <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80" alt="Primaria" class="horario-bg-img"/>
+      <div class="horario-overlay"></div>
+      <div class="horario-content">
+        <div class="horario-badge">Preescolar – 5°</div>
+        <h2>Primaria</h2>
+        <p>Grados Preescolar a 5°</p>
+        <button class="btn-primary" onclick="abrirHorario('primaria')">Ver horario</button>
+      </div>
+    </div>
+    <div class="horario-half secundaria" id="horarioSecundaria">
+      <img src="img/servicios/sala-informatica.webp" alt="Secundaria" class="horario-bg-img"/>
+      <div class="horario-overlay"></div>
+      <div class="horario-content">
+        <div class="horario-badge">6° – 11°</div>
+        <h2>Secundaria</h2>
+        <p>Grados 6° a 11°</p>
+        <button class="btn-primary" onclick="abrirHorario('secundaria')">Ver horario</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODAL HORARIO — DISE͑O PREMIUM -->
+<div class="horario-modal-overlay" id="horarioModal">
+  <div class="horario-modal-box">
+
+    <!-- Header con degradado y logo -->
+    <div class="horario-modal-header">
+      <div class="hm-header-left">
+        <div class="hm-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+        </div>
+        <div>
+          <div class="hm-nivel-badge" id="horarioNivelBadge">Primaria</div>
+          <h2 id="horarioModalTitle">Horario de Clases</h2>
+        </div>
+      </div>
+      <button class="horario-modal-close" onclick="cerrarHorario()" aria-label="Cerrar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <!-- Selector de curso (único control visible) -->
+    <div class="hm-selector-bar">
+      <div class="hm-selector-wrap">
+        <svg class="hm-selector-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+        <select id="horarioCursoSelect" class="hm-curso-select">
+          <option value="">— Elige un curso —</option>
+        </select>
+        <svg class="hm-select-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+      <!-- Info de horario -->
+      <div class="hm-horario-info" id="hmHorarioInfo" style="display:none">
+        <span class="hm-info-chip">🕐 6:00 AM – 1:15 PM</span>
+        <span class="hm-info-chip">📚 Lun – Vie</span>
+      </div>
+    </div>
+
+    <!-- Hidden inputs to keep JS compatibility -->
+    <select id="horarioGranularidad" style="display:none"><option value="60" selected>60</option><option value="45">45</option></select>
+    <select id="horarioMes" style="display:none"><option value="5" selected>5</option></select>
+    <select id="horarioAnio" style="display:none"><option value="2026" selected>2026</option></select>
+
+    <!-- Tabla -->
+    <div class="horario-tabla-wrap" id="horarioTablaWrap">
+      <div class="hm-empty-state">
+        <div class="hm-empty-icon">📅</div>
+        <p class="hm-empty-title">Selecciona un curso</p>
+        <p class="hm-empty-sub">Elige el grado en el menú de arriba para ver el horario completo</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MAPA -->
+<section class="section mapa-section" id="ubicacion">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">Encuéntranos</span>
+      <h2 class="section-title">Nuestra Ubicación</h2>
+      <p class="section-sub">Calle 9 #9E-77, Barrio La Riviera, Cúcuta, Norte de Santander</p>
+    </div>
+    <div class="mapa-wrapper">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.123456789!2d-72.5078!3d7.8939!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e6646c5e0000001%3A0xabc123!2sCalle+9+%239E-77%2C+C%C3%BAcuta!5e0!3m2!1ses!2sco!4v1700000000000!5m2!1ses!2sco" width="100%" height="420" style="border:0;border-radius:var(--radio-lg);display:block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación GDS"></iframe>
+      <div class="mapa-info-cards">
+        <div class="mapa-info-card"><span>📍</span><div><strong>Dirección</strong><p>Calle 9 #9E-77, La Riviera, Cúcuta</p></div></div>
+        <div class="mapa-info-card"><span>📞</span><div><strong>Teléfonos</strong><p>PBX 5750230 · CEL 3157859157</p></div></div>
+        <div class="mapa-info-card"><span>🕐</span><div><strong>Atención</strong><p>Lun–Vie 7am–5pm · Sáb 8am–12m</p></div></div>
+        <div class="mapa-info-card"><span>✉️</span><div><strong>Correo</strong><p>educacion@gimnasiodomingosavio.edu.co</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONVENIOS -->
+<section class="section convenios-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-badge">Alianzas</span>
+      <h2 class="section-title">Nuestros Convenios</h2>
+      <p class="section-sub">Trabajamos en alianza con instituciones de alta calidad</p>
+    </div>
+    <div class="convenios-track-wrap">
+      <div class="convenios-track" id="conveniosTrack">
+        <!-- Se rellena dinámicamente desde JS -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA INSCRIPCIONES -->
+<section class="section inscripcion-cta-section" id="inscripciones">
+  <div class="container">
+    <div class="cta-content">
+      <h2 class="cta-display">Inscripciones<br>Abiertas 2026</h2>
+      <p class="cta-sub">Asegura el cupo de tu hijo para el año lectivo 2026–2027.<br>Descuentos especiales para preescolar.</p>
+      <div class="cta-actions">
+        <a href="tel:+573006218906" class="btn-primary large">Llamar ahora</a>
+        <a href="mailto:educacion@gimnasiodomingosavio.edu.co" class="btn-ghost large">Escribir correo</a>
+        <a href="https://wa.me/573157859157" target="_blank" class="btn-whatsapp large">WhatsApp</a>
+      </div>
+      <div class="cta-info">
+        <span>Calle 9 #9E-77 | La Riviera, Cúcuta</span>
+        <span>PBX 5750230 | CEL 3157859157</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo-img"><img src="img/institucional/escudo-gds.webp" alt="Escudo GDS"/></div>
+      <div>
+        <h3 class="footer-name">GIMNASIO<br>DOMINGO SAVIO</h3>
+        <p class="footer-tagline">"En unión y compromiso formamos líderes Dominguinos"</p>
+      </div>
+    </div>
+        <div class="footer-links">
+      <div class="footer-col">
+        <h4>El GDS</h4>
+        <a href="index.html#elgds">Nuestra Historia</a>
+        <a href="organigrama.html">Organigrama</a>
+        <a href="index.html#comunidad">Comunidad</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfj27BVS4PAuod_YNgempDyy9BsuYAiitKUjzrFDE02nFHG_w/viewform" target="_blank">PQRSD</a>
+      </div>
+      <div class="footer-col">
+        <h4>P&aacute;ginas</h4>
+        <a href="inscripciones.html" target="_blank">Inscripciones</a>
+        <a href="noticias.html" target="_blank">Noticias</a>
+        <a href="servicios.html" target="_blank">Servicios</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <a href="https://share.google/I69GVxqzzaAgVojLO" target="_blank">Calle 9 #9E-77, La Riviera</a>
+        <a href="tel:5750230">PBX 5750230</a>
+        <a href="tel:3157859157">CEL 315 7859157</a>
+        <a href="mailto:educacion@gimnasiodomingosavio.edu.co">educacion@gimnasiodomingosavio.edu.co</a>
+      </div>
+      <!-- Redes sociales en columna derecha -->
+      <div class="footer-col footer-col-social">
+        <h4>Redes Sociales</h4>
+        <div class="footer-social-grid">
+          <a href="https://www.facebook.com/share/1CM7g1wcfe/" target="_blank" class="social-btn-sq fb" title="Facebook" style="display:flex;align-items:center;justify-content:center;">
+            <svg viewBox="0 0 24 24" width="22" height="22" style="display:block;flex-shrink:0;"><path fill="#fff" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            <span>Facebook</span>
+          </a>
+          <a href="https://www.instagram.com/gimnasiodomingosavio?igsh=d2Fydjk0OWlyendr" target="_blank" class="social-btn-sq ig" title="Instagram" style="display:flex;align-items:center;justify-content:center;">
+            <svg viewBox="0 0 24 24" width="22" height="22" style="display:block;flex-shrink:0;"><path fill="#fff" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            <span>Instagram</span>
+          </a>
+          <a href="https://wa.me/573157859157" target="_blank" class="social-btn-sq wa" title="WhatsApp" style="display:flex;align-items:center;justify-content:center;">
+            <svg viewBox="0 0 24 24" width="22" height="22" style="display:block;flex-shrink:0;"><path fill="#fff" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            <span>WhatsApp</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Gimnasio Domingo Savio · Cúcuta, Norte de Santander, Colombia</p>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOTANTE -->
+<a href="https://wa.me/573157859157" target="_blank" class="whatsapp-float" id="whatsappFloat" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- MODAL FILOSOF͍A DOMINGUINA (diseño mejorado) -->
+<div class="gds-modal-overlay" id="filosofiaModal">
+  <div class="gds-modal-box">
+    <button class="gds-modal-close" onclick="cerrarModal('filosofiaModal')">✕</button>
+    <h2>Filosofía Institucional</h2>
+    <p>Desde su fundación en el año de 1949, el Gimnasio Domingo Savio ha sido orientado a conseguir de sus estudiantes y egresados el máximo desarrollo del aspecto humano, háblese de las dimensiones psico-sociales que moldean y enriquecen la personalidad del individuo.</p>
+    <p>Como bien lo enuncia la misión, persigue hacerlos conscientes de las bondades de su entorno, la naturaleza, el cosmos, el universo, formando con todo ello, y con sus semejantes, un equilibrio que logre la armonía y la estética en su vida, o sea, que consiga desenvolverse y mantener un estado de felicidad.</p>
+    <p>Nuestra orientación filosófica basada en la <strong>holística</strong> busca la integralidad del individuo en su potencialidad, en su devenir, en sus múltiples dimensiones, proyectado a toda su vida. Un ser en evolución constante, que, teniendo en cuenta su historia y su pasado, viva el presente y se proyecte hacia el futuro.</p>
+    <p>Buscamos que nuestros egresados alcancen la <strong>libertad</strong> —máximo concepto del humanismo—, que no es más que el uso de su auto-determinación, la conciencia de sus propios actos, el conocimiento científico que lo lleva a conocer su realidad objetiva, su responsabilidad individual y compromiso social asumido, todo ello, bajo los principios de la ética y la moral.</p>
+    <p>Formamos jóvenes emprendedores que alcancen un desarrollo sostenible y equitativo, integrales al estilo de Domingo Savio, con capacidad de liderazgo, con sentido cristiano, católico, deseosos de participar en la transformación de su entorno.</p>
+    <h3>Principios que rigen nuestro quehacer educativo:</h3>
+    <ul>
+      <li>Nuestro colegio es <strong>laico católico</strong> — el enfoque educativo está claramente determinado por la fe, la moral y la doctrina de la Iglesia Católica.</li>
+      <li>Nuestro colegio vive y asume la vida de <strong>Santo Domingo Savio</strong> como guía de nuestra labor educativa.</li>
+      <li>Nuestro colegio es de <strong>naturaleza privada</strong>, ofreciendo una propuesta educativa independiente y propia.</li>
+      <li>Nuestro colegio ofrece <strong>educación académica</strong> con énfasis en lengua castellana y amplía el área de idioma extranjero a inglés y francés desde grado 9°, además de fomentar la <strong>cultura del emprendimiento</strong>.</li>
+      <li>El colegio tiene como propósito principal la educación integral de los jóvenes para que sirvan a la <strong>sociedad, la patria, la Iglesia y la familia</strong>.</li>
+    </ul>
+    <div style="margin-top:28px; padding-top:20px; border-top:1px solid var(--fondo-2);">
+      <button class="btn-primary" onclick="cerrarModal('filosofiaModal')">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL FAQ -->
+<div class="faq-dropdown-overlay" id="faqModal">
+  <div class="faq-dropdown-box">
+    <button class="faq-dropdown-close" onclick="cerrarModal('faqModal')">✕</button>
+    <h2>Preguntas Frecuentes</h2>
+    <div class="faq-subtitle">Resolvemos las dudas más comunes sobre el Gimnasio Domingo Savio</div>
+    <div class="faq-item-list">
+      <div class="faq-q-item"><div class="faq-q-question" onclick="toggleFaq(this)">¿Cuáles son los documentos requeridos para la inscripción? <span class="faq-q-arrow">▾</span></div><div class="faq-q-answer">Se requiere: fotocopia del registro civil o tarjeta de identidad del estudiante, fotocopia del documento del acudiente, foto reciente 3͗4, boletín del último periodo del colegio anterior y certificado de vacunas (para preescolar).</div></div>
+      <div class="faq-q-item"><div class="faq-q-question" onclick="toggleFaq(this)">¿Cuáles son los horarios de atención? <span class="faq-q-arrow">▾</span></div><div class="faq-q-answer">Lunes a viernes de 7:00 a.m. a 12:00 m. y de 1:00 p.m. a 5:00 p.m. Sábados de 8:00 a.m. a 12:00 m. durante el periodo de inscripciones.</div></div>
+      <div class="faq-q-item"><div class="faq-q-question" onclick="toggleFaq(this)">¿Cuánto tiempo dura el proceso de admisión? <span class="faq-q-arrow">▾</span></div><div class="faq-q-answer">El proceso completo desde la inscripción hasta la confirmación del cupo toma entre 5 y 10 días hábiles, dependiendo del grado solicitado y la disponibilidad de cupos.</div></div>
+      <div class="faq-q-item"><div class="faq-q-question" onclick="toggleFaq(this)">¿Hay cupos disponibles para todos los grados? <span class="faq-q-arrow">▾</span></div><div class="faq-q-answer">Los cupos son limitados y se asignan por orden de llegada según el cumplimiento de requisitos. Te recomendamos inscribirte con anticipación. Llama al 5750230 para verificar disponibilidad.</div></div>
+      <div class="faq-q-item"><div class="faq-q-question" onclick="toggleFaq(this)">¿El pago de la inscripción se devuelve si no quedamos? <span class="faq-q-arrow">▾</span></div><div class="faq-q-answer">El valor de la inscripción cubre los costos del proceso de selección y evaluación. En caso de no quedar admitido, se podrá estudiar cada caso particular con la coordinación académica.</div></div>
+      <div class="faq-q-item"><div class="faq-q-question" onclick="toggleFaq(this)">¿Ofrecen ruta escolar? <span class="faq-q-arrow">▾</span></div><div class="faq-q-answer">Sí, el colegio cuenta con servicio de ruta escolar en diferentes sectores de Cúcuta y el área metropolitana. Consulta disponibilidad y costos directamente en la institución.</div></div>
+      <div class="faq-q-item"><div class="faq-q-question" onclick="toggleFaq(this)">¿Cuáles son los descuentos disponibles? <span class="faq-q-arrow">▾</span></div><div class="faq-q-answer">Ofrecemos: 10% pronto pago, 15% hermanos, 5% ex-estudiantes, 20% colaboradores, descuento especial preescolar 2026 y apoyo económico por necesidad comprobada. Consulta condiciones en admisiones.</div></div>
+      <div class="faq-q-item"><div class="faq-q-question" onclick="toggleFaq(this)">¿Qué plataformas digitales usan? <span class="faq-q-arrow">▾</span></div><div class="faq-q-answer">Usamos Gnosoft para gestión académica, UNOI/Santillana para contenidos digitales, Google Meet para clases virtuales, y Google Classroom. Todos los estudiantes reciben correo institucional Gmail.</div></div>
+      <div class="faq-q-item"><div class="faq-q-question" onclick="toggleFaq(this)">¿Cuáles son los niveles educativos que ofrece el colegio? <span class="faq-q-arrow">▾</span></div><div class="faq-q-answer">El Gimnasio Domingo Savio ofrece todos los niveles: Preescolar (Prejardín, Jardín, Transición), Básica Primaria (1° a 5°), Básica Secundaria (6° a 9°) y Media Académica (10° y 11°).</div></div>
+      <div class="faq-q-item"><div class="faq-q-question" onclick="toggleFaq(this)">¿Cómo puedo contactar al colegio? <span class="faq-q-arrow">▾</span></div><div class="faq-q-answer">PBX: 5750230 · Celular: 315 785 9157 · WhatsApp: +57 315 785 9157 · Correo: educacion@gimnasiodomingosavio.edu.co · Dirección: Calle 9 #9E-77, La Riviera, Cúcuta.</div></div>
+    </div>
+    <div style="margin-top:22px; display:flex; gap:10px; justify-content:flex-end;">
+      <a href="inscripciones.html" target="_blank" class="btn-primary small">Iniciar inscripción</a>
+      <button class="btn-secondary" style="padding:8px 18px;font-size:13px;" onclick="cerrarModal('faqModal')">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ADMIN FAB -->
+<button class="admin-fab gds-admin-entry" id="adminFab" onclick="adminCheckAuth()" title="Administración GDS" style="display:none">⚙️</button>
+
+<!-- ADMIN LOGIN MODAL -->
+<div class="admin-login-overlay" id="adminLoginOverlay">
+  <div class="admin-login-box">
+    <div class="admin-login-header">
+      <div class="admin-login-escudo">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCb34ts2xAVQuTYKlJO5GRmAtrKpC0oRpdmg&s" alt="GDS" onerror="this.parentElement.innerHTML='🏫'"/>
+      </div>
+      <div class="admin-login-title">Panel Administrativo</div>
+      <div class="admin-login-sub">Gimnasio Domingo Savio</div>
+      <div class="admin-login-badge">🔒 Acceso restringido</div>
+    </div>
+    <div class="admin-login-body">
+      <div id="adminStepEmail">
+        <div class="admin-login-field">
+          <label>📧 Correo electrónico admin</label>
+          <input type="email" id="adminEmail" placeholder="correo@gimnasiodomingosavio.edu.co" autocomplete="email"/>
+        </div>
+        <div class="admin-login-field">
+          <label>🔑 Contraseña</label>
+          <div style="position:relative">
+            <input type="password" id="adminPass" placeholder="Ingresa tu contraseña" autocomplete="current-password" onkeydown="if(event.key==='Enter')doAdminStep1()" style="padding-right:44px"/>
+            <button type="button" onclick="togglePassVis()" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:16px;color:var(--muted);padding:0" id="passToggleBtn">👁</button>
+          </div>
+        </div>
+        <div class="admin-login-error" id="adminLoginError">⚠️ Credenciales incorrectas</div>
+        <div class="admin-login-error" id="adminBlockError" style="display:none;background:rgba(192,57,43,.1);border:1px solid #c0392b;border-radius:8px;padding:10px;font-size:12px;color:#c0392b;margin-bottom:10px;display:none;">🚫 IP bloqueada temporalmente. Intenta en <span id="blockCountdown">10:00</span> min.</div>
+        <button class="btn-primary" onclick="doAdminStep1()" style="width:100%;justify-content:center;margin-top:4px;padding:13px">Continuar →</button>
+        <button class="btn-outline" onclick="cerrarAdminLogin()" style="width:100%;justify-content:center;margin-top:8px;font-size:13px">Cancelar</button>
+      </div>
+      <div id="adminStepOTP" style="display:none">
+        <div style="text-align:center;margin-bottom:18px;">
+          <div style="font-size:36px;margin-bottom:8px">📨</div>
+          <p style="font-size:13px;color:var(--muted)">Se envió un código de 6 dígitos a <strong id="adminEmailShown"></strong>. Revisa tu bandeja de entrada.</p>
+        </div>
+        <div class="admin-login-field">
+          <label>🔐 Código de verificación</label>
+          <input type="text" id="adminOTPInput" placeholder="000000" maxlength="6" style="text-align:center;font-size:22px;letter-spacing:8px;font-weight:bold" onkeydown="if(event.key==='Enter')doAdminStep2()"/>
+        </div>
+        <div class="admin-login-error" id="adminOTPError">⚠️ Código incorrecto o expirado</div>
+        <button class="btn-primary" onclick="doAdminStep2()" style="width:100%;justify-content:center;margin-top:4px;padding:13px">Verificar y acceder →</button>
+        <button class="btn-outline" onclick="volverAdminStep1()" style="width:100%;justify-content:center;margin-top:8px;font-size:13px">← Volver</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN PANEL MODAL -->
+<div class="admin-panel-overlay" id="adminPanelOverlay" onclick="if(event.target===this)cerrarAdminPanel()">
+  <div class="admin-panel-box">
+    <div class="admin-panel-drag"></div>
+    <div class="admin-panel-title">⚙️ Panel de Administración</div>
+    <div class="admin-panel-sub">Bienvenido, Admin GDS. Selecciona qué deseas gestionar:</div>
+    <div class="admin-panel-grid">
+      <div class="admin-panel-card" onclick="abrirEditorNoticias()">
+        <span class="admin-panel-card-icon">📰</span>
+        <h4>Noticias</h4>
+        <p>Agregar, editar o eliminar noticias del colegio</p>
+      </div>
+      <div class="admin-panel-card" onclick="abrirEditorPeriodicos()">
+        <span class="admin-panel-card-icon">🗞️</span>
+        <h4>Periódicos GDS</h4>
+        <p>Gestionar ediciones del periódico escolar</p>
+      </div>
+      <div class="admin-panel-card" onclick="abrirEditorDocumentos()">
+        <span class="admin-panel-card-icon">📄</span>
+        <h4>Documentos</h4>
+        <p>Agregar o eliminar documentos descargables</p>
+      </div>
+      <div class="admin-panel-card" onclick="abrirEditorHorarios()">
+        <span class="admin-panel-card-icon">📅</span>
+        <h4>Horarios</h4>
+        <p>Gestionar horarios, descansos y días festivos</p>
+      </div>
+      <div class="admin-panel-card" onclick="window.open('organigrama.html','_blank')">
+        <span class="admin-panel-card-icon">🏛️</span>
+        <h4>Organigrama</h4>
+        <p>Gestionar directivos, docentes y personal administrativo desde la página del organigrama</p>
+      </div>
+      <div class="admin-panel-card" onclick="abrirEditorPopupCarousel()">
+        <span class="admin-panel-card-icon">🖼️</span>
+        <h4>Carrusel Popup</h4>
+        <p>Gestionar el carrusel de bienvenida (PDF, descuentos, anuncios)</p>
+      </div>
+      <div class="admin-panel-card" onclick="abrirEditorConvenios()">
+        <span class="admin-panel-card-icon">🤝</span>
+        <h4>Convenios</h4>
+        <p>Agregar o quitar logos en la cinta de convenios</p>
+      </div>
+    </div>
+    <button class="admin-logout-btn" onclick="adminLogout()">🔓 Cerrar sesión</button>
+  </div>
+</div>
+
+<div class="admin-editor-overlay" id="editorHorariosOverlay" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="admin-editor-box">
+    <div class="admin-editor-header">
+      <h3>📅 Gestionar Horarios</h3>
+      <button class="admin-editor-close" onclick="document.getElementById('editorHorariosOverlay').classList.remove('open')">✕</button>
+    </div>
+    <div style="margin-bottom:16px;">
+      <div class="admin-form-field"><label>Seleccionar Nivel</label>
+        <select id="horAdminNivel" onchange="renderHorAdminCursos()">
+          <option value="primaria">Primaria</option><option value="secundaria">Secundaria</option>
+        </select>
+      </div>
+      <div class="admin-form-field"><label>Seleccionar Curso</label>
+        <select id="horAdminCurso" onchange="renderHorarioAdmin()">
+          <option value="">— Seleccionar —</option>
+        </select>
+      </div>
+      <div class="admin-form-field"><label>Granularidad de franja (minutos)</label>
+        <select id="horAdminGranularidad" onchange="renderHorarioAdmin()">
+          <option value="60" selected>60 min (1 hora)</option>
+          <option value="45">45 min</option>
+        </select>
+      </div>
+    </div>
+    <div id="horAdminContent" style="font-size:13px;color:var(--muted);text-align:center;padding:30px 0">Selecciona un nivel y curso</div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;">
+      <button class="admin-add-btn" style="flex:1" onclick="agregarDescanso()">☕ Agregar Descanso</button>
+      <button class="admin-add-btn" style="flex:1" onclick="agregarFestivo()">🎉 Agregar Festivo</button>
+    </div>
+    <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;">
+      <button class="admin-add-btn" style="flex:1" onclick="modificarHoras()">⏰ Cambiar Horas del Día</button>
+      <button class="admin-add-btn" style="flex:1;border-color:rgba(192,57,43,.3);color:#c0392b;background:rgba(192,57,43,.06)" onclick="reiniciarHorarioCurso()">🗑️ Reiniciar Horario</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN EDITOR POPUP CAROUSEL -->
+<div class="admin-editor-overlay" id="editorPopupCarouselOverlay" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="admin-editor-box" style="max-width:560px">
+    <div class="admin-editor-header">
+      <h3>🖼️ Gestionar Carrusel Popup</h3>
+      <button class="admin-editor-close" onclick="document.getElementById('editorPopupCarouselOverlay').classList.remove('open')">✕</button>
+    </div>
+    <p style="font-size:12px;color:var(--muted);margin-bottom:14px">El carrusel se muestra una vez al día al ingresar a la página. Puedes agregar slides con imágenes, links, PDFs o Drive.</p>
+    <div class="admin-items-list" id="popupSlidesList" style="max-height:260px;overflow-y:auto"></div>
+    <button class="admin-add-btn" onclick="mostrarFormPopupSlide()">+ Agregar Slide</button>
+    <div id="formPopupSlide" style="display:none;margin-top:16px;background:var(--fondo);border-radius:var(--radio);padding:18px;">
+      <div class="admin-form-field">
+        <label>Imagen (URL o ruta)</label>
+        <input type="text" id="psImg" placeholder="img/popup/slide.webp o URL externa" style="width:100%;border:1.5px solid #e5e7eb;border-radius:10px;padding:10px 14px;font-size:14px;font-family:inherit;outline:none;"/>
+        <small style="color:var(--muted);font-size:11px;">Solo URL (http/https) o ruta img/... No se aceptan archivos.</small>
+      </div>
+      <div class="admin-form-field">
+        <label>Título (opcional)</label>
+        <input type="text" id="psTitulo" placeholder="Ej: Descuento 15% Hermanos"/>
+      </div>
+      <div class="admin-form-field">
+        <label>Subtítulo (opcional)</label>
+        <input type="text" id="psSubtitulo" placeholder="Ej: Válido hasta diciembre 2026"/>
+      </div>
+      <div class="admin-form-field">
+        <label>Tipo de acción al hacer clic</label>
+        <select id="psTipoAccion" onchange="renderPopupSlideFormAccion()">
+          <option value="link">🔗 Abrir link</option>
+          <option value="pdf_drive">📄 Ver PDF en Google Drive</option>
+          <option value="pdf_descarga">⬇️ Descargar PDF</option>
+          <option value="none">Sin acción</option>
+        </select>
+      </div>
+      <div class="admin-form-field" id="psAccionField">
+        <label id="psAccionLabel">URL del destino</label>
+        <input type="text" id="psAccionUrl" placeholder="https://..."/>
+      </div>
+      <input type="hidden" id="psEditId"/>
+      <div class="admin-form-actions">
+        <button class="btn-outline" onclick="document.getElementById('formPopupSlide').style.display='none'">Cancelar</button>
+        <button class="btn-primary" onclick="guardarPopupSlide()">Guardar Slide</button>
+      </div>
+    </div>
+    <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;">
+      <button class="admin-add-btn" style="flex:1" onclick="previsualizarPopupCarousel()">👁 Vista previa</button>
+      <button class="admin-add-btn" style="flex:1;border-color:rgba(192,57,43,.3);color:#c0392b;background:rgba(192,57,43,.06)" onclick="limpiarPopupCarousel()">🗑️ Vaciar todo</button>
+    </div>
+  </div>
+</div>
+
+<script src="gds-api.js?v=20260811"></script>
+<script src="js/common.js?v=20260925"></script>
+<script>
+'use strict';
+
+/* ── UTILS ── */
+function togglePassVis() {
+  const p = document.getElementById('adminPass');
+  const b = document.getElementById('passToggleBtn');
+  p.type = p.type === 'password' ? 'text' : 'password';
+  b.textContent = p.type === 'password' ? '👁' : '🙈';
+}
+
+/* ── MODAL GNOSOFT ── */
+function handleGnosoftLogin(e) {
+  e.preventDefault();
+  const user = document.getElementById('gnbUsuario').value.trim();
+  const pass = document.getElementById('gnbPassword').value;
+  if (!user || !pass) return false;
+  cerrarModalGnosoft();
+  // Build a hidden form that POSTs credentials directly to Gnosoft login endpoint
+  const f = document.createElement('form');
+  f.method = 'POST';
+  f.action = 'https://gds.gnosoft.com.co/inicioV2/inicioSesionApp';
+  f.target = '_blank';
+  f.style.display = 'none';
+  const addField = (n, v) => { const i = document.createElement('input'); i.type='hidden'; i.name=n; i.value=v; f.appendChild(i); };
+  addField('cuenta', user);
+  addField('contrasena', pass);
+  document.body.appendChild(f);
+  f.submit();
+  setTimeout(() => f.remove(), 1000);
+  return false;
+}
+
+function abrirModalGnosoft() {
+  document.getElementById('gnosoftModalOverlay').classList.add('open');
+  document.body.classList.add('modal-open');
+  setTimeout(() => document.getElementById('gnbUsuario').focus(), 150);
+}
+function cerrarModalGnosoft() {
+  document.getElementById('gnosoftModalOverlay').classList.remove('open');
+  document.body.classList.remove('modal-open');
+}
+function toggleGnbPass() {
+  const inp  = document.getElementById('gnbPassword');
+  const icon = document.getElementById('gnbEyeIcon');
+  const show = inp.type === 'password';
+  inp.type   = show ? 'text' : 'password';
+  icon.innerHTML = show
+    ? /* ojo tachado */
+      '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/>'
+    : /* ojo abierto */
+      '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>';
+}
+
+/* Cerrar modal Gnosoft con Escape */
+/* ══ HELPER MODALES ADMIN PERSONALIZADOS ══════════════════════════════════
+   gdsPrompt(opts)  — reemplaza prompt()
+   gdsConfirm(opts) — reemplaza confirm()
+   gdsAlert(opts)   — reemplaza alert()
+   Todos devuelven Promise. ─────────────────────────────────────────────── */
+function _buildGDSModal(html) {
+  const ov = document.createElement('div');
+  ov.className = 'gds-custom-modal-overlay';
+  ov.innerHTML = `<div class="gds-custom-modal">${html}</div>`;
+  document.body.appendChild(ov);
+  document.body.classList.add('modal-open');
+  return ov;
+}
+function _closeGDSModal(ov) {
+  ov.style.animation = 'gdsModalBgIn .2s ease reverse';
+  ov.querySelector('.gds-custom-modal').style.animation = 'gdsModalIn .2s ease reverse';
+  setTimeout(() => { ov.remove(); document.body.classList.remove('modal-open'); }, 180);
+}
+
+function gdsAlert({ icon='ℹ️', color='blue', title='Aviso', message='', btnText='Entendido' } = {}) {
+  return new Promise(resolve => {
+    const ov = _buildGDSModal(`
+      <div class="gds-cm-header">
+        <div class="gds-cm-icon ${color}">${icon}</div>
+        <div><p class="gds-cm-title">${title}</p><p class="gds-cm-sub">${message}</p></div>
+      </div>
+      <div class="gds-cm-footer" style="padding-top:16px">
+        <button class="gds-cm-confirm ${color}" id="_gdsAlertOk">${btnText}</button>
+      </div>`);
+    ov.querySelector('#_gdsAlertOk').onclick = () => { _closeGDSModal(ov); resolve(); };
+  });
+}
+
+function gdsConfirm({ icon='❓', color='blue', title='¿Confirmar?', message='', okText='Confirmar', cancelText='Cancelar' } = {}) {
+  return new Promise(resolve => {
+    const ov = _buildGDSModal(`
+      <div class="gds-cm-header">
+        <div class="gds-cm-icon ${color}">${icon}</div>
+        <div><p class="gds-cm-title">${title}</p><p class="gds-cm-sub">${message}</p></div>
+      </div>
+      <div class="gds-cm-footer" style="padding-top:16px">
+        <button class="gds-cm-cancel" id="_gdsCfCancel">${cancelText}</button>
+        <button class="gds-cm-confirm ${color}" id="_gdsCfOk">${okText}</button>
+      </div>`);
+    ov.querySelector('#_gdsCfOk').onclick    = () => { _closeGDSModal(ov); resolve(true);  };
+    ov.querySelector('#_gdsCfCancel').onclick = () => { _closeGDSModal(ov); resolve(false); };
+  });
+}
+
+function gdsPrompt({ icon='✏️', color='blue', title='Ingresa un valor', message='', placeholder='', defaultValue='', inputType='text' } = {}) {
+  return new Promise(resolve => {
+    const ov = _buildGDSModal(`
+      <div class="gds-cm-header">
+        <div class="gds-cm-icon ${color}">${icon}</div>
+        <div><p class="gds-cm-title">${title}</p><p class="gds-cm-sub">${message}</p></div>
+      </div>
+      <div class="gds-cm-body">
+        <div class="gds-cm-field">
+          <input type="${inputType}" id="_gdsPromptInput" placeholder="${placeholder}" value="${defaultValue}" style="font-size:15px"/>
+        </div>
+      </div>
+      <div class="gds-cm-footer">
+        <button class="gds-cm-cancel" id="_gdsPrCancel">Cancelar</button>
+        <button class="gds-cm-confirm ${color}" id="_gdsPrOk">Aceptar</button>
+      </div>`);
+    const inp = ov.querySelector('#_gdsPromptInput');
+    setTimeout(() => inp.focus(), 80);
+    inp.addEventListener('keydown', e => { if(e.key==='Enter') { _closeGDSModal(ov); resolve(inp.value.trim()||null); } });
+    ov.querySelector('#_gdsPrOk').onclick     = () => { _closeGDSModal(ov); resolve(inp.value.trim()||null); };
+    ov.querySelector('#_gdsPrCancel').onclick = () => { _closeGDSModal(ov); resolve(null); };
+  });
+}
+
+/* ── Reemplazar llamadas nativas en funciones de horario ── */
+async function agregarDescanso() {
+  const nivel = document.getElementById('horAdminNivel').value;
+  const curso = document.getElementById('horAdminCurso').value;
+  if (!curso) { await gdsAlert({icon:'⚠️',color:'amber',title:'Selecciona un curso',message:'Debes seleccionar un curso antes de agregar un descanso.'}); return; }
+  const nombre = await gdsPrompt({icon:'☕',color:'blue',title:'Nombre del descanso',message:'¿Cómo se llamará este descanso?',placeholder:'Ej: Descanso, Refrigerio…',defaultValue:'Descanso'});
+  if (!nombre) return;
+  const indiceStr = await gdsPrompt({icon:'📍',color:'blue',title:'Posición del descanso',message:'¿En qué número de fila aparece? (0 = primera hora)',placeholder:'Ej: 2',inputType:'number'});
+  const indice = parseInt(indiceStr);
+  if (isNaN(indice)) return;
+  const key = nivel + '_' + curso;
+  const allData = getHorarioData();
+  if (!allData[key]) allData[key] = {};
+  if (!allData[key].descansos) allData[key].descansos = [];
+  allData[key].descansos = allData[key].descansos.filter(d => d.indice !== indice);
+  allData[key].descansos.push({indice, nombre});
+  saveHorarioData(allData);
+
+  // Guardar descanso en la API (por cada día de la semana)
+  var cursoDb = horarioCursoDbName(curso);
+  if (cursoDb) {
+    var dias = ['Lunes','Martes','Miércoles','Jueves','Viernes'];
+    // Guardar como celda de descanso en cada día en la franja indicada
+    dias.forEach(function(dia, di) {
+      GDS.admin.guardarCelda({
+        curso: cursoDb,
+        ano: 2026,
+        dia: di,
+        franja_idx: indice,
+        materia: '',
+        es_descanso: 1,
+        nombre_descanso: nombre
+      }).catch(function() {});
+    });
+  }
+
+  renderHorarioAdmin();
+  await gdsAlert({icon:'✅',color:'green',title:'Descanso agregado',message:`"${nombre}" añadido en la fila ${indice}.`});
+}
+
+async function agregarFestivo() {
+  const nivel = document.getElementById('horAdminNivel').value;
+  const curso = document.getElementById('horAdminCurso').value;
+  if (!curso) { await gdsAlert({icon:'⚠️',color:'amber',title:'Selecciona un curso',message:'Debes seleccionar un curso antes de agregar un festivo.'}); return; }
+  const dia = await gdsPrompt({icon:'🎉',color:'amber',title:'Agregar día festivo',message:'Escribe el día de la semana',placeholder:'Lunes, Martes, Miércoles…'});
+  if (!dia) return;
+  const dias = ['Lunes','Martes','Miércoles','Jueves','Viernes'];
+  const diaC = dia.charAt(0).toUpperCase() + dia.slice(1).toLowerCase();
+  if (!dias.includes(diaC)) { await gdsAlert({icon:'❌',color:'red',title:'Día no válido',message:'Escribe el nombre completo en español: Lunes, Martes, Miércoles, Jueves o Viernes.'}); return; }
+  const key = nivel + '_' + curso;
+  const allData = getHorarioData();
+  if (!allData[key]) allData[key] = {};
+  if (!allData[key].festivos) allData[key].festivos = {};
+  if (allData[key].festivos[diaC]) {
+    const ok = await gdsConfirm({icon:'🗑️',color:'amber',title:`¿Quitar festivo?`,message:`¿Deseas quitar el festivo del ${diaC}?`,okText:'Sí, quitar',cancelText:'No'});
+    if (!ok) return;
+    delete allData[key].festivos[diaC];
+    await gdsAlert({icon:'✅',color:'green',title:'Festivo eliminado',message:`El ${diaC} ya no es festivo.`});
+  } else {
+    allData[key].festivos[diaC] = true;
+    await gdsAlert({icon:'🎉',color:'amber',title:'Festivo añadido',message:`El ${diaC} se marcó como festivo.`});
+  }
+  saveHorarioData(allData);
+  renderHorarioAdmin();
+}
+
+async function modificarHoras() {
+  const nivel = document.getElementById('horAdminNivel').value;
+  const curso = document.getElementById('horAdminCurso').value;
+  if (!curso) { await gdsAlert({icon:'⚠️',color:'amber',title:'Selecciona un curso',message:'Debes seleccionar un curso antes de modificar las horas.'}); return; }
+  const ini = await gdsPrompt({icon:'🌅',color:'blue',title:'Hora de inicio',message:'Ingresa la hora de inicio del día',placeholder:'6:00',defaultValue:'6:00'});
+  if (!ini) return;
+  const fin = await gdsPrompt({icon:'🌆',color:'blue',title:'Hora de fin',message:'Ingresa la hora de fin del día',placeholder:'13:00',defaultValue:'13:00'});
+  if (!fin) return;
+  const [sh,sm] = ini.split(':').map(Number);
+  const [eh,em] = fin.split(':').map(Number);
+  if (isNaN(sh)||isNaN(eh)) { await gdsAlert({icon:'❌',color:'red',title:'Formato inválido',message:'Usa el formato HH:MM, por ejemplo 6:00 o 13:30.'}); return; }
+  const key = nivel + '_' + curso;
+  const allData = getHorarioData();
+  if (!allData[key]) allData[key] = {};
+  allData[key].startMin = sh*60+(sm||0);
+  allData[key].endMin   = eh*60+(em||0);
+  saveHorarioData(allData);
+
+  // Guardar configuración en la API
+  var cursoDb = horarioCursoDbName(curso);
+  if (cursoDb) {
+    var gran = parseInt(document.getElementById('horarioGranularidad').value) || 60;
+    GDS.admin.configurarHorario({
+      curso: cursoDb,
+      ano: 2026,
+      hora_inicio_min: sh*60+(sm||0),
+      hora_fin_min: eh*60+(em||0),
+      granularidad_min: gran
+    }).catch(function(e) {
+      // API no disponible: se conserva en localStorage
+    });
+  }
+
+  renderHorarioAdmin();
+  await gdsAlert({icon:'✅',color:'green',title:'Horario actualizado',message:`Horario de ${curso} ajustado de ${ini} a ${fin}.`});
+}
+
+async function reiniciarHorarioCurso() {
+  const nivel = document.getElementById('horAdminNivel').value;
+  const curso = document.getElementById('horAdminCurso').value;
+  if (!curso) { await gdsAlert({icon:'⚠️',color:'amber',title:'Selecciona un curso',message:'Selecciona un curso antes de reiniciar.'}); return; }
+  const ok = await gdsConfirm({icon:'🗑️',color:'red',title:'¿Reiniciar horario?',message:`Se borrarán todos los cambios de <strong>${curso}</strong>. Esta acción no se puede deshacer.`,okText:'Sí, reiniciar',cancelText:'Cancelar'});
+  if (!ok) return;
+  const key = nivel + '_' + curso;
+  const allData = getHorarioData();
+  delete allData[key];
+  saveHorarioData(allData);
+  renderHorarioAdmin();
+  await gdsAlert({icon:'✅',color:'green',title:'Horario reiniciado',message:`El horario de ${curso} volvió a su estado original.`});
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    cerrarModalGnosoft();
+  }
+});
+
+/* ── NAVBAR SCROLL + WHATSAPP FLOAT ── */
+(function(){
+  var nb = document.getElementById('navbar');
+  window.addEventListener('scroll', function(){
+    if(nb) nb.classList.toggle('scrolled', window.scrollY > 10);
+    var wf = document.getElementById('whatsappFloat');
+    if(wf) wf.classList.toggle('visible', window.scrollY > 200);
+  });   
+
+  /* ── Soy Dominguino dropdown ── */
+  var soyBtn  = document.getElementById('soyDominguinoBtn');
+  var soyMenu = document.getElementById('soyDominguinoMenu');
+  if(soyBtn && soyMenu){
+    soyBtn.addEventListener('click', function(e){
+      e.preventDefault();
+      soyMenu.classList.toggle('open');
+      var arrow = soyBtn.querySelector('.td-arrow');
+      if(arrow) arrow.style.transform = soyMenu.classList.contains('open') ? 'rotate(180deg)' : '';
+    });
+    document.addEventListener('click', function(e){
+      if(!soyBtn.contains(e.target) && !soyMenu.contains(e.target)){
+        soyMenu.classList.remove('open');
+        var arrow = soyBtn.querySelector('.td-arrow');
+        if(arrow) arrow.style.transform = '';
+      }
+    });
+  }
+
+  /* ── Plataformas Dominguinas toggle ── */
+  var gnbBtn      = document.getElementById('gnbToggleBtn');
+  var gnbRow      = document.getElementById('gnbPlatforms');
+  var gnbSidebar  = document.getElementById('gnbSidebar');
+  var gnbOverlay  = document.getElementById('gnbSidebarOverlay');
+  var gnbClose    = document.getElementById('gnbSidebarClose');
+
+  function isMobile(){ return window.innerWidth <= 768; }
+
+  function abrirGnbSidebar(){
+    if(!gnbSidebar || !gnbOverlay) return;
+    gnbSidebar.classList.add('open');
+    gnbOverlay.style.display = 'block';
+    requestAnimationFrame(function(){ gnbOverlay.classList.add('open'); });
+    document.body.style.overflow = 'hidden';
+    gnbSidebar.setAttribute('aria-hidden','false');
+  }
+  window.cerrarGnbSidebar = function(){
+    if(!gnbSidebar || !gnbOverlay) return;
+    gnbSidebar.classList.remove('open');
+    gnbOverlay.classList.remove('open');
+    setTimeout(function(){ gnbOverlay.style.display = 'none'; }, 320);
+    document.body.style.overflow = '';
+    gnbSidebar.setAttribute('aria-hidden','true');
+    if(gnbBtn) gnbBtn.setAttribute('aria-expanded','false');
+  };
+
+  if(gnbBtn){
+    gnbBtn.addEventListener('click', function(){
+      if(isMobile()){
+        abrirGnbSidebar();
+        gnbBtn.setAttribute('aria-expanded','true');
+      } else {
+        var isOpen = gnbRow && gnbRow.classList.contains('open');
+        if(gnbRow) gnbRow.classList.toggle('open');
+        gnbBtn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+      }
+    });
+  }
+  if(gnbClose)  gnbClose.addEventListener('click', cerrarGnbSidebar);
+  if(gnbOverlay) gnbOverlay.addEventListener('click', cerrarGnbSidebar);
+
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') cerrarGnbSidebar();
+  });
+
+  // Close desktop row when clicking outside
+  document.addEventListener('click', function(e){
+    if(!isMobile() && gnbRow && gnbRow.classList.contains('open')){
+      var banner = document.getElementById('gnosoftBanner');
+      if(banner && !banner.contains(e.target)){
+        gnbRow.classList.remove('open');
+        if(gnbBtn) gnbBtn.setAttribute('aria-expanded','false');
+      }
+    }
+  });
+})();
+
+/* ── CARDS EXPANDIBLES (legacy, unused) ── */
+function toggleCard(card) { card.classList.toggle('expanded'); }
+
+/* ── MVV CARD ── */
+function toggleMVV() {
+  document.getElementById('mvvCard').classList.toggle('expanded');
+}
+function switchMVV(e, tab) {
+  e.stopPropagation();
+  document.querySelectorAll('.mvv-tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.mvv-tab-content').forEach(c => c.classList.remove('active'));
+  e.currentTarget.classList.add('active');
+  document.getElementById('mvv-' + tab).classList.add('active');
+
+  document.getElementById('mvvCard').classList.add('expanded');
+}
+
+/* ── QS PANEL (mini sidebar) ── */
+function abrirQSPanel() {
+  document.getElementById('qsOverlay').classList.add('open');
+  document.getElementById('qsPanel').classList.add('open');
+  document.body.classList.add('modal-open');
+}
+function cerrarQSPanel() {
+  document.getElementById('qsOverlay').classList.remove('open');
+  document.getElementById('qsPanel').classList.remove('open');
+  document.body.classList.remove('modal-open');
+}
+function toggleQSItem(item) {
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.qs-panel-item').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
+/* ── MODAL GEN͉RICO ── */
+function cerrarModal(id) {
+  document.getElementById(id).classList.remove('open');
+  document.body.classList.remove('modal-open');
+}
+function abrirFilosofia() {
+  document.getElementById('filosofiaModal').classList.add('open');
+  document.body.classList.add('modal-open');
+}
+function abrirFAQ() {
+  document.getElementById('faqModal').classList.add('open');
+  document.body.classList.add('modal-open');
+}
+document.querySelectorAll('.gds-modal-overlay, .faq-dropdown-overlay').forEach(overlay => {
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) { overlay.classList.remove('open'); document.body.classList.remove('modal-open'); }
+  });
+});
+
+/* ── FAQ ACCORDION ── */
+function toggleFaq(q) {
+  const isOpen = q.classList.contains('open');
+  document.querySelectorAll('#faqModal .faq-q-question').forEach(x => {
+    x.classList.remove('open'); x.nextElementSibling.classList.remove('open');
+  });
+  if (!isOpen) { q.classList.add('open'); q.nextElementSibling.classList.add('open'); }
+}
+
+/* ── NOTICIAS DATA ── */
+/* ══════════════════════════════════════════════════════════════
+   NOTICIAS — sincronizadas con noticias.html (misma clave de
+   localStorage: gds_noticias_page, y mismo array DEFAULT). Si se
+   elimina una noticia desde el panel admin de noticias.html, deja
+   de aparecer aquí automáticamente.
+   ══════════════════════════════════════════════════════════════ */
+const NOTICIAS_DEFAULT_INDEX = [
+  { id:'n1', cat:'Académico', featured:true, titulo:'Calendario académico y proceso de inducción 2026', extracto:'El GDS informa a toda la comunidad educativa el calendario oficial de actividades para el año lectivo 2026 y el proceso de inducción para nuevos estudiantes.', img:'img/noticias/calendario-induccion-2026.webp', fecha:'Enero 2026', cuerpo:'<p>El Gimnasio Domingo Savio presenta el calendario oficial de inducción y actividades para el periodo académico 2026, diseñado para garantizar una transición fluida para todos los estudiantes, especialmente los nuevos integrantes de la familia dominguina.</p><p>Las actividades incluyen jornada de bienvenida con directivos y docentes, recorrido por las instalaciones del colegio, presentación del manual de convivencia actualizado para 2026, entrega de materiales e inicio del proceso de adaptación para los grados de preescolar.</p><p>Los padres de familia y acudientes son invitados a participar en las reuniones informativas programadas durante la primera semana. Para más información, consulta en la secretaría académica al PBX 5750230 o escríbenos al WhatsApp institucional.</p>' },
+  { id:'n2', cat:'Internacional', titulo:'GDS en el Podcast Campus Global: Internacionalización educativa', extracto:'Directivos del Gimnasio participaron en el Podcast Campus Global, compartiendo la visión intercultural del colegio con instituciones de toda Latinoamérica.', img:'img/noticias/conversatorio-podcast-campus-global.webp', fecha:'Febrero 2026', cuerpo:'<p>En el marco del programa de internacionalización educativa, el Gimnasio Domingo Savio participó en el Podcast Campus Global, un espacio de diálogo entre instituciones de Latinoamérica comprometidas con la formación intercultural.</p><p>Nuestros directivos conversaron con expertos en pedagogía intercultural sobre la importancia de preparar a los estudiantes para un mundo globalizado, el fortalecimiento del programa de inglés con el convenio Teaching For Kids, y la visión institucional de cara a los próximos cinco años.</p><p>Esta iniciativa reafirma el compromiso del GDS con una educación de calidad que trascienda fronteras.</p>' },
+  { id:'n3', cat:'Deportes', titulo:'Dominguinos destacan en torneos deportivos intercolegiales 2026', extracto:'Nuestros equipos de fútbol, baloncesto, atletismo y ajedrez representan al GDS con alegría y compromiso en los torneos de Cúcuta y Norte de Santander.', img:'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=900&q=80', fecha:'Febrero 2026', cuerpo:'<p>El Gimnasio Domingo Savio celebra los resultados de sus estudiantes en las competencias deportivas intercolegiales de Cúcuta y Norte de Santander correspondientes al primer trimestre de 2026.</p><p>El equipo de fútbol masculino sub-14 alcanzó el tercer lugar en el torneo municipal, mientras que la selección de atletismo femenino obtuvo medallas en velocidad y salto largo. El equipo de ajedrez clasificó a la fase departamental.</p><p>Felicitamos a todos los participantes y sus familias por el apoyo incondicional. ¡El deporte es parte fundamental de la formación integral dominguina!</p>' },
+  { id:'n4', cat:'Tecnología', titulo:'Nuevos laboratorios y equipos de vanguardia en alianza con FUCS Salud', extracto:'El GDS incorporó equipos de scanner digital para laboratorios de ciencias, en el marco del convenio con la Fundación Universitaria de Ciencias de la Salud.', img:'https://www.fucsalud.edu.co/sites/default/files/inline-images/scanner.png', fecha:'Enero 2026', cuerpo:'<p>En línea con el compromiso de ofrecer educación de vanguardia, el Gimnasio Domingo Savio ha incorporado a sus laboratorios un moderno sistema de scanner digital para láminas portaobjetos, tecnología utilizada en centros universitarios y de investigación.</p><p>Este equipo permite a los estudiantes de bachillerato realizar observaciones microscópicas de alta resolución, capturar imágenes digitales y realizar análisis posteriores, fortaleciendo las competencias científicas. Se estima que más de 300 estudiantes se beneficiarán durante 2026.</p>' },
+  { id:'n5', cat:'Cultura', titulo:'Festival de Talentos "Dominguinos en Escena" 2026', extracto:'Más de 150 estudiantes brillaron en música, danza, teatro y artes plásticas en el festival anual que celebra los talentos de la familia dominguina.', img:'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=900&q=80', fecha:'Marzo 2026', cuerpo:'<p>El Gimnasio Domingo Savio vivió una jornada memorable con la realización del Festival de Talentos "Dominguinos en Escena", reuniendo a toda la comunidad educativa en una celebración de la creatividad y el arte.</p><p>Más de 150 estudiantes participaron en música, danza folclórica y moderna, teatro, artes plásticas y oratoria. El evento contó con la participación especial de padres de familia y egresados. La próxima edición está programada para agosto.</p>' },
+  { id:'n6', cat:'Institución', titulo:'GDS renueva convenio con Universidad de Santander UDES', extracto:'El nuevo acuerdo amplía beneficios para egresados dominguinos: descuentos en matrículas, orientación vocacional y proyectos de investigación conjunta.', img:'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=900&q=80', fecha:'Febrero 2026', cuerpo:'<p>El Gimnasio Domingo Savio renovó y amplió el convenio de cooperación académica con la Universidad de Santander (UDES), una alianza que ha beneficiado a centenares de egresados.</p><p>El nuevo convenio incluye condiciones especiales de admisión, descuentos en matrículas de pregrado, orientación vocacional para estudiantes de 10° y 11°, y la posibilidad de proyectos de investigación conjunta.</p>' },
+  { id:'n7', cat:'Académico', titulo:'Estudiantes del GDS clasifican en Olimpiadas SUMUN 2026', extracto:'Tres estudiantes de los grados 9° a 11° clasificaron a la fase departamental de las Olimpiadas de Matemáticas SUMUN, destacando el nivel académico dominguino.', img:'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=900&q=80', fecha:'Marzo 2026', cuerpo:'<p>Un grupo selecto de estudiantes del GDS participó en la edición regional de las Olimpiadas de Matemáticas SUMUN, con tres estudiantes que clasificaron a la instancia departamental.</p><p>Este resultado es fruto del trabajo del área de matemáticas y del apoyo de la plataforma SUMUN. La institución celebra estos logros como muestra del esfuerzo por alcanzar la excelencia académica.</p>' },
+  { id:'n8', cat:'Institución', titulo:'Renovación de instalaciones deportivas: mejor calidad para 1.200 estudiantes', extracto:'El GDS completó la adecuación de su cancha multifuncional, vestidores y zona de atletismo, en el marco del plan de mejoramiento institucional 2025–2026.', img:'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=900&q=80', fecha:'Diciembre 2025', cuerpo:'<p>El Gimnasio Domingo Savio completó la renovación de sus instalaciones deportivas, beneficiando directamente a más de 1.200 estudiantes. Las mejoras incluyen la repavimentación de la cancha multifuncional, nuevo equipamiento deportivo y adecuación de los vestidores.</p><p>La inversión hace parte del plan de mejoramiento institucional que lidera la Rectoría con el apoyo del Consejo Directivo.</p>' }
+];
+
+function getNoticiasIndex() {
+  try {
+    const d = localStorage.getItem('gds_noticias_page');
+    if (!d) return NOTICIAS_DEFAULT_INDEX.slice();
+    const parsed = JSON.parse(d);
+    return Array.isArray(parsed) ? parsed : NOTICIAS_DEFAULT_INDEX.slice();
+  } catch (e) { return NOTICIAS_DEFAULT_INDEX.slice(); }
+}
+
+function renderNoticiasIndex() {
+  const grid = document.getElementById('noticiasIndexGrid');
+  if (!grid) return;
+  const todas = getNoticiasIndex();
+
+  if (!todas.length) {
+    grid.innerHTML = '<p style="text-align:center;color:var(--muted);padding:30px 0;grid-column:1/-1;">Aún no hay noticias publicadas. Adminístralas desde <a href="noticias.html" target="_blank" style="color:var(--celeste);font-weight:700;">noticias.html</a>.</p>';
+    return;
+  }
+
+  /* Mostrar la destacada primero (si existe), luego completar hasta 4 */
+  const destacada = todas.find(n => n.featured);
+  const resto = todas.filter(n => !destacada || n.id !== destacada.id);
+  const seleccion = destacada ? [destacada, ...resto].slice(0, 4) : todas.slice(0, 4);
+
+  grid.innerHTML = seleccion.map(n => `
+    <article class="noticia-card ${n.featured ? 'featured' : ''}" onclick="abrirNoticia('${n.id}')">
+      <div class="noticia-img">
+        <img src="${n.img}" alt="${n.titulo}" onerror="this.style.display='none'"/>
+        <div class="noticia-img-blur"></div>
+      </div>
+      <div class="noticia-body">
+        <span class="noticia-tag">${n.cat}</span>
+        <h3>${n.titulo}</h3>
+        <p>${n.extracto || ''}</p>
+        <a href="#" class="noticia-link" onclick="event.preventDefault();abrirNoticia('${n.id}')">Leer más →</a>
+      </div>
+    </article>
+  `).join('');
+}
+
+/* ══════════════════════════════════════════════════════════════
+   MODAL COLABORADOR — Formulario de postulación con PDF de HV
+   Envía a Google Apps Script → Sheet "Colaboradores" → Drive
+   ══════════════════════════════════════════════════════════════ */
+function abrirTrabajaConNosotros(event) {
+  if (event) event.preventDefault();
+
+  const trabajaConNosotros = document.getElementById('trabaja-con-nosotros');
+  if (!trabajaConNosotros) return;
+
+  trabajaConNosotros.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  history.replaceState(null, '', '#trabaja-con-nosotros');
+}
+
+const APPS_SCRIPT_URL_COLAB = 'https://script.google.com/macros/s/AKfycbx6Nlco9xnq4FftEkNfn3RRgw1VEueai_C4oko-x1Ijll1v-n40pochL2E8rJkpsMeL/exec';
+
+const AREA_LABELS = {
+  docente: 'Docencia - Secundaria',
+  practica: 'Práctica Profesional',
+  administrativo: 'Administrativo',
+  general: ''
+};
+
+const TITULO_LABELS = {
+  docente: '💼 Postulación — Vacante Docente',
+  practica: '🎓 Postulación — Práctica Profesional',
+  administrativo: '🛠️ Postulación — Personal Administrativo',
+  general: '📄 Enviar Hoja de Vida'
+};
+
+let _colHvBase64 = null;
+let _colHvFilename = null;
+
+function abrirModalColaborador(tipo) {
+  const modal = document.getElementById('colaboradorModal');
+  const titulo = document.getElementById('colaboradorModalTitulo');
+  if (titulo) titulo.textContent = TITULO_LABELS[tipo] || '📄 Enviar Hoja de Vida';
+
+  // Pre-seleccionar el área según el botón que se presionó
+  const areaSelect = document.getElementById('col_area');
+  if (areaSelect && AREA_LABELS[tipo]) {
+    areaSelect.value = AREA_LABELS[tipo];
+  } else if (areaSelect) {
+    areaSelect.value = '';
+  }
+
+  // Limpiar estado
+  ['col_nombres','col_apellidos','col_num_doc','col_telefono','col_email','col_mensaje'].forEach(id => {
+    const el = document.getElementById(id); if (el) el.value = '';
+  });
+  document.getElementById('col_tipo_doc').value = '';
+  _colHvBase64 = null; _colHvFilename = null;
+  document.getElementById('colHvLabel').innerHTML = 'Haz clic aquí o arrastra tu PDF<br><span style="font-size:11px;">Máximo 4MB · Solo PDF</span>';
+  document.getElementById('colHvDropzone').style.borderColor = 'var(--celeste)';
+  document.getElementById('colHvDropzone').style.background = 'var(--fondo)';
+  document.getElementById('colHvError').style.display = 'none';
+  document.getElementById('colaboradorMsgExito').style.display = 'none';
+  document.getElementById('colaboradorMsgError').style.display = 'none';
+  const btn = document.getElementById('colBtnEnviar');
+  if (btn) { btn.disabled = false; btn.textContent = 'Enviar postulación →'; }
+
+  modal.classList.add('open');
+  document.body.classList.add('modal-open');
+}
+
+function cerrarModalColaborador() {
+  document.getElementById('colaboradorModal').classList.remove('open');
+  document.body.classList.remove('modal-open');
+}
+
+function handleColHvFile(input) {
+  const errEl = document.getElementById('colHvError');
+  const label = document.getElementById('colHvLabel');
+  const dropzone = document.getElementById('colHvDropzone');
+  errEl.style.display = 'none';
+  const file = input.files[0];
+  if (!file) return;
+
+  if (file.type !== 'application/pdf') {
+    errEl.textContent = '⚠️ Solo se aceptan archivos PDF.';
+    errEl.style.display = 'block';
+    input.value = '';
+    return;
+  }
+  // Máximo 4MB
+  if (file.size > 4 * 1024 * 1024) {
+    errEl.textContent = '⚠️ El archivo supera el límite de 4MB. Comprime tu PDF e intenta de nuevo.';
+    errEl.style.display = 'block';
+    input.value = '';
+    return;
+  }
+
+  _colHvFilename = file.name;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    _colHvBase64 = e.target.result.split(',')[1];
+    label.innerHTML = `✅ <strong>${file.name}</strong><br><span style="font-size:11px;">${(file.size/1024).toFixed(0)} KB · PDF listo para enviar</span>`;
+    dropzone.style.borderColor = '#2ecc71';
+    dropzone.style.background = '#f0faf4';
+  };
+  reader.readAsDataURL(file);
+}
+
+async function enviarFormColaborador() {
+  const campos = {
+    nombre_completo: (document.getElementById('col_nombres').value.trim() + ' ' + document.getElementById('col_apellidos').value.trim()).trim(),
+    col_tipo_doc: document.getElementById('col_tipo_doc').value,
+    col_num_doc: document.getElementById('col_num_doc').value.trim(),
+    col_telefono: document.getElementById('col_telefono').value.trim(),
+    col_email: document.getElementById('col_email').value.trim(),
+    col_area: document.getElementById('col_area').value,
+    col_mensaje: document.getElementById('col_mensaje').value.trim()
+  };
+
+  // Validación básica
+  const errEl = document.getElementById('colaboradorMsgError');
+  errEl.style.display = 'none';
+  if (!campos.nombre_completo || !campos.col_tipo_doc || !campos.col_num_doc || !campos.col_telefono || !campos.col_email || !campos.col_area) {
+    errEl.textContent = '⚠️ Por favor completa todos los campos obligatorios.';
+    errEl.style.display = 'block'; return;
+  }
+  if (!campos.col_email.includes('@')) {
+    errEl.textContent = '⚠️ Ingresa un correo electrónico válido.';
+    errEl.style.display = 'block'; return;
+  }
+  if (!_colHvBase64) {
+    document.getElementById('colHvError').textContent = '⚠️ Debes adjuntar tu hoja de vida en PDF.';
+    document.getElementById('colHvError').style.display = 'block'; return;
+  }
+
+  const btn = document.getElementById('colBtnEnviar');
+  btn.disabled = true; btn.textContent = 'Enviando... (puede tardar hasta 30s)';
+
+  /* Proxy PHP: llama al Apps Script server-side, sube el PDF a Drive,
+     guarda el link en MySQL y en Google Sheets */
+  const PROXY_URL_COLAB = 'apps_script_proxy.php';
+
+  const payload = {
+    formType: 'colaborador',
+    ...campos,
+    /* PDF de hoja de vida como objeto base64 para que
+       el Apps Script lo suba a Drive */
+    doc_hoja_vida: { filename: _colHvFilename, mimeType: 'application/pdf', base64: _colHvBase64 }
+  };
+
+  try {
+    const res  = await fetch(PROXY_URL_COLAB, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(payload)
+    });
+    const json = await res.json();
+
+    if (json.ok) {
+      console.log('Drive link hoja de vida:', json.drive_link);
+    } else {
+      console.warn('GDS proxy colaborador error:', json.error);
+    }
+
+    /* Mostrar éxito al usuario en ambos casos */
+    document.getElementById('colaboradorMsgExito').style.display = 'block';
+    btn.textContent = '✅ Enviado';
+    setTimeout(() => cerrarModalColaborador(), 3000);
+
+  } catch (err) {
+    console.error('GDS colaborador submit error:', err);
+    errEl.textContent = '⚠️ Error de conexión. Intenta de nuevo o escríbenos al WhatsApp.';
+    errEl.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'Enviar postulación →';
+  }
+}
+
+/* ── Drag & drop para el PDF de hoja de vida ── */
+document.addEventListener('DOMContentLoaded', () => {
+  const dz = document.getElementById('colHvDropzone');
+  if (!dz) return;
+  dz.addEventListener('dragover', e => { e.preventDefault(); dz.style.borderColor='var(--azul)'; dz.style.background='#f0f5ff'; });
+  dz.addEventListener('dragleave', () => { dz.style.borderColor='var(--celeste)'; dz.style.background='var(--fondo)'; });
+  dz.addEventListener('drop', e => {
+    e.preventDefault();
+    const file = e.dataTransfer.files[0];
+    if (!file) return;
+    const inp = document.getElementById('colHvFile');
+    const dt = new DataTransfer();
+    dt.items.add(file);
+    inp.files = dt.files;
+    handleColHvFile(inp);
+  });
+});
+
+function abrirNoticia(id) {
+  const n = getNoticiasIndex().find(x => x.id === id); if(!n) return;
+  document.getElementById('modalContent').innerHTML = `
+    <div class="modal-tag">${n.cat}</div>
+    <h2 class="modal-titulo">${n.titulo}</h2>
+    <div class="modal-meta">📅 ${n.fecha} · Gimnasio Domingo Savio</div>
+    <img src="${n.img}" alt="${n.titulo}" class="modal-img"/>
+    <div class="modal-cuerpo">${n.cuerpo}</div>
+    <div class="modal-footer-btns">
+      <a href="noticias.html" target="_blank" class="btn-primary">Ver todas las noticias</a>
+      <a href="https://wa.me/573157859157?text=Hola, quiero más información sobre: ${encodeURIComponent(n.titulo)}" target="_blank" class="btn-whatsapp">Compartir</a>
+    </div>`;
+  document.getElementById('noticiaModal').classList.add('open');
+  document.body.classList.add('modal-open');
+}
+function cerrarNoticia() {
+  document.getElementById('noticiaModal').classList.remove('open');
+  document.body.classList.remove('modal-open');
+}
+document.getElementById('noticiaModal').addEventListener('click', (e) => {
+  if(e.target === e.currentTarget) cerrarNoticia();
+});
+
+/* ── HORARIO MODAL ── */
+let horarioNivel = 'primaria';
+const cursosPrimaria    = ['Jardín','Preescolar','1°A','2°A','3°A','4°A','5°A'];
+const cursosSecundaria  = ['6°A','7°A','7°B','8°A','8°B','9°A','9°B','10°A','10°B','11°A','11°B'];
+
+// Mapa de equivalencias: nombre visible en la interfaz → nombre en la base de datos
+const HORARIO_CURSO_MAP = {
+  'Jardín': 'Jardin',
+  'Preescolar': 'Preescolar',
+  '1°A': '1A',
+  '2°A': '2A',
+  '3°A': '3A',
+  '4°A': '4A',
+  '5°A': '5A',
+  '6°A': '6A',
+  '7°A': '7A',
+  '7°B': '7B',
+  '8°A': '8A',
+  '8°B': '8B',
+  '9°A': '9A',
+  '9°B': '9B',
+  '10°A': '10A',
+  '10°B': '10B',
+  '11°A': '11A',
+  '11°B': '11B'
+};
+
+// Devuelve el nombre del curso en la base de datos a partir del nombre visible
+function horarioCursoDbName(uiName) {
+  return HORARIO_CURSO_MAP[uiName] || uiName;
+}
+
+// Mapa inverso: nombre en BD → nombre visible
+const HORARIO_CURSO_MAP_INV = {};
+Object.keys(HORARIO_CURSO_MAP).forEach(function(k) {
+  HORARIO_CURSO_MAP_INV[HORARIO_CURSO_MAP[k]] = k;
+});
+
+function horarioCursoUiName(dbName) {
+  return HORARIO_CURSO_MAP_INV[dbName] || dbName;
+}
+const materiasPrimaria    = ['Matemáticas','Lenguaje','Ciencias Nat.','Sociales','Ed. Física','Inglés','Artes','Religión'];
+const materiasSecundaria  = ['Matemáticas','Lenguaje','Ciencias Nat.','Biología','Química','Física','Sociales','Inglés','Francés','Ed. Física','Filosofía','Religión'];
+
+function getHorarioData() {
+  try { return JSON.parse(localStorage.getItem('gds_horarios') || '{}'); } catch(e) { return {}; }
+}
+function saveHorarioData(data) {
+  try { localStorage.setItem('gds_horarios', JSON.stringify(data)); } catch(e) {}
+}
+
+function abrirHorario(nivel) {
+  horarioNivel = nivel;
+  const cursos = nivel === 'primaria' ? cursosPrimaria : cursosSecundaria;
+  const sel = document.getElementById('horarioCursoSelect');
+
+  // Poblar opciones
+  sel.innerHTML = '<option value="">— Elige un curso —</option>';
+  cursos.forEach(c => {
+    const o = document.createElement('option');
+    o.value = c; o.textContent = c;
+    sel.appendChild(o);
+  });
+
+  // Badge y título
+  const badge = document.getElementById('horarioNivelBadge');
+  if (badge) badge.textContent = nivel === 'primaria' ? '🎒 Primaria' : '🎓 Secundaria';
+  document.getElementById('horarioModalTitle').textContent =
+    nivel === 'primaria' ? 'Horario Primaria' : 'Horario Secundaria';
+
+  // Ocultar info chips, mostrar estado vacío
+  const info = document.getElementById('hmHorarioInfo');
+  if (info) info.style.display = 'none';
+  document.getElementById('horarioTablaWrap').innerHTML = `
+    <div class="hm-empty-state">
+      <div class="hm-empty-icon">📅</div>
+      <p class="hm-empty-title">Selecciona un curso</p>
+      <p class="hm-empty-sub">Elige el grado en el menú de arriba para ver el horario completo</p>
+    </div>`;
+
+  // Abrir modal
+  document.getElementById('horarioModal').classList.add('open');
+  document.body.classList.add('modal-open');
+
+  // Registrar listener directamente aquí (evita problemas con DOMContentLoaded)
+  sel.onchange = function() { renderHorario(); };
+}
+
+function cerrarHorario() {
+  document.getElementById('horarioModal').classList.remove('open');
+  document.body.classList.remove('modal-open');
+  // Limpiar hash para que manejarRutaEducacion no vuelva a dispararse
+  if (window.location.hash && window.location.hash.includes('educacion')) {
+    history.replaceState(null, null, window.location.pathname);
+  }
+}
+document.getElementById('horarioModal').addEventListener('click', function(e) {
+  if (e.target === document.getElementById('horarioModal')) cerrarHorario();
+});
+
+function renderHorario() {
+  const sel = document.getElementById('horarioCursoSelect');
+  const curso = sel ? sel.value : '';
+  if (!curso) return;
+
+  const dias = ['Lunes','Martes','Miércoles','Jueves','Viernes'];
+  const allData = getHorarioData();
+  const key = horarioNivel + '_' + curso;
+  const customData = allData[key] || {};
+  const festivos   = customData.festivos || {};
+
+  // Intentar cargar desde la API (sin bloquear la UI inicial)
+  var cursoDb = horarioCursoDbName(curso);
+  GDS.getHorario(cursoDb, horarioNivel, 2026).then(function(apiData) {
+    if (apiData && apiData.celdas && apiData.celdas.length > 0) {
+      // Adaptar datos de la API al formato local
+      var apiCells = {};
+      apiData.celdas.forEach(function(c) {
+        var fi = c.franja_idx;
+        var di = c.dia;
+        if (c.materia) apiCells[fi + '_' + di] = c.materia;
+        else if (c.es_descanso) apiCells[fi + '_' + di] = c.nombre_descanso || '☕ Descanso';
+      });
+      // Actualizar customData con datos de la API
+      if (!allData[key]) allData[key] = {};
+      allData[key].cells = apiCells;
+      if (apiData.config) {
+        allData[key].startMin = apiData.config.hora_inicio_min;
+        allData[key].endMin = apiData.config.hora_fin_min;
+        allData[key].granularidad = apiData.config.granularidad_min;
+      }
+      // Re-renderizar con los datos actualizados de la API
+      // (el render actual ya se ejecutó con datos de localStorage; 
+      //  si la API tiene datos, se actualiza la tabla)
+      // Nota: el render se hace desde localStorage; la API solo actualiza
+      // los datos internos para cuando se vuelva a abrir el modal
+    }
+  }).catch(function() {
+    // API no disponible: se conserva el render actual (localStorage)
+  });
+
+  // ── Horarios EXACTOS según nivel ──────────────────────────────────────
+  let franjas = [];
+  const esPrescolar = curso === 'Jardín' || curso === 'Preescolar';
+
+  if (esPrescolar) {
+    franjas = [
+      { label: '7:00 – 7:20',   tipo: 'clase',    nombre: 'Actividad de entrada' },
+      { label: '7:20 – 8:00',   tipo: 'clase',    nombre: 'Período 1' },
+      { label: '8:00 – 8:40',   tipo: 'clase',    nombre: 'Período 2' },
+      { label: '8:40 – 9:20',   tipo: 'descanso', nombre: 'Descanso',   dur: '40 min' },
+      { label: '9:20 – 10:00',  tipo: 'clase',    nombre: 'Período 3' },
+      { label: '10:00 – 10:40', tipo: 'clase',    nombre: 'Período 4' },
+      { label: '10:40 – 11:20', tipo: 'clase',    nombre: 'Período 5' },
+      { label: '11:20 – 12:00', tipo: 'clase',    nombre: 'Período 6' },
+    ];
+  } else if (horarioNivel === 'primaria') {
+    franjas = [
+      { label: '6:00 – 6:50',   tipo: 'clase',    nombre: 'Período 1' },
+      { label: '6:50 – 7:40',   tipo: 'clase',    nombre: 'Período 2' },
+      { label: '7:40 – 8:10',   tipo: 'descanso', nombre: 'Descanso',   dur: '30 min' },
+      { label: '8:10 – 9:00',   tipo: 'clase',    nombre: 'Período 3' },
+      { label: '9:00 – 9:50',   tipo: 'clase',    nombre: 'Período 4' },
+      { label: '9:50 – 10:35',  tipo: 'clase',    nombre: 'Período 5' },
+      { label: '10:35 – 10:55', tipo: 'descanso', nombre: 'Descanso',   dur: '20 min' },
+      { label: '10:55 – 11:40', tipo: 'clase',    nombre: 'Período 6' },
+      { label: '11:40 – 12:25', tipo: 'clase',    nombre: 'Período 7' },
+      { label: '12:25 – 1:10',  tipo: 'clase',    nombre: 'Período 8' },
+    ];
+  } else {
+    franjas = [
+      { label: '6:00 – 6:50',   tipo: 'clase',    nombre: 'Período 1' },
+      { label: '6:50 – 7:40',   tipo: 'clase',    nombre: 'Período 2' },
+      { label: '7:40 – 8:30',   tipo: 'clase',    nombre: 'Período 3' },
+      { label: '8:30 – 9:00',   tipo: 'descanso', nombre: 'Descanso',   dur: '30 min' },
+      { label: '9:00 – 9:50',   tipo: 'clase',    nombre: 'Período 4' },
+      { label: '9:50 – 10:40',  tipo: 'clase',    nombre: 'Período 5' },
+      { label: '10:40 – 11:25', tipo: 'clase',    nombre: 'Período 6' },
+      { label: '11:25 – 11:45', tipo: 'descanso', nombre: 'Descanso',   dur: '20 min' },
+      { label: '11:45 – 12:30', tipo: 'clase',    nombre: 'Período 7' },
+      { label: '12:30 – 1:15',  tipo: 'clase',    nombre: 'Período 8' },
+    ];
+  }
+
+  // ── Mostrar info chips ────────────────────────────────────────────────
+  const info = document.getElementById('hmHorarioInfo');
+  if (info) {
+    const start = esPrescolar ? '7:00 AM' : '6:00 AM';
+    const end   = esPrescolar ? '12:00 PM' : '1:15 PM';
+    info.style.display = 'flex';
+    info.innerHTML = `<span class="hm-info-chip">🕐 ${start} – ${end}</span><span class="hm-info-chip">📚 Lun – Vie</span>`;
+  }
+
+  // ── Construir tabla — solo franjas, sin asignaciones ─────────────────
+  let html = '<table class="horario-table"><thead><tr>'
+    + '<th class="hm-th-hora" style="min-width:110px">Hora</th>';
+  dias.forEach(d => {
+    html += `<th${festivos[d] ? ' class="hm-th-festivo"' : ''}>${d}${festivos[d] ? '<br><span class="hm-festivo-label">🎉</span>' : ''}</th>`;
+  });
+  html += '</tr></thead><tbody>';
+
+  franjas.forEach((f) => {
+    if (f.tipo === 'descanso') {
+      html += `<tr class="hm-row-descanso">
+        <td class="hm-td-hora">${f.label}</td>
+        <td colspan="5"><div class="hm-descanso-cell">☕ Descanso${f.dur ? ' · ' + f.dur : ''}</div></td>
+      </tr>`;
+      return;
+    }
+    html += `<tr><td class="hm-td-hora">${f.label}</td>`;
+    dias.forEach((dia) => {
+      if (festivos[dia]) {
+        html += `<td class="horario-festivo-cell"><span class="hm-festivo-cell-inner">🎉</span></td>`;
+      } else {
+        html += `<td><span class="hm-periodo-pill">${f.nombre}</span></td>`;
+      }
+    });
+    html += '</tr>';
+  });
+
+  html += '</tbody></table>';
+  document.getElementById('horarioTablaWrap').innerHTML = html;
+}
+
+/* ── ADMIN AUTH CON OTP ── */
+const ADMIN_CREDENTIALS = []; // Credenciales retiradas: la autenticación se realiza en el servidor.
+const MAX_INTENTOS = 4;
+const BLOCK_MS = 10 * 60 * 1000;
+let _otp = null, _otpExpiry = null, _pendingEmail = null;
+let blockTimer = null;
+
+function getAttemptData() {
+  try { return JSON.parse(localStorage.getItem('gds_auth_attempts') || '{}'); } catch(e) { return {}; }
+}
+function saveAttemptData(d) { try { localStorage.setItem('gds_auth_attempts', JSON.stringify(d)); } catch(e) {} }
+
+function isBlocked() {
+  const d = getAttemptData();
+  if (!d.blockedUntil) return false;
+  if (Date.now() < d.blockedUntil) return true;
+  saveAttemptData({});
+  return false;
+}
+
+function registerFailedAttempt() {
+  const d = getAttemptData();
+  d.intentos = (d.intentos || 0) + 1;
+  if (d.intentos >= MAX_INTENTOS) {
+    d.blockedUntil = Date.now() + BLOCK_MS;
+    d.intentos = 0;
+  }
+  saveAttemptData(d);
+  return d;
+}
+
+function startBlockCountdown(until) {
+  const el = document.getElementById('blockCountdown');
+  const errEl = document.getElementById('adminBlockError');
+  if (!el || !errEl) return;
+  errEl.style.display = 'block';
+  clearInterval(blockTimer);
+  blockTimer = setInterval(() => {
+    const rem = until - Date.now();
+    if (rem <= 0) {
+      clearInterval(blockTimer);
+      errEl.style.display = 'none';
+      saveAttemptData({});
+      return;
+    }
+    const m = Math.floor(rem / 60000);
+    const s = Math.floor((rem % 60000) / 1000);
+    el.textContent = `${m}:${String(s).padStart(2,'0')}`;
+  }, 1000);
+}
+
+function generateOTP() {
+  return String(Math.floor(100000 + Math.random() * 900000));
+}
+
+/* ── CORREO DESTINO DEL OTP ─────────────────────────────────────────────────
+   Para cambiar el destinatario del código, edita SOLO el return de esta función.
+   Se lee en tiempo real en cada envío — nunca queda cacheado.              ── */
+function getAdminOTPEmail() {
+  return 'gimnasiodomingosavio3@gmail.com';
+}
+
+/* ── ENV͍O REAL DEL OTP POR EMAILJS ─────────────────────────────────────────
+   CREDENCIALES DE TU CUENTA EMAILJS:
+     Service ID  → Email Services  → tu servicio → "Service ID"
+     Template ID → Email Templates → tu template → "Template ID"
+     Public Key  → Account         → General     → "Public Key"
+
+   VARIABLES QUE DEBE TENER TU TEMPLATE EN EMAILJS:
+     {{to_email}}   — destinatario
+     {{otp_code}}   — el código de 6 dígitos
+     {{expiry}}     — texto "10 minutos"
+     {{timestamp}}  — fecha/hora del envío
+   ── */
+async function enviarOTPEmail(code) {
+  const SERVICE_ID  = 'service_dapdvr6';
+  const TEMPLATE_ID = 'template_0rtnkuc';
+  const PUBLIC_KEY  = 'A8_-VTv06yO5YWU7-';
+
+  /* init() se llama aquí para que tome el PUBLIC_KEY actualizado */
+  emailjs.init({ publicKey: PUBLIC_KEY });
+
+  await emailjs.send(SERVICE_ID, TEMPLATE_ID, {
+    to_email : getAdminOTPEmail(),
+    otp_code : code,
+    expiry   : '10 minutos',
+    timestamp: new Date().toLocaleString('es-CO')
+  });
+  /* Si emailjs.send() lanza un error, se propaga hacia doAdminStep1()
+     que lo captura y muestra el aviso de fallo al usuario.            */
+}
+
+/* ── NOTIFICACI͓N VISUAL — nunca muestra el código ── */
+function mostrarEstadoOTP(exito) {
+  let prev = document.getElementById('otpEmailPreview');
+  if (!prev) {
+    prev = document.createElement('div');
+    prev.id = 'otpEmailPreview';
+    prev.style.cssText = 'position:fixed;bottom:20px;right:20px;z-index:99999;max-width:340px;background:white;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,.25);overflow:hidden;font-family:inherit;';
+    document.body.appendChild(prev);
+  }
+  const destino = getAdminOTPEmail();
+  if (exito) {
+    prev.innerHTML = `
+      <div style="background:linear-gradient(135deg,#132950,#1e4a90);padding:16px 20px;color:white;display:flex;align-items:center;gap:12px;">
+        <span style="font-size:24px;flex-shrink:0">📨</span>
+        <div style="flex:1;min-width:0">
+          <div style="font-size:13px;font-weight:700">Código enviado</div>
+          <div style="font-size:11px;opacity:.8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Revisa: <strong>${destino}</strong></div>
+        </div>
+        <button onclick="document.getElementById('otpEmailPreview').remove()" style="background:rgba(255,255,255,.15);border:none;color:white;border-radius:50%;width:22px;height:22px;cursor:pointer;font-size:12px;flex-shrink:0;line-height:22px">✕</button>
+      </div>
+      <div style="padding:12px 20px;font-size:12px;color:#555;">Válido por <strong>10 minutos</strong>. Si no aparece en bandeja de entrada, revisa spam.</div>`;
+  } else {
+    prev.innerHTML = `
+      <div style="background:linear-gradient(135deg,#c0392b,#922b21);padding:16px 20px;color:white;display:flex;align-items:center;gap:12px;">
+        <span style="font-size:24px;flex-shrink:0">⚠️</span>
+        <div style="flex:1;min-width:0">
+          <div style="font-size:13px;font-weight:700">Error al enviar el código</div>
+          <div style="font-size:11px;opacity:.85">Verifica la configuración de EmailJS</div>
+        </div>
+        <button onclick="document.getElementById('otpEmailPreview').remove()" style="background:rgba(255,255,255,.15);border:none;color:white;border-radius:50%;width:22px;height:22px;cursor:pointer;font-size:12px;flex-shrink:0;line-height:22px">✕</button>
+      </div>
+      <div style="padding:12px 20px;font-size:12px;color:#555;">No se pudo enviar a <strong>${destino}</strong>. Comprueba las credenciales EmailJS y que el template tenga las variables correctas.</div>`;
+  }
+  setTimeout(() => { const el = document.getElementById('otpEmailPreview'); if (el) el.remove(); }, 9000);
+}
+
+async function doAdminStep1() {
+  if (isBlocked()) {
+    const d = getAttemptData();
+    startBlockCountdown(d.blockedUntil);
+    document.getElementById('adminBlockError').style.display = 'block';
+    return;
+  }
+  const email = document.getElementById('adminEmail').value.trim().toLowerCase();
+  const pass  = document.getElementById('adminPass').value.trim();
+  const errEl = document.getElementById('adminLoginError');
+  errEl.classList.remove('show');
+
+  /* Verificación de credenciales en el servidor */
+  try {
+    await GDS.admin.login(email, pass);
+  } catch (e) {
+    const d = registerFailedAttempt();
+    errEl.classList.add('show');
+    if (d.blockedUntil) {
+      startBlockCountdown(d.blockedUntil);
+    } else {
+      const restantes = MAX_INTENTOS - (d.intentos || 0);
+      errEl.textContent = `⚠️ Credenciales incorrectas. Intentos restantes: ${restantes}`;
+    }
+    document.getElementById('adminPass').value = '';
+    return;
+  }
+
+  /* El backend ya generó y envió el OTP por correo. Solo mostrar el formulario */
+  document.getElementById('adminStepEmail').style.display = 'none';
+  document.getElementById('adminStepOTP').style.display   = 'block';
+  document.getElementById('adminEmailShown').textContent  = 'gimnasiodomingosavio3@gmail.com';
+  document.getElementById('adminOTPInput').value          = '';
+  document.getElementById('adminOTPError').classList.remove('show');
+  setTimeout(() => document.getElementById('adminOTPInput').focus(), 100);
+}
+
+async function doAdminStep2() {
+  const input = document.getElementById('adminOTPInput').value.trim();
+  const errEl = document.getElementById('adminOTPError');
+  errEl.classList.remove('show');
+
+  if (input.length !== 6) {
+    errEl.textContent = '⚠️ Ingresa un código de 6 dígitos.';
+    errEl.classList.add('show');
+    return;
+  }
+
+  try {
+    const r = await GDS.admin.verifyOtp(input);
+    if (r && r.authenticated) {
+      saveAttemptData({});
+      sessionStorage.setItem('gds_admin', 'true');
+      cerrarAdminLogin();
+      abrirAdminPanel();
+    } else {
+      errEl.textContent = '⚠️ Código incorrecto o expirado';
+      errEl.classList.add('show');
+    }
+  } catch (e) {
+    errEl.textContent = '⚠️ ' + (e.message || 'Código incorrecto o expirado');
+    errEl.classList.add('show');
+  }
+}
+
+function volverAdminStep1() {
+  document.getElementById('adminStepOTP').style.display = 'none';
+  document.getElementById('adminStepEmail').style.display = 'block';
+  _otp = null; _otpExpiry = null;
+}
+
+function isAdminLogged() { return sessionStorage.getItem('gds_admin') === 'true'; }
+
+async function adminCheckAuth() {
+  if (!gdsAdminHabilitado()) return;
+  try {
+    const s = await GDS.admin.session();
+    if (s && s.authenticated) { sessionStorage.setItem('gds_admin','true'); abrirAdminPanel(); return; }
+  } catch(e) {}
+  sessionStorage.removeItem('gds_admin');
+  document.getElementById('adminLoginOverlay').classList.add('open');
+  document.body.classList.add('modal-open');
+  const d = getAttemptData();
+  if (d.blockedUntil && Date.now() < d.blockedUntil) { startBlockCountdown(d.blockedUntil); }
+  setTimeout(() => document.getElementById('adminEmail').focus(), 300);
+  return;
+}
+
+function cerrarAdminLogin() {
+  document.getElementById('adminLoginOverlay').classList.remove('open');
+  document.body.classList.remove('modal-open');
+  document.getElementById('adminLoginError').classList.remove('show');
+  document.getElementById('adminStepOTP').style.display = 'none';
+  document.getElementById('adminStepEmail').style.display = 'block';
+  if (document.getElementById('adminEmail')) document.getElementById('adminEmail').value = '';
+  if (document.getElementById('adminPass')) document.getElementById('adminPass').value = '';
+}
+
+function abrirAdminPanel() {
+  document.getElementById('adminPanelOverlay').classList.add('open');
+  document.body.classList.add('modal-open');
+  const adminLink = document.getElementById('noticiasAdminLink');
+  if (adminLink) adminLink.style.display = 'inline-flex';
+}
+function cerrarAdminPanel() {
+  document.getElementById('adminPanelOverlay').classList.remove('open');
+  document.body.classList.remove('modal-open');
+}
+async function adminLogout() {
+  try {
+    await GDS.admin.logout();
+    sessionStorage.removeItem('gds_admin');
+    cerrarAdminPanel();
+  } catch(e) {
+    alert('No se pudo cerrar la sesión: ' + (e.message || 'Error desconocido'));
+  }
+}
+
+document.getElementById('adminFab').style.display = 'none';
+if (isAdminLogged()) {
+  const adminLink = document.getElementById('noticiasAdminLink');
+  if (adminLink) adminLink.style.display = 'inline-flex';
+}
+/* ── 1. CONFIGURACI͓N Y DATOS INICIALES ── */
+
+function habilitarScroll() {
+  document.body.style.overflow = 'auto';
+  document.documentElement.style.overflow = 'auto';
+}
+
+function setupCierreSeguroModales() {
+  const overlays = document.querySelectorAll('.admin-editor-overlay');
+
+  overlays.forEach(ov => {
+    let clickIniciaEnFondo = false;
+
+    // Detectamos dónde empieza el clic
+    ov.onmousedown = function(e) {
+      clickIniciaEnFondo = (e.target === this);
+    };
+
+    // Solo cerramos si empezó Y terminó en el fondo
+    ov.onmouseup = function(e) {
+      if (clickIniciaEnFondo && e.target === this) {
+        this.classList.remove('open');
+        habilitarScroll();
+      }
+      clickIniciaEnFondo = false;
+    };
+  });
+}
+
+function cerrarCualquierEditor() {
+  document.querySelectorAll('.admin-editor-overlay').forEach(ov => ov.classList.remove('open'));
+  habilitarScroll();
+}
+
+/* ── Procesar fotos subidas en formularios de admin (popup slides, convenios, etc.) ── */
+function procesarFotoAdmin(input, targetId) {
+  if (input.files && input.files[0]) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      document.getElementById(targetId).value = e.target.result;
+    };
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
+/* ── 10. INICIALIZACI͓N ── */
+document.addEventListener('DOMContentLoaded', () => {
+  renderConveniosTrack();
+  renderNoticiasIndex();
+  setupCierreSeguroModales();
+  habilitarScroll();
+});
+
+
+/* ── EDITOR HORARIOS ADMIN ── */
+function abrirEditorHorarios() {
+  // Eliminado cerrarAdminPanel() para mantener el panel principal abierto
+  renderHorAdminCursos();
+  const overlay = document.getElementById('editorHorariosOverlay');
+  overlay.classList.add('open');
+  
+  // Cierre por clic fuera del modal (directamente en el overlay)
+  overlay.onclick = function(e) {
+    if (e.target === this) {
+      this.classList.remove('open');
+      if (typeof habilitarScroll === 'function') habilitarScroll();
+    }
+  };
+}
+
+function renderHorAdminCursos() {
+  const nivel = document.getElementById('horAdminNivel').value;
+  const cursos = nivel === 'primaria' ? cursosPrimaria : cursosSecundaria;
+  const sel = document.getElementById('horAdminCurso');
+  sel.innerHTML = '<option value="">— Seleccionar —</option>';
+  cursos.forEach(c => { const o = document.createElement('option'); o.value=c; o.textContent=c; sel.appendChild(o); });
+  document.getElementById('horAdminContent').innerHTML = '<div style="text-align:center;color:var(--muted);padding:20px;font-size:13px">Selecciona un curso</div>';
+}
+
+document.getElementById('horAdminNivel').addEventListener('change', renderHorAdminCursos);
+
+function renderHorarioAdmin() {
+  const nivel = document.getElementById('horAdminNivel').value;
+  const curso = document.getElementById('horAdminCurso').value;
+  if (!curso) return;
+  const gran = parseInt(document.getElementById('horAdminGranularidad').value) || 60;
+  const allData = getHorarioData();
+  const key = nivel + '_' + curso;
+  const data = allData[key] || {};
+
+  // H-01: Intentar cargar desde la API primero
+  var cursoDb = horarioCursoDbName(curso);
+  if (cursoDb) {
+    GDS.getHorario(cursoDb, nivel, 2026).then(function(apiData) {
+      if (apiData && apiData.config) {
+        // Mostrar indicador de fuente de datos
+        var statusMsg = document.createElement('div');
+        statusMsg.style.cssText = 'font-size:11px;color:#27ae60;margin-bottom:8px;padding:4px 8px;background:rgba(39,174,96,.1);border-radius:4px;display:inline-block;';
+        statusMsg.textContent = '✓ Datos cargados desde el servidor';
+        var content = document.getElementById('horAdminContent');
+        if (content && content.firstChild) content.insertBefore(statusMsg, content.firstChild);
+        // Adaptar datos de la API al formato local
+        if (!allData[key]) allData[key] = {};
+        allData[key].startMin = apiData.config.hora_inicio_min;
+        allData[key].endMin = apiData.config.hora_fin_min;
+        allData[key].granularidad = apiData.config.granularidad_min;
+        if (!allData[key].cells) allData[key].cells = {};
+        if (!allData[key].descansos) allData[key].descansos = [];
+        // Limpiar celdas existentes para reemplazar con datos de API
+        allData[key].cells = {};
+        allData[key].descansos = [];
+        if (apiData.celdas) {
+          apiData.celdas.forEach(function(c) {
+            if (c.es_descanso) {
+              allData[key].descansos.push({ indice: c.franja_idx, nombre: c.nombre_descanso || 'Descanso' });
+            } else if (c.materia) {
+              allData[key].cells[c.franja_idx + '_' + c.dia] = c.materia;
+            }
+          });
+        }
+        saveHorarioData(allData);
+        // Mostrar indicador de fuente
+        var info = document.getElementById('horAdminContent');
+        // Re-renderizar con los datos actualizados
+        renderHorarioAdminInterno(nivel, curso, allData[key], gran);
+        // Mostrar indicador de fuente de datos
+        var content = document.getElementById('horAdminContent');
+        if (content && content.firstChild) {
+          var statusMsg = document.createElement('div');
+          statusMsg.style.cssText = 'font-size:11px;color:#27ae60;margin-bottom:8px;padding:4px 8px;background:rgba(39,174,96,.1);border-radius:4px;display:inline-block;';
+          statusMsg.textContent = '✓ Datos cargados desde el servidor';
+          content.insertBefore(statusMsg, content.firstChild);
+        }
+      } else {
+        // API respondió pero sin configuración: usar datos locales
+        renderHorarioAdminInterno(nivel, curso, data, gran);
+        var content2 = document.getElementById('horAdminContent');
+        if (content2 && content2.firstChild) {
+          var statusMsg2 = document.createElement('div');
+          statusMsg2.style.cssText = 'font-size:11px;color:#e67e22;margin-bottom:8px;padding:4px 8px;background:rgba(230,126,34,.1);border-radius:4px;display:inline-block;';
+          statusMsg2.textContent = '⚠ Sin datos en el servidor; se muestran datos locales';
+          content2.insertBefore(statusMsg2, content2.firstChild);
+        }
+      }
+    }).catch(function() {
+      // API no disponible: se conserva el render actual (localStorage)
+      renderHorarioAdminInterno(nivel, curso, data, gran);
+      // Mostrar indicador de fuente local
+      var content = document.getElementById('horAdminContent');
+      if (content && content.firstChild) {
+        var statusMsg = document.createElement('div');
+        statusMsg.style.cssText = 'font-size:11px;color:#e67e22;margin-bottom:8px;padding:4px 8px;background:rgba(230,126,34,.1);border-radius:4px;display:inline-block;';
+        statusMsg.textContent = '⚠ Datos locales (no confirmados por el servidor)';
+        content.insertBefore(statusMsg, content.firstChild);
+      }
+    });
+    return; // Salir temprano; el render se hace en el callback
+  }
+
+  renderHorarioAdminInterno(nivel, curso, data, gran);
+}
+
+function renderHorarioAdminInterno(nivel, curso, data, gran) {
+  const allData = getHorarioData();
+  const key = nivel + '_' + curso;
+  if (!allData[key]) allData[key] = {};
+  allData[key].granularidad = gran;
+  saveHorarioData(allData);
+
+  const startMin = data.startMin != null ? data.startMin : 6*60;      // 6:00 AM
+  const endMin   = data.endMin   != null ? data.endMin   : 13*60+15;  // 1:15 PM
+  const descansos = data.descansos || [];
+  const festivos = data.festivos || {};
+  const materias = nivel === 'primaria' ? materiasPrimaria : materiasSecundaria;
+  const dias = ['Lunes','Martes','Miércoles','Jueves','Viernes'];
+  
+  const fmtMin = m => `${String(Math.floor(m/60)).padStart(2,'0')}:${String(m%60).padStart(2,'0')}`;
+  let html = `<div style="font-size:12px;color:var(--muted);margin-bottom:12px">Horario de <strong>${curso}</strong> · ${fmtMin(startMin)} – ${fmtMin(endMin)} · Franjas de ${gran} min</div>`;
+  html += '<div style="overflow-x:auto"><table class="horario-table" style="font-size:11px"><thead><tr><th>Hora</th>';
+  dias.forEach(d => html += `<th>${d}${festivos[d] ? ' 🎉' : ''}</th>`);
+  html += '</tr></thead><tbody>';
+  
+  let fi = 0;
+  for(let t = startMin; t < endMin; t += gran) {
+    const franja = `${fmtMin(t)}–${fmtMin(t+gran)}`;
+    const esDescanso = descansos.some(d => d.indice === fi);
+    if (esDescanso) {
+      const desc = descansos.find(d => d.indice === fi);
+      html += `<tr><td style="color:var(--muted)">${franja}</td><td colspan="5" style="background:rgba(245,200,66,.15);text-align:center;font-weight:700;color:#8a6800">☕ ${desc.nombre}</td></tr>`;
+    } else {
+      html += `<tr><td style="color:var(--muted)">${franja}</td>`;
+      dias.forEach((dia, di) => {
+        if (festivos[dia]) { html += `<td style="background:rgba(245,200,66,.1);text-align:center">🎉</td>`; }
+        else { html += `<td><input style="width:80px;border:1px solid var(--fondo-2);border-radius:4px;padding:2px 4px;font-size:10px;font-family:var(--font-body)" value="${(data.cells||{})[fi+'_'+di] || materias[fi%materias.length]}" onchange="setCellVal('${key}',${fi},${di},this.value)"/></td>`; }
+      });
+      html += '</tr>';
+    }
+    fi++;
+  }
+  html += '</tbody></table></div>';
+  document.getElementById('horAdminContent').innerHTML = html;
+}
+
+function setCellVal(key, fi, di, val) {
+  const allData = getHorarioData();
+  if (!allData[key]) allData[key] = {};
+  if (!allData[key].cells) allData[key].cells = {};
+  allData[key].cells[fi+'_'+di] = val;
+  saveHorarioData(allData);
+
+  // Guardar en la API (sin bloquear la UI)
+  // key = horarioNivel + '_' + curso (ej: primaria_1°A)
+  var parts = key.split('_');
+  var nivel = parts[0];
+  var cursoUi = parts.slice(1).join('_');
+  var cursoDb = horarioCursoDbName(cursoUi);
+  if (!cursoDb) return; // Sin equivalencia confirmada, no guardar
+  var nivelDb = (nivel === 'primaria') ? 'primaria' : 'secundaria';
+  // Intentar guardar la celda en la API
+  GDS.admin.guardarCelda({
+    curso: cursoDb,
+    ano: 2026,
+    dia: di,
+    franja_idx: fi,
+    materia: val,
+    nivel: nivelDb
+  }).catch(function(e) {
+    // API no disponible o error: se conserva en localStorage
+  });
+}
+
+/* agregarDescanso / agregarFestivo / modificarHoras / reiniciarHorarioCurso → versiones async con gdsPrompt/gdsAlert/gdsConfirm más abajo */
+
+/* ── EDITOR NOTICIAS / PERI͓DICOS / DOCUMENTOS (link to noticias.html) ── */
+function abrirEditorNoticias() {
+  cerrarAdminPanel();
+
+  sessionStorage.setItem('gds_admin', 'true');
+  window.location.href = 'noticias.html?admin=1';
+}
+function abrirEditorPeriodicos() {
+  cerrarAdminPanel();
+  sessionStorage.setItem('gds_admin', 'true');
+  window.location.href = 'noticias.html?admin=1&tab=periodicos';
+}
+function abrirEditorDocumentos() {
+  cerrarAdminPanel();
+  sessionStorage.setItem('gds_admin', 'true');
+  window.location.href = 'noticias.html?admin=1&tab=documentos';
+}
+
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    cerrarQSPanel();
+    cerrarPopupCarousel();
+    document.getElementById('adminLoginOverlay').classList.remove('open');
+    document.getElementById('adminPanelOverlay').classList.remove('open');
+    document.getElementById('editorDocentesOverlay').classList.remove('open');
+    document.getElementById('editorHorariosOverlay').classList.remove('open');
+    document.getElementById('editorPopupCarouselOverlay') && document.getElementById('editorPopupCarouselOverlay').classList.remove('open');
+    document.body.classList.remove('modal-open');
+  }
+});
+
+document.querySelectorAll('.link-educacion').forEach(enlace => {
+  enlace.addEventListener('click', function(e) {
+
+    e.preventDefault();
+
+
+    const nivel = this.getAttribute('data-nivel');
+
+
+    const section = document.getElementById('educacion');
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+
+
+    if (typeof abrirHorario === "function") {
+      abrirHorario(nivel);
+    }
+  });
+});
+
+/* ── L͓GICA DE RUTAS MEJORADA ── */
+function manejarRutaEducacion() {
+  // No interferir cuando el modal de horario está abierto
+  if (document.getElementById('horarioModal') && document.getElementById('horarioModal').classList.contains('open')) return;
+
+  const hash = window.location.hash;
+
+  if (hash.includes('#educacion')) {
+
+    const section = document.getElementById('educacion');
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+
+
+    if (hash.includes('nivel=primaria')) {
+      abrirHorario('primaria');
+    } else if (hash.includes('nivel=secundaria')) {
+      abrirHorario('secundaria');
+    }
+
+
+
+    setTimeout(() => {
+        history.replaceState(null, null, window.location.pathname);
+    }, 500);
+  }
+}
+
+/* ── L͓GICA PARA BOT͓N FILOSOF͍A (HERO) ── */
+document.querySelectorAll('.link-filosofia').forEach(boton => {
+  boton.addEventListener('click', function(e) {
+    e.preventDefault();
+
+
+    const section = document.getElementById('elgds');
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+
+
+
+    setTimeout(() => {
+      if (typeof abrirQSPanel === "function") {
+        abrirQSPanel();
+      }
+    }, 400); 
+  });
+});
+
+
+window.addEventListener('load', manejarRutaEducacion);
+window.addEventListener('hashchange', manejarRutaEducacion);
+
+/* ── EDITOR CONVENIOS ── */
+
+/* Datos por defecto de convenios */
+var CONVENIOS_DEFAULT = [
+  { id:'cv1', nombre:'Universidad de Santander<br><small>UDES</small>', url:'https://www.udes.edu.co/', img:'img/convenios/udes.webp' },
+  { id:'cv2', nombre:'Aquí Entre<br>Niños', url:'https://aquientreninos.com/', img:'img/convenios/aqui-entre-ninos.webp' },
+  { id:'cv3', nombre:'Gimnasio<br>La Magia de los ́ngeles', url:'https://www.webcolegios.com/magiadelosangeles/', img:'img/convenios/gimnasio-la-magia-de-los-angeles.webp' },
+  { id:'cv4', nombre:'Teaching For<br>Kids', url:'https://www.instagram.com/tfk_teachingforkids/', img:'img/convenios/teaching-for-kids.webp' },
+  { id:'cv5', nombre:'FUCS<br>Salud', url:'https://www.fucsalud.edu.co/', img:'img/convenios/fucs-salud.webp' },
+  { id:'cv6', nombre:'UFPS', url:'https://ww2.ufps.edu.co/', img:'img/convenios/ufps.webp' },
+  { id:'cv7', nombre:'CONACED', url:'https://conaced.edu.co/', img:'img/convenios/conaced.webp' },
+  { id:'cv8', nombre:'Mundo Da Vinci', url:'https://www.instagram.com/mundodavinci.jardininfantil/', img:'img/convenios/mundo-da-vinci.webp' }
+];
+
+// Convenios: fuente única es la API. localStorage ya no es fuente de persistencia.
+// Se conserva un fallback de solo lectura (valores por defecto del código) cuando la API falla.
+function getConveniosData() {
+  return CONVENIOS_DEFAULT.slice();
+}
+
+// Alias: la API es la única fuente de persistencia. Esta función ya no escribe en localStorage.
+function saveConveniosData(d) {
+  console.warn('saveConveniosData: la persistencia ahora se hace por API. Esta función no escribe en localStorage.');
+}
+
+/* Renderiza la cinta de convenios (track) desde storage — doble para efecto loop */
+// Renderiza la cinta de convenios desde la API. Si la API falla o devuelve vacío, la cinta queda vacía.
+async function renderConveniosTrack() {
+  var track = document.getElementById('conveniosTrack');
+  if (!track) return;
+  try {
+    var convenios = await GDS.getConvenios();
+    if (!Array.isArray(convenios) || convenios.length === 0) {
+      track.innerHTML = '';
+      return;
+    }
+    var itemHTML = convenios.map(function(c) {
+      var nombre = String(c.nombre || '').replace(/<[^>]*>/g, '').trim();
+      var url = c.url || '#';
+      // Validar URL: solo http/https o rutas img/
+      if (url !== '#' && !/^https?:\/\//i.test(url) && !/^img\//i.test(url)) {
+        url = '#';
+      }
+      var imgSrc = c.img || '';
+      var imgTag = '<img src="' + imgSrc + '" alt="' + nombre + '" onerror="this.style.display=\'none\'"/>';
+      return '<div class="convenio-item"><a href="' + url + '" target="_blank" rel="noopener" class="convenio-logo"><div class="conv-img-wrap">' + imgTag + '</div><span>' + nombre + '</span></a></div>';
+    }).join('');
+    track.innerHTML = itemHTML + itemHTML;
+  } catch (e) {
+    track.innerHTML = '';
+  }
+}
+
+function abrirEditorConvenios() {
+  cerrarAdminPanel();
+  var ov = document.createElement('div');
+  ov.className = 'admin-editor-overlay open';
+  ov.id = 'editorConveniosOverlay';
+  ov.innerHTML = '<div class="admin-editor-box">' +
+    '<div class="admin-editor-header">' +
+      '<h3>🤝 Gestionar Convenios</h3>' +
+      '<button class="admin-editor-close" onclick="document.getElementById(\'editorConveniosOverlay\').remove()">✕</button>' +
+    '</div>' +
+    '<div id="convList" style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px"></div>' +
+    '<button class="admin-add-btn" onclick="mostrarFormConvenio()">+ Agregar Convenio</button>' +
+    '<div id="formConvenio" style="display:none;margin-top:14px;background:var(--fondo);border-radius:var(--radio);padding:16px;">' +
+      '<div class="admin-form-field"><label>Nombre</label><input type="text" id="cvNombre" placeholder="Ej: UDES"/></div>' +
+      '<div class="admin-form-field"><label>URL destino</label><input type="text" id="cvUrl" placeholder="https://..."/></div>' +
+      '<div class="admin-form-field"><label>Imagen (URL o ruta)</label>' +
+        '<input type="text" id="cvImg" placeholder="img/convenios/logo.webp o URL externa" style="width:100%;border:1.5px solid #e5e7eb;border-radius:10px;padding:10px 14px;font-size:14px;font-family:inherit;outline:none;"/>' +
+        '<small style="color:var(--muted);font-size:11px;">Solo URL (http/https) o ruta img/... No se aceptan archivos.</small></div>' +
+      '<input type="hidden" id="cvEditId"/>' +
+      '<div class="admin-form-actions">' +
+        '<button class="btn-outline" onclick="document.getElementById(\'formConvenio\').style.display=\'none\'">Cancelar</button>' +
+        '<button class="btn-primary" onclick="guardarConvenio()">Guardar</button>' +
+      '</div>' +
+    '</div>' +
+  '</div>';
+  document.body.appendChild(ov);
+  renderConveniosList();
+}
+
+async function renderConveniosList() {
+  var list = document.getElementById('convList');
+  if (!list) return;
+  try {
+    var convenios = await GDS.getConvenios();
+    if (!Array.isArray(convenios) || convenios.length === 0) {
+      list.innerHTML = '<p style="color:var(--muted);font-size:13px;padding:10px 0">No hay convenios.</p>';
+      return;
+    }
+    list.innerHTML = convenios.map(function(c, i) {
+      var nombre = String(c.nombre || '').replace(/<[^>]*>/g, ' ').trim();
+      var url = c.url || '';
+      var imgSrc = c.img || '';
+      return '<div class="admin-item-row">' +
+        '<img src="' + imgSrc + '" style="width:36px;height:36px;object-fit:contain;border-radius:4px;background:white;padding:2px" onerror="this.style.display=\'none\'"/>' +
+        '<div class="admin-item-info"><strong>' + nombre + '</strong><span style="font-size:11px;color:var(--muted)">' + url + '</span></div>' +
+        '<div class="admin-item-btns">' +
+          '<button class="admin-btn-del" style="background:rgba(0,144,200,.08);border-color:rgba(0,144,200,.3);color:var(--celeste)" onclick="editarConvenio(' + i + ')">✏️</button>' +
+          '<button class="admin-btn-del" onclick="eliminarConvenio(' + i + ')">🗑️</button>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+  } catch (e) {
+    list.innerHTML = '<p style="color:var(--muted);font-size:13px;padding:10px 0">No se pudieron cargar los convenios.</p>';
+  }
+}
+
+function mostrarFormConvenio(preData) {
+  document.getElementById('formConvenio').style.display = 'block';
+  document.getElementById('cvNombre').value = preData ? (preData.nombre||'').replace(/<[^>]*>/g,' ').trim() : '';
+  document.getElementById('cvUrl').value = preData ? (preData.url||'') : '';
+  document.getElementById('cvImg').value = preData ? (preData.img||'') : '';
+  document.getElementById('cvEditId').value = '';
+}
+
+async function editarConvenio(idx) {
+  try {
+    var convenios = await GDS.getConvenios();
+    if (convenios[idx]) {
+      mostrarFormConvenio(convenios[idx]);
+      // Almacenar el id real del registro, no el índice
+      document.getElementById('cvEditId').value = convenios[idx].id || '';
+    }
+  } catch (e) {
+    gdsAlert({ icon:'⚠️', color:'red', title:'Error', message: 'No se pudieron cargar los convenios: ' + (e.message || 'Error desconocido') });
+  }
+}
+
+async function eliminarConvenio(idx) {
+  try {
+    var convenios = await GDS.getConvenios();
+    if (!convenios || !convenios[idx]) return;
+    var id = convenios[idx].id;
+    await GDS.admin.eliminarConvenio(id);
+    await renderConveniosList();
+    await renderConveniosTrack();
+    gdsAlert({ icon:'✅', color:'green', title:'Eliminado', message:'Convenio eliminado correctamente.' });
+  } catch (e) {
+    gdsAlert({ icon:'⚠️', color:'red', title:'Error', message: 'No se pudo eliminar: ' + (e.message || 'Error desconocido') });
+  }
+}
+
+async function guardarConvenio() {
+  var nombre = document.getElementById('cvNombre').value.trim();
+  var url = document.getElementById('cvUrl').value.trim();
+  var img = document.getElementById('cvImg').value.trim();
+  var editId = document.getElementById('cvEditId').value;
+  if (!nombre) { gdsAlert({ icon:'⚠️', color:'yellow', title:'Nombre requerido', message:'Ingresa un nombre para el convenio.' }); return; }
+
+  // Validar imagen: solo URL o ruta img/
+  if (img && !/^https?:\/\//i.test(img) && !/^img\//i.test(img)) {
+    gdsAlert({ icon:'⚠️', color:'yellow', title:'Imagen inválida', message:'La imagen debe ser una URL (http/https) o una ruta img/... (ej: img/convenios/logo.webp).' });
+    return;
+  }
+  // Validar URL
+  if (url && !/^https?:\/\//i.test(url) && url !== '#') {
+    gdsAlert({ icon:'⚠️', color:'yellow', title:'URL inválida', message:'La URL debe comenzar con http:// o https://.' });
+    return;
+  }
+
+  var convenio = { nombre: nombre, url: url || '#', img: img || '' };
+
+  // Si es edición, incluir el id real almacenado en el formulario
+  if (editId) {
+    convenio.id = editId;
+  }
+
+  try {
+    await GDS.admin.guardarConvenio(convenio);
+    document.getElementById('formConvenio').style.display = 'none';
+    await renderConveniosList();
+    await renderConveniosTrack();
+    gdsAlert({ icon:'✅', color:'green', title:'Guardado', message:'Convenio guardado correctamente.' });
+  } catch (e) {
+    gdsAlert({ icon:'⚠️', color:'red', title:'Error', message: 'No se pudo guardar: ' + (e.message || 'Error desconocido') });
+  }
+}
+
+</script>
+
+<script>
+  window.onload = function() {
+    twemoji.parse(document.body, {
+      folder: 'svg',
+      ext: '.svg'
+    });
+  }
+</script>
+
+<script>
+/* ══════════════════════════════════════════════════════
+   POPUP CAROUSEL — Lógica completa
+   - Se abre una sola vez por sesión (sessionStorage)
+   - Admin puede gestionar slides en panel de admin
+   - Soporta: link, PDF en Drive, PDF descarga, sin acción
+   ══════════════════════════════════════════════════════ */
+
+var _popupIdx = 0;
+var _popupSlides = [];
+var _popupAutoTimer = null;
+
+/* ── gdsAvatar: disponible desde el inicio antes de que carguen imágenes ── */
+var POPUP_DEFAULT_SLIDES = [
+  {
+    id: 'default1',
+    img: 'img/popup/inscripciones-2026.webp',
+    titulo: '¡Inscripciones 2026–2027 Abiertas!',
+    subtitulo: 'Cupos limitados. Asegura el futuro de tu hijo.',
+    tipoAccion: 'link',
+    accionUrl: 'inscripciones.html',
+    isPdf: false
+  },
+  {
+    id: 'default2',
+    img: 'img/popup/descuentos-2026.webp',
+    titulo: 'Descuentos Especiales',
+    subtitulo: '15% hermanos · 10% pronto pago · 5% ex-estudiantes',
+    tipoAccion: 'link',
+    accionUrl: 'inscripciones.html#descuentos',
+    isPdf: false
+  },
+  {
+    id: 'default_unoi',
+    img: 'img/popup/kit-unoi-2024.webp',
+    titulo: 'Adquiere tu Kit UNOi',
+    subtitulo: 'Descarga aquí el instructivo de compra paso a paso.',
+    tipoAccion: 'pdf_descarga',
+    accionUrl: 'https://drive.google.com/file/d/1lQm-MvzM4Ic7mm2DALYRP_sJX7l4ANRq/view?usp=sharing',
+    isPdf: true
+  },
+  {
+    id: 'default_manual',
+    img: 'img/popup/manual-convivencia-2024.webp',
+    titulo: 'Manual de Convivencia 2026',
+    subtitulo: 'Conoce las normas y valores que nos unen como comunidad.',
+    tipoAccion: 'pdf_descarga',
+    accionUrl: 'https://docs.google.com/spreadsheets/d/1iDpSYSffj36mqEbR0GE6104T5O5-TCqGKATnvu_Wi0A/edit?usp=sharing',
+    isPdf: true
+  },
+  {
+    id: 'default_becas',
+    img: 'img/popup/reglamento-becas-descuentos.webp',
+    titulo: 'Reglamento de Becas y Descuentos',
+    subtitulo: 'Consulta las condiciones y modalidades disponibles.',
+    tipoAccion: 'pdf_descarga',
+    accionUrl: 'https://drive.google.com/file/d/1H3KEy1KVeiSnBCEmEpfI84QKYJ0-aI8j/view?usp=sharing',
+    isPdf: true
+  },
+  {
+    id: 'default_solar',
+    /* Tamaño recomendado para imagen del popup: 1200x675px o mayor, horizontal (ratio 16:9). Se muestra completa con object-fit:contain dentro de un contenedor máx. 680px de ancho */
+    img: 'img/institucional/energia-verde-2022.webp',
+    titulo: 'Avanzamos hacia la Energía Solar',
+    subtitulo: 'El GDS se compromete con el medio ambiente instalando paneles solares en sus instalaciones.',
+    tipoAccion: 'none',
+    accionUrl: '',
+    isPdf: false
+  }
+];
+
+function getPopupSlides() {
+  try {
+    var s = localStorage.getItem('gds_popup_slides');
+    if (s) {
+      var arr = JSON.parse(s);
+      if (arr && arr.length) return arr;
+    }
+  } catch(e) {}
+  return POPUP_DEFAULT_SLIDES.slice(); // retorna COPIA para evitar mutación del array original
+}
+
+function savePopupSlides(arr) {
+  try { localStorage.setItem('gds_popup_slides', JSON.stringify(arr)); } catch(e) {}
+}
+
+function actualizarPopupCarousel() {
+  document.querySelectorAll('#popupCarouselTrack .popup-carousel-slide').forEach(function(s, i) {
+    s.classList.toggle('active', i === _popupIdx);
+  });
+  document.querySelectorAll('#popupCarouselDots .popup-dot').forEach(function(d, i) {
+    d.classList.toggle('active', i === _popupIdx);
+  });
+}
+
+function moverPopupCarousel(dir) {
+  var n = _popupSlides.length;
+  _popupIdx = (_popupIdx + dir + n) % n;
+  actualizarPopupCarousel();
+  resetPopupAutoPlay();
+}
+
+function irAPopupSlide(idx) {
+  _popupIdx = idx;
+  actualizarPopupCarousel();
+  resetPopupAutoPlay();
+}
+
+function resetPopupAutoPlay() {
+  clearInterval(_popupAutoTimer);
+  if (_popupSlides.length > 1) {
+    _popupAutoTimer = setInterval(function() { moverPopupCarousel(1); }, 5000);
+  }
+}
+
+function abrirPopupCarousel() {
+  if (!_popupSlides || !_popupSlides.length) return;
+
+  // Destruir cualquier instancia previa
+  var old = document.getElementById('popupCarouselOverlay');
+  if (old) old.remove();
+
+  // Construir HTML de slides
+  var slidesHTML = _popupSlides.map(function(slide, idx) {
+    var imgSrc = slide.img || '';
+    var caption = slide.titulo
+      ? '<div class="popup-slide-caption"><strong>' + (slide.titulo||'') + '</strong>' + (slide.subtitulo ? '<span>' + slide.subtitulo + '</span>' : '') + '</div>'
+      : '';
+    var isPdf = slide.tipoAccion === 'pdf_drive' || slide.tipoAccion === 'pdf_descarga';
+    var pdfBadge = isPdf ? '<div class="popup-pdf-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> PDF</div>' : '';
+    var hasAction = slide.tipoAccion && slide.tipoAccion !== 'none' && slide.accionUrl;
+    var dataAction = hasAction ? 'data-href="' + slide.accionUrl + '" data-tipo="' + slide.tipoAccion + '"' : '';
+    var cursor = hasAction ? 'style="cursor:pointer"' : '';
+    return '<div class="popup-carousel-slide' + (idx === 0 ? ' active' : '') + '" data-idx="' + idx + '">'
+      + '<div class="popup-slide-img-wrap" ' + dataAction + ' ' + cursor + '>'
+      + '<img src="' + imgSrc + '" alt="' + (slide.titulo||'') + '" loading="lazy"/>'
+      + pdfBadge + caption
+      + '</div></div>';
+  }).join('');
+
+  // Construir dots
+  var dotsHTML = _popupSlides.map(function(_, i) {
+    return '<span class="popup-dot' + (i === 0 ? ' active' : '') + '" data-i="' + i + '"></span>';
+  }).join('');
+
+  // Crear overlay
+  var ov = document.createElement('div');
+  ov.id = 'popupCarouselOverlay';
+  ov.className = 'popup-carousel-overlay';
+  ov.innerHTML = '<div class="popup-carousel-box">'
+    + '<button class="popup-carousel-close" id="popupCarouselClose" aria-label="Cerrar">'
+    + '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>'
+    + '</button>'
+    + '<div class="popup-carousel-track-wrap">'
+    + '<div class="popup-carousel-track" id="popupCarouselTrack">' + slidesHTML + '</div>'
+    + '<button class="popup-carousel-nav prev" id="popupCarouselPrev" aria-label="Anterior">'
+    + '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg></button>'
+    + '<button class="popup-carousel-nav next" id="popupCarouselNext" aria-label="Siguiente">'
+    + '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg></button>'
+    + '</div>'
+    + '<div class="popup-carousel-bottom">'
+    + '<div class="popup-carousel-dots" id="popupCarouselDots">' + dotsHTML + '</div>'
+    + '<button class="popup-carousel-skip" id="popupCarouselSkip">✕ Cerrar</button>'
+    + '</div></div>';
+
+  document.body.appendChild(ov);
+
+  // Mostrar con animación
+  requestAnimationFrame(function() {
+    ov.classList.add('open');
+  });
+  document.body.classList.add('modal-open');
+
+  // Event listeners — todos con stopPropagation para que NADA salga del popup
+  ov.addEventListener('click', function(e) {
+    if (e.target === ov) cerrarPopupCarousel();
+  });
+  document.getElementById('popupCarouselClose').addEventListener('click', function(e) {
+    e.stopPropagation(); cerrarPopupCarousel();
+  });
+  document.getElementById('popupCarouselSkip').addEventListener('click', function(e) {
+    e.stopPropagation(); cerrarPopupCarousel();
+  });
+  document.getElementById('popupCarouselPrev').addEventListener('click', function(e) {
+    e.stopPropagation(); moverPopupCarousel(-1);
+  });
+  document.getElementById('popupCarouselNext').addEventListener('click', function(e) {
+    e.stopPropagation(); moverPopupCarousel(1);
+  });
+
+  // Dots
+  document.querySelectorAll('#popupCarouselDots .popup-dot').forEach(function(dot) {
+    dot.addEventListener('click', function(e) {
+      e.stopPropagation();
+      irAPopupSlide(parseInt(this.getAttribute('data-i')));
+    });
+  });
+
+  // Clics en imágenes — SOLO estas navegan al link
+  document.querySelectorAll('#popupCarouselTrack .popup-slide-img-wrap[data-href]').forEach(function(wrap) {
+    wrap.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var href = this.getAttribute('data-href');
+      var tipo = this.getAttribute('data-tipo');
+      if (!href) return;
+      if (tipo === 'pdf_descarga') {
+        var a = document.createElement('a');
+        a.href = href; a.download = ''; a.target = '_blank';
+        document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      } else {
+        window.open(href, '_blank');
+      }
+    });
+  });
+
+  resetPopupAutoPlay();
+}
+
+function cerrarPopupCarousel() {
+  clearInterval(_popupAutoTimer);
+  var ov = document.getElementById('popupCarouselOverlay');
+  if (!ov) return;
+  // Eliminar del DOM completamente — así no interfiere con nada
+  ov.remove();
+  document.body.classList.remove('modal-open');
+  sessionStorage.setItem('gds_popup_shown', '1');
+}
+
+/* ── Init: mostrar solo si no se ha visto en esta sesión ── */
+window.addEventListener('DOMContentLoaded', function() {
+  var shown = sessionStorage.getItem('gds_popup_shown');
+  if (shown) return;
+  // Esperar la respuesta de la API con tiempo máximo de 2 segundos
+  var timeout = setTimeout(function() {
+    // Si la API no responde a tiempo, no mostrar el popup
+    // No se usan valores por defecto ni localStorage
+  }, 2000);
+  GDS.getPopupSlides().then(function(slides) {
+    clearTimeout(timeout);
+    if (Array.isArray(slides) && slides.length > 0) {
+      // Guardar en variable global para que abrirPopupCarousel las use
+      _popupSlides = slides;
+      setTimeout(abrirPopupCarousel, 300);
+    }
+  }).catch(function() {
+    clearTimeout(timeout);
+    // Si la API falla, no mostrar el popup
+  });
+});
+
+/* ═══════════ ADMIN EDITOR POPUP CAROUSEL ═══════════ */
+function abrirEditorPopupCarousel() {
+  cerrarAdminPanel();
+  document.getElementById('editorPopupCarouselOverlay').classList.add('open');
+  renderPopupSlidesList();
+}
+
+async function renderPopupSlidesList() {
+  var list = document.getElementById('popupSlidesList');
+  if (!list) return;
+  try {
+    var slides = await GDS.getPopupSlides();
+    if (!Array.isArray(slides) || slides.length === 0) {
+      list.innerHTML = '<p style="color:var(--muted);font-size:13px;padding:10px 0">No hay slides. Agrega el primero.</p>';
+      return;
+    }
+    list.innerHTML = slides.map(function(s, i) {
+      var imgSrc = s.img || '';
+      var tipoLabel = {link:'🔗 Link', pdf_drive:'📄 Drive', pdf_descarga:'⬇️ Descarga', none:'Sin acción'}[s.tipoAccion] || s.tipoAccion;
+      return `<div class="admin-item-row" style="align-items:center">
+        <img src="${imgSrc}" style="width:56px;height:40px;object-fit:cover;border-radius:4px;background:#ddd;flex-shrink:0" onerror="this.style.display='none'"/>
+        <div class="admin-item-info" style="flex:1;min-width:0">
+          <strong style="font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block">${s.titulo||'Sin título'}</strong>
+          <span style="font-size:11px;color:var(--muted)">${tipoLabel}${s.accionUrl?' · '+s.accionUrl.substring(0,30)+'…':''}</span>
+        </div>
+        <div class="admin-item-btns" style="display:flex;gap:6px;flex-shrink:0">
+          <button class="admin-btn-del" style="background:rgba(0,144,200,.08);border-color:rgba(0,144,200,.3);color:var(--celeste)" onclick="editarPopupSlide(${i})">✏️</button>
+          <button class="admin-btn-del" onclick="eliminarPopupSlide(${i})">🗑️</button>
+        </div>
+      </div>`;
+    }).join('');
+  } catch (e) {
+    list.innerHTML = '<p style="color:var(--muted);font-size:13px;padding:10px 0">No se pudieron cargar los slides.</p>';
+  }
+}
+
+function mostrarFormPopupSlide(editData) {
+  document.getElementById('formPopupSlide').style.display = 'block';
+  document.getElementById('psImg').value = editData ? (editData.img||'') : '';
+  document.getElementById('psTitulo').value = editData ? (editData.titulo||'') : '';
+  document.getElementById('psSubtitulo').value = editData ? (editData.subtitulo||'') : '';
+  document.getElementById('psTipoAccion').value = editData ? (editData.tipoAccion||'link') : 'link';
+  document.getElementById('psAccionUrl').value = editData ? (editData.accionUrl||'') : '';
+  document.getElementById('psEditId').value = '';
+  renderPopupSlideFormAccion();
+}
+
+function renderPopupSlideFormAccion() {
+  var tipo = document.getElementById('psTipoAccion').value;
+  var field = document.getElementById('psAccionField');
+  var label = document.getElementById('psAccionLabel');
+  if (tipo === 'none') { field.style.display = 'none'; return; }
+  field.style.display = '';
+  var labels = { link:'URL del destino', pdf_drive:'URL de Google Drive (Vista previa)', pdf_descarga:'URL directa del PDF para descargar' };
+  label.textContent = labels[tipo] || 'URL';
+}
+
+async function editarPopupSlide(idx) {
+  try {
+    var slides = await GDS.getPopupSlides();
+    if (slides[idx]) {
+      mostrarFormPopupSlide(slides[idx]);
+      // Almacenar el id real del slide, no el índice
+      document.getElementById('psEditId').value = slides[idx].id || '';
+    }
+  } catch (e) {
+    gdsAlert({ icon:'⚠️', color:'red', title:'Error', message: 'No se pudieron cargar los slides: ' + (e.message || 'Error desconocido') });
+  }
+}
+
+async function eliminarPopupSlide(idx) {
+  try {
+    var slides = await GDS.getPopupSlides();
+    if (!slides || !slides[idx]) return;
+    var id = slides[idx].id;
+    await GDS.admin.eliminarSlide(id);
+    renderPopupSlidesList();
+    gdsAlert({ icon:'✅', color:'green', title:'Eliminado', message:'Slide eliminado correctamente.' });
+  } catch (e) {
+    gdsAlert({ icon:'⚠️', color:'red', title:'Error', message: 'No se pudo eliminar: ' + (e.message || 'Error desconocido') });
+  }
+}
+
+async function guardarPopupSlide() {
+  var imgUrl = document.getElementById('psImg').value.trim();
+  var titulo = document.getElementById('psTitulo').value.trim();
+  var subtitulo = document.getElementById('psSubtitulo').value.trim();
+  var tipoAccion = document.getElementById('psTipoAccion').value;
+  var accionUrl = document.getElementById('psAccionUrl').value.trim();
+  var editId = document.getElementById('psEditId').value;
+
+  if (!imgUrl) {
+    gdsAlert({ icon:'⚠️', color:'yellow', title:'Imagen requerida', message:'Ingresa una URL de imagen.' });
+    return;
+  }
+
+  // Validar imagen: solo URL o ruta img/
+  if (!/^https?:\/\//i.test(imgUrl) && !/^img\//i.test(imgUrl)) {
+    gdsAlert({ icon:'⚠️', color:'yellow', title:'Imagen inválida', message:'La imagen debe ser una URL (http/https) o una ruta img/... (ej: img/popup/slide.webp).' });
+    return;
+  }
+
+  var slide = {
+    img: imgUrl,
+    titulo: titulo,
+    subtitulo: subtitulo,
+    tipoAccion: tipoAccion,
+    accionUrl: accionUrl,
+    isPdf: tipoAccion === 'pdf_drive' || tipoAccion === 'pdf_descarga'
+  };
+
+  // Si es edición, incluir el id real almacenado en el formulario
+  if (editId) {
+    slide.id = editId;
+  }
+
+  try {
+    await GDS.admin.guardarSlide(slide);
+    document.getElementById('formPopupSlide').style.display = 'none';
+    renderPopupSlidesList();
+    gdsAlert({ icon:'✅', color:'green', title:'Guardado', message:'Slide guardado correctamente.' });
+  } catch (e) {
+    gdsAlert({ icon:'⚠️', color:'red', title:'Error', message: 'No se pudo guardar: ' + (e.message || 'Error desconocido') });
+  }
+}
+
+function limpiarPopupCarousel() {
+  gdsConfirm({ icon:'🗑️', color:'red', title:'¿Vaciar todo?', message:'Se eliminarán todos los slides del carrusel popup.', okText:'Sí, vaciar' })
+    .then(async function(ok) {
+      if (!ok) return;
+      var eliminados = 0;
+      var fallidos = [];
+      try {
+        var slides = await GDS.getPopupSlides();
+        for (var i = 0; i < slides.length; i++) {
+          try {
+            await GDS.admin.eliminarSlide(slides[i].id);
+            eliminados++;
+          } catch (e) {
+            fallidos.push(slides[i].titulo || slides[i].id);
+          }
+        }
+        await renderPopupSlidesList();
+        if (fallidos.length === 0) {
+          gdsAlert({ icon:'✅', color:'green', title:'Vacío', message: eliminados + ' slide(s) eliminado(s) correctamente.' });
+        } else {
+          gdsAlert({ icon:'⚠️', color:'yellow', title:'Parcial', message: eliminados + ' eliminado(s), ' + fallidos.length + ' fallido(s): ' + fallidos.join(', ') });
+        }
+      } catch (e) {
+        gdsAlert({ icon:'⚠️', color:'red', title:'Error', message: 'No se pudo vaciar: ' + (e.message || 'Error desconocido') });
+      }
+    });
+}
+
+function previsualizarPopupCarousel() {
+  document.getElementById('editorPopupCarouselOverlay').classList.remove('open');
+  sessionStorage.removeItem('gds_popup_shown');
+  setTimeout(abrirPopupCarousel, 300);
+}
+</script>
+
+</body>
+</html>

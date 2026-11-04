@@ -1,0 +1,27 @@
+# Sensitive configuration
+config/gds.php
+app/config/config.php
+
+# Dependencies
+vendor/
+
+# Storage
+storage/database/
+storage/logs/
+
+# Archive
+archive/
+
+# OS files
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Temp files
+*.tmp
+*.log
+*.bak
+
+# IDE
+.vscode/
+.idea/
