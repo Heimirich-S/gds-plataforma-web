@@ -164,7 +164,7 @@ function volverNotStep1() {
   _notOtp=null;_notOtpExpiry=null;
 }
 function isAdminLogged() { return sessionStorage.getItem('gds_admin') === 'true'; }
-async function adminLogoutNoticiaas() {
+async function adminLogoutNoticias() {
   try {
     await GDS.admin.logout();
     sessionStorage.removeItem('gds_admin');
@@ -186,20 +186,20 @@ if (urlParams.get('admin') === '1' && isAdminLogged()) {
   document.getElementById('adminToolbar').classList.add('visible');
   document.querySelectorAll('.admin-only-btn').forEach(b => b.style.display = 'inline-flex');
   const tab = urlParams.get('tab');
-  if (tab === 'periodicos') setTimeout(() => document.getElementById('seccPeriodicos').scrollIntoView({behavior:'smooth'}), 600);
-  if (tab === 'documentos') setTimeout(() => document.getElementById('seccDocumentos').scrollIntoView({behavior:'smooth'}), 600);
+  if (tab === 'periodicos') setTimeout(() => document.getElementById('seccPeriodicos').scrollIntoView({behavior:'smooth', block:'start'}), 600);
+  if (tab === 'documentos') setTimeout(() => document.getElementById('seccDocumentos').scrollIntoView({behavior:'smooth', block:'start'}), 600);
 }
 
 function mostrarTabAdmin(tab) {
   if (tab === 'noticias') { document.getElementById('vistaLista').classList.remove('hidden'); document.getElementById('noticiaDetalle').classList.remove('active'); window.scrollTo({top:300,behavior:'smooth'}); }
-  if (tab === 'periodicos') document.getElementById('seccPeriodicos').scrollIntoView({behavior:'smooth'});
-  if (tab === 'documentos') document.getElementById('seccDocumentos').scrollIntoView({behavior:'smooth'});
+  if (tab === 'periodicos') document.getElementById('seccPeriodicos').scrollIntoView({behavior:'smooth', block:'start'});
+  if (tab === 'documentos') document.getElementById('seccDocumentos').scrollIntoView({behavior:'smooth', block:'start'});
 }
 
 /* ── NOTICIAS DATA ── */
 const NOTICIAS_DEFAULT = [
   {
-    id:'n1', cat:'Académico', featured:true,
+    id:'n1', cat:'Academico', featured:true,
     titulo:'Calendario académico y proceso de inducción 2026',
     extracto:'El GDS informa a toda la comunidad educativa el calendario oficial de actividades para el año lectivo 2026 y el proceso de inducción para nuevos estudiantes.',
     img:'img/noticias/calendario-induccion-2026.webp',
@@ -223,7 +223,7 @@ const NOTICIAS_DEFAULT = [
     cuerpo:'<p>El Gimnasio Domingo Savio celebra los resultados de sus estudiantes en las competencias deportivas intercolegiales de Cúcuta y Norte de Santander correspondientes al primer trimestre de 2026.</p><p>El equipo de fútbol masculino sub-14 alcanzó el tercer lugar en el torneo municipal, mientras que la selección de atletismo femenino obtuvo medallas en velocidad y salto largo. El equipo de ajedrez clasificó a la fase departamental.</p><p>Felicitamos a todos los participantes y sus familias por el apoyo incondicional. ¡El deporte es parte fundamental de la formación integral dominguina!</p>'
   },
   {
-    id:'n4', cat:'Tecnología',
+    id:'n4', cat:'Tecnologia',
     titulo:'Nuevos laboratorios y equipos de vanguardia en alianza con FUCS Salud',
     extracto:'El GDS incorporó equipos de scanner digital para laboratorios de ciencias, en el marco del convenio con la Fundación Universitaria de Ciencias de la Salud.',
     img:'https://www.fucsalud.edu.co/sites/default/files/inline-images/scanner.png',
@@ -239,7 +239,7 @@ const NOTICIAS_DEFAULT = [
     cuerpo:'<p>El Gimnasio Domingo Savio vivió una jornada memorable con la realización del Festival de Talentos "Dominguinos en Escena", reuniendo a toda la comunidad educativa en una celebración de la creatividad y el arte.</p><p>Más de 150 estudiantes participaron en música, danza folclórica y moderna, teatro, artes plásticas y oratoria. El evento contó con la participación especial de padres de familia y egresados. La próxima edición está programada para agosto.</p>'
   },
   {
-    id:'n6', cat:'Institución',
+    id:'n6', cat:'Institucion',
     titulo:'GDS renueva convenio con Universidad de Santander UDES',
     extracto:'El nuevo acuerdo amplía beneficios para egresados dominguinos: descuentos en matrículas, orientación vocacional y proyectos de investigación conjunta.',
     img:'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=900&q=80',
@@ -247,7 +247,7 @@ const NOTICIAS_DEFAULT = [
     cuerpo:'<p>El Gimnasio Domingo Savio renovó y amplió el convenio de cooperación académica con la Universidad de Santander (UDES), una alianza que ha beneficiado a centenares de egresados.</p><p>El nuevo convenio incluye condiciones especiales de admisión, descuentos en matrículas de pregrado, orientación vocacional para estudiantes de 10° y 11°, y la posibilidad de proyectos de investigación conjunta.</p>'
   },
   {
-    id:'n7', cat:'Académico',
+    id:'n7', cat:'Academico',
     titulo:'Estudiantes del GDS clasifican en Olimpiadas SUMUN 2026',
     extracto:'Tres estudiantes de los grados 9° a 11° clasificaron a la fase departamental de las Olimpiadas de Matemáticas SUMUN, destacando el nivel académico dominguino.',
     img:'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=900&q=80',
@@ -255,7 +255,7 @@ const NOTICIAS_DEFAULT = [
     cuerpo:'<p>Un grupo selecto de estudiantes del GDS participó en la edición regional de las Olimpiadas de Matemáticas SUMUN, con tres estudiantes que clasificaron a la instancia departamental.</p><p>Este resultado es fruto del trabajo del área de matemáticas y del apoyo de la plataforma SUMUN. La institución celebra estos logros como muestra del esfuerzo por alcanzar la excelencia académica.</p>'
   },
   {
-    id:'n8', cat:'Institución',
+    id:'n8', cat:'Institucion',
     titulo:'Renovación de instalaciones deportivas: mejor calidad para 1.200 estudiantes',
     extracto:'El GDS completó la adecuación de su cancha multifuncional, vestidores y zona de atletismo, en el marco del plan de mejoramiento institucional 2025–2026.',
     img:'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=900&q=80',
@@ -278,15 +278,15 @@ const DOCUMENTOS_DEFAULT = [
   {id:'doc4', nombre:'TRATAMIENTO DE DATOS', desc:'Política de tratamiento de datos personales · 377 KB', tipo:'PDF', url:'https://drive.google.com/file/d/1Vv7beVDPlra7kPbM4UaLYusTdY8_svaO/view?usp=sharing', fileData: null}
 ];
 
-function getNoticiaas() { try { const d = localStorage.getItem('gds_noticias_page'); return d ? JSON.parse(d) : NOTICIAS_DEFAULT.map(n=>({...n})); } catch(e) { return NOTICIAS_DEFAULT.map(n=>({...n})); } }
+function getNoticias() { try { const d = localStorage.getItem('gds_noticias_page'); return d ? JSON.parse(d) : NOTICIAS_DEFAULT.map(n=>({...n})); } catch(e) { return NOTICIAS_DEFAULT.map(n=>({...n})); } }
 function getPeriodicos() { try { return JSON.parse(localStorage.getItem('gds_periodicos')) || PERIODICOS_DEFAULT; } catch(e) { return PERIODICOS_DEFAULT; } }
 function getDocumentos() { try { return JSON.parse(localStorage.getItem('gds_documentos')) || DOCUMENTOS_DEFAULT; } catch(e) { return DOCUMENTOS_DEFAULT; } }
 
 let filtroActual = 'all';
 
-function renderNoticiaas(cat) {
+function renderNoticias(cat) {
   const grid = document.getElementById('noticiasGrid');
-  const todas = getNoticiaas();
+  const todas = getNoticias();
   const filtradas = cat === 'all' ? todas : todas.filter(n => n.cat === cat);
   grid.innerHTML = filtradas.map((n, i) => `
     <div class="noticia-full-card ${n.featured && cat === 'all' && i === 0 ? 'nfc-featured' : ''}" onclick="verDetalle('${n.id}')">
@@ -304,15 +304,15 @@ function renderNoticiaas(cat) {
         </div>
       </div>
       ${adminMode ? `<div style="display:flex;gap:6px;padding:10px 22px 14px;border-top:1px solid var(--fondo-2)">
-        <button class="admin-btn-edit" onclick="event.stopPropagation();editarNoticiaa('${n.id}')">✏️ Editar</button>
-        <button class="admin-btn-del" onclick="event.stopPropagation();eliminarNoticiaa('${n.id}')">🗑️ Eliminar</button>
+        <button class="admin-btn-edit" onclick="event.stopPropagation();editarNoticia('${n.id}')">✏️ Editar</button>
+        <button class="admin-btn-del" onclick="event.stopPropagation();eliminarNoticia('${n.id}')">🗑️ Eliminar</button>
       </div>` : ''}
     </div>
   `).join('');
   if (adminMode) {
     const addBtn = document.createElement('div');
     addBtn.style.cssText = 'display:flex;align-items:center;justify-content:center;min-height:200px;';
-    addBtn.innerHTML = '<button class="admin-add-btn" style="max-width:200px" onclick="mostrarFormNoticiaa()">+ Nueva Noticiaa</button>';
+    addBtn.innerHTML = '<button class="admin-add-btn" style="max-width:200px" onclick="mostrarFormNoticia()">+ Nueva Noticia</button>';
     grid.appendChild(addBtn);
   }
   gdsRevealInit(grid, '.noticia-full-card', 70);
@@ -364,14 +364,14 @@ function renderDocumentos() {
   gdsRevealInit(grid, '.doc-card', 55);
 }
 
-function renderAll() { renderNoticiaas(filtroActual); renderPeriodicos(); renderDocumentos(); }
+function renderAll() { renderNoticias(filtroActual); renderPeriodicos(); renderDocumentos(); }
 
 async function verDetalle(id) {
-  let n = getNoticiaas().find(x => x.id == id);
+  let n = getNoticias().find(x => x.id == id);
   if (!n) return;
-  if (typeof GDS !== 'undefined' && typeof GDS.getNoticiaa === 'function') {
+  if (typeof GDS !== 'undefined' && typeof GDS.getNoticias === 'function') {
     try {
-      const full = await GDS.getNoticiaa(id);
+      const full = await GDS.getNoticias(id);
       if (full) n = { ...n, ...full };
     } catch (e) { console.warn('GDS: no se pudo cargar el detalle completo, se muestra el resumen', e); }
   }
@@ -402,31 +402,31 @@ document.querySelectorAll('.filtro-btn').forEach(btn => {
     document.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     filtroActual = btn.dataset.cat;
-    renderNoticiaas(filtroActual);
+    renderNoticias(filtroActual);
     document.getElementById('noticiaDetalle').classList.remove('active');
     document.getElementById('vistaLista').classList.remove('hidden');
   });
 });
 
-function mostrarFormNoticiaa(preData) {
-  document.getElementById('editorNoticiaaTitle').textContent = preData ? '✏️ Editar Noticiaa' : '📰 Nueva Noticiaa';
+function mostrarFormNoticia(preData) {
+  document.getElementById('editorNoticiaTitle').textContent = preData ? '✏️ Editar Noticia' : '📰 Nueva Noticia';
   document.getElementById('nTitulo').value = preData ? preData.titulo : '';
-  document.getElementById('nCat').value = preData ? preData.cat : 'Académico';
+  document.getElementById('nCat').value = preData ? preData.cat : 'Academico';
   document.getElementById('nExtracto').value = preData ? preData.extracto : '';
   document.getElementById('nCuerpo').value = preData ? (preData.cuerpo || '').replace(/<[^>]*>/g, '') : '';
   document.getElementById('nImg').value = preData ? preData.img : '';
   document.getElementById('nFecha').value = preData ? preData.fecha : '';
   document.getElementById('nFeatured').value = preData && preData.featured ? '1' : '';
   document.getElementById('nEditId').value = preData ? preData.id : '';
-  document.getElementById('editorNoticiaaOverlay').classList.add('open');
+  document.getElementById('editorNoticiaOverlay').classList.add('open');
 }
-function editarNoticiaa(id) { mostrarFormNoticiaa(getNoticiaas().find(n => n.id == id)); }
-function eliminarNoticiaa(id) {
+function editarNoticia(id) { mostrarFormNoticia(getNoticias().find(n => n.id == id)); }
+function eliminarNoticia(id) {
   if (!confirm('¿Eliminar esta noticia?')) return;
-  saveNoticiaas(getNoticiaas().filter(n => n.id != id));
-  renderNoticiaas(filtroActual);
+  saveNoticias(getNoticias().filter(n => n.id != id));
+  renderNoticias(filtroActual);
 }
-function guardarNoticiaa() {
+function guardarNoticia() {
   const titulo = document.getElementById('nTitulo').value.trim();
   if (!titulo) { alert('El título es obligatorio'); return; }
   const noticia = {
@@ -438,12 +438,12 @@ function guardarNoticiaa() {
     fecha: document.getElementById('nFecha').value.trim() || 'Abril 2026',
     featured: document.getElementById('nFeatured').value === '1'
   };
-  const todas = getNoticiaas();
+  const todas = getNoticias();
   const idx = todas.findIndex(n => n.id == noticia.id);
   if (idx !== -1) todas[idx] = noticia; else todas.unshift(noticia);
-  saveNoticiaas(todas);
-  document.getElementById('editorNoticiaaOverlay').classList.remove('open');
-  renderNoticiaas(filtroActual);
+  saveNoticias(todas);
+  document.getElementById('editorNoticiaOverlay').classList.remove('open');
+  renderNoticias(filtroActual);
 }
 
 function mostrarFormPeriodico(preData) {
@@ -552,33 +552,9 @@ function handlePdfUpload(input, urlFieldId, infoId) {
   reader.readAsDataURL(file);
 }
 
-function saveNoticiaas(d) {
-  try {
-    localStorage.setItem('gds_noticias_page', JSON.stringify(d));
-  } catch(e) {
-    if (e.name === 'QuotaExceededError') {
-      alert('⚠️ Almacenamiento lleno. Las imágenes grandes aumentan el tamaño. Usa URLs externas (Unsplash, Drive) en lugar de subir archivos directamente. Elimina noticias antiguas si el problema persiste.');
-    }
-  }
-}
-function savePeriodicos(d) {
-  try {
-    localStorage.setItem('gds_periodicos', JSON.stringify(d));
-  } catch(e) {
-    if (e.name === 'QuotaExceededError') {
-      alert('⚠️ Almacenamiento lleno. Usa enlaces de Google Drive para los PDFs y URLs para las portadas en vez de subir archivos directamente.');
-    }
-  }
-}
-function saveDocumentos(d) {
-  try {
-    localStorage.setItem('gds_documentos', JSON.stringify(d));
-  } catch(e) {
-    if (e.name === 'QuotaExceededError') {
-      alert('⚠️ Almacenamiento lleno. Usa enlaces de Google Drive para los documentos.');
-    }
-  }
-}
+function saveNoticias(d) { /* persistencia por API (bridge) */ }
+function savePeriodicos(d) { /* persistencia por API (bridge) */ }
+function saveDocumentos(d) { /* persistencia por API (bridge) */ }
 
 function guardarDocumento() {
   const nombre = document.getElementById('docNombre').value.trim();

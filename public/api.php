@@ -86,6 +86,40 @@ function s(string $v): string {
     return htmlspecialchars(strip_tags(trim($v)), ENT_QUOTES, 'UTF-8');
 }
 
+/* ── Audit log: registra acciones del admin en config_sistema ── */
+function gds_audit(string $action, string $details = ''): void {
+    try {
+        $db = getDB();
+        $stmt = $db->prepare("SELECT valor FROM config_sistema WHERE clave='audit_log' LIMIT 1");
+        $stmt->execute();
+        $row = $stmt->fetch();
+        $logs = [];
+        if ($row && !empty($row['valor'])) {
+            $logs = json_decode($row['valor'], true) ?: [];
+        }
+        $logs[] = [
+            'ts'      => date('Y-m-d H:i:s'),
+            'user'    => $_SESSION['gds_admin_user'] ?? 'admin',
+            'action'  => $action,
+            'details' => $details,
+            'ip'      => $_SERVER['REMOTE_ADDR'] ?? '-',
+        ];
+        // Mantener solo los últimos 200 registros
+        if (count($logs) > 200) {
+            $logs = array_slice($logs, -200);
+        }
+        $json = json_encode($logs, JSON_UNESCAPED_UNICODE);
+        $stmt2 = $db->prepare("
+            INSERT INTO config_sistema (clave, valor, descripcion, es_privado)
+            VALUES ('audit_log', ?, 'Log de auditoría de acciones administrativas', 1)
+            ON DUPLICATE KEY UPDATE valor=VALUES(valor), actualizado_en=CURRENT_TIMESTAMP
+        ");
+        $stmt2->execute([$json]);
+    } catch (Exception $e) {
+        error_log('GDS audit error: ' . $e->getMessage());
+    }
+}
+
 $method = $_SERVER['REQUEST_METHOD'];
 $action = $_GET['action'] ?? (body()['action'] ?? '');
 if (!$action) err('Accion requerida');
@@ -119,6 +153,16 @@ if ($method === 'GET') {
     case 'ping':
         ok(['status' => 'ok', 'env' => DEBUG_MODE ? 'local' : 'produccion', 'admin_habilitado' => ADMIN_ENABLED]);
 
+    case 'costos':
+        $stmt = $db->prepare("SELECT valor FROM config_sistema WHERE clave='costos_inscripcion' LIMIT 1");
+        $stmt->execute();
+        $row = $stmt->fetch();
+        $costos = [];
+        if ($row && !empty($row['valor'])) {
+            $costos = json_decode($row['valor'], true) ?: [];
+        }
+        ok($costos);
+
     case 'admin_session':
         $otpPending = !empty($_SESSION['gds_preauth']) && $_SESSION['gds_preauth'] === true;
         // Expirar pre-auth si vencio
@@ -131,7 +175,7 @@ if ($method === 'GET') {
     case 'noticias':
         $stmt = $db->prepare("
             SELECT n.id, c.nombre AS cat, n.featured, n.titulo,
-                   n.extracto, n.img, n.fecha, n.creado_en
+                   n.extracto, n.img, n.fecha, n.cuerpo, n.creado_en
             FROM noticias n
             JOIN categorias_noticia c ON c.id = n.categoria_id
             WHERE n.publicado = 1
@@ -206,7 +250,7 @@ if ($method === 'GET') {
         ok(['config'=>$config, 'celdas'=>$stmt2->fetchAll(), 'festivos'=>$stmt3->fetchAll()]);
 
     case 'servicios':
-        $stmt = $db->query("SELECT id, titulo, tag, icono, img_card, descripcion_corta, es_destacado, orden
+        $stmt = $db->query("SELECT id, titulo, tag, icono, img_card, descripcion_corta, chips, cuerpo_html, es_destacado, orden
                             FROM servicios WHERE activo=1 ORDER BY es_destacado DESC, orden");
         ok($stmt->fetchAll());
 
@@ -428,6 +472,7 @@ if ($method === 'POST') {
         if (!hash_equals(ADMIN_USER, $user) || !password_verify($pass, ADMIN_PASSWORD_HASH)) {
             err('Credenciales incorrectas', 401);
         }
+        gds_audit('admin_login_step1', 'user=' . $user);
         // Limpiar cualquier pre-auth anterior
         unset($_SESSION['gds_preauth'], $_SESSION['gds_preauth_user'], $_SESSION['gds_otp_hash'], $_SESSION['gds_otp_expiry'], $_SESSION['gds_otp_attempts'], $_SESSION['gds_otp_resends'], $_SESSION['gds_otp_last_send'], $_SESSION['gds_otp_blocked_until']);
         // NO establecer gds_admin todavía
@@ -505,6 +550,7 @@ if ($method === 'POST') {
         $_SESSION['gds_admin'] = true;
         $_SESSION['gds_admin_user'] = $_SESSION['gds_admin_user'] ?? '';
         $_SESSION['gds_last_activity'] = time();
+        gds_audit('admin_login_success', 'OTP verificado');
         ok(['authenticated' => true], 'Acceso concedido');
 
     /* ── ADMIN: Reenvío de OTP ── */
@@ -560,7 +606,47 @@ if ($method === 'POST') {
         }
         ok(['otp_required' => true], 'Codigo de verificacion reenviado');
 
+    case 'admin_audit_log':
+        requireAdmin();
+        $stmt = $db->prepare("SELECT valor FROM config_sistema WHERE clave='audit_log' LIMIT 1");
+        $stmt->execute();
+        $row = $stmt->fetch();
+        $logs = [];
+        if ($row && !empty($row['valor'])) {
+            $logs = json_decode($row['valor'], true) ?: [];
+        }
+        ok(array_reverse($logs), 'Log de auditoría');
+
+    case 'admin_upload':
+        requireAdmin();
+        requireCsrf();
+        $filename = s($d['filename'] ?? '');
+        $data = $d['data'] ?? '';
+        if ($filename === '' || $data === '') err('filename y data requeridos', 400);
+        $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+        if (!in_array($ext, PROXY_ALLOWED_EXTENSIONS)) {
+            err('Extension no permitida: ' . $ext, 400);
+        }
+        $decoded = base64_decode($data, true);
+        if ($decoded === false) err('Datos base64 invalidos', 400);
+        if (strlen($decoded) > PROXY_MAX_FILE_BYTES) {
+            err('Archivo demasiado grande (max ' . (PROXY_MAX_FILE_BYTES / 1024 / 1024) . 'MB)', 400);
+        }
+        $safeName = preg_replace('/[^a-zA-Z0-9._-]/', '_', pathinfo($filename, PATHINFO_FILENAME));
+        $uniqueName = $safeName . '_' . time() . '.' . $ext;
+        $uploadDir = dirname(__DIR__) . '/public/img/uploads/';
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0755, true);
+        }
+        $filePath = $uploadDir . $uniqueName;
+        if (file_put_contents($filePath, $decoded) === false) {
+            err('Error al guardar archivo', 500);
+        }
+        gds_audit('file_upload', 'file=' . $uniqueName . ' size=' . strlen($decoded));
+        ok(['url' => 'img/uploads/' . $uniqueName, 'filename' => $uniqueName], 'Archivo subido');
+
     case 'admin_logout':
+        gds_audit('logout', 'Cierre de sesión');
         $_SESSION = [];
         if (ini_get('session.use_cookies')) {
             $p = session_get_cookie_params();
@@ -593,6 +679,7 @@ if ($method === 'POST') {
         ");
         $stmt->execute([$id,$cat_id,(int)($d['featured']??0),$titulo,
             $d['extracto']??'',$d['img']??'',s($d['fecha']??''),$d['cuerpo']??'']);
+        gds_audit('noticia_save', 'id=' . ($d['id'] ?? 'new'));
         ok(null, 'Noticia guardada');
 
     case 'admin_noticias_delete':
@@ -600,6 +687,7 @@ if ($method === 'POST') {
         $id = s($d['id']??'');
         if (!$id) err('id requerido');
         $db->prepare("DELETE FROM noticias WHERE id=?")->execute([$id]);
+        gds_audit('noticia_delete', 'id=' . $id);
         ok(null, 'Noticia eliminada');
 
     /* ── ADMIN: Convenios ── */
@@ -615,6 +703,7 @@ if ($method === 'POST') {
               nombre=VALUES(nombre),url=VALUES(url),img=VALUES(img),orden=VALUES(orden),activo=1
         ");
         $stmt->execute([$id,$nombre,$d['url']??'',$d['img']??'',(int)($d['orden']??0)]);
+        gds_audit('convenio_save', 'id=' . ($d['id'] ?? 'new'));
         ok(null, 'Convenio guardado');
 
     case 'admin_convenios_delete':
@@ -622,6 +711,7 @@ if ($method === 'POST') {
         $id = s($d['id']??'');
         if (!$id) err('id requerido');
         $db->prepare("UPDATE convenios SET activo=0 WHERE id=?")->execute([$id]);
+        gds_audit('convenio_delete', 'id=' . $id);
         ok(null, 'Convenio eliminado');
 
     /* ── ADMIN: Organigrama ── */
@@ -642,6 +732,7 @@ if ($method === 'POST') {
         ");
         $stmt->execute([$id,$tipo,$nom,$car,s($d['rol']??''),s($d['nivel']??''),
             $d['foto']??'',(int)($d['orden']??0)]);
+        gds_audit('personal_save', 'tipo=' . ($d['tipo'] ?? '') . ' id=' . ($d['id'] ?? 'new'));
         ok(null, 'Personal guardado');
 
     case 'admin_organigrama_delete':
@@ -649,6 +740,7 @@ if ($method === 'POST') {
         $id = s($d['id']??'');
         if (!$id) err('id requerido');
         $db->prepare("UPDATE personal SET activo=0 WHERE id=?")->execute([$id]);
+        gds_audit('personal_delete', 'id=' . $id);
         ok(null, 'Personal eliminado');
 
     /* ── ADMIN: Popup ── */
@@ -665,6 +757,7 @@ if ($method === 'POST') {
         ");
         $stmt->execute([$id,$d['img']??'',s($d['titulo']??''),s($d['subtitulo']??''),
             s($d['tipoAccion']??'none'),$d['accionUrl']??'',(int)($d['isPdf']??0),(int)($d['orden']??0)]);
+        gds_audit('popup_save', 'id=' . ($d['id'] ?? 'new'));
         ok(null, 'Slide guardado');
 
     case 'admin_popup_delete':
@@ -672,6 +765,7 @@ if ($method === 'POST') {
         $id = s($d['id']??'');
         if (!$id) err('id requerido');
         $db->prepare("UPDATE popup_slides SET activo=0 WHERE id=?")->execute([$id]);
+        gds_audit('popup_delete', 'id=' . $id);
         ok(null, 'Slide eliminado');
 
     /* ── ADMIN: Horario — configurar curso ── */
@@ -694,6 +788,7 @@ if ($method === 'POST') {
         ");
         $stmt->execute([$cRow['id'],$ano,(int)($d['hora_inicio_min']??360),
             (int)($d['hora_fin_min']??795),(int)($d['granularidad_min']??60)]);
+        gds_audit('horario_save', 'curso=' . ($d['curso'] ?? ''));
         ok(null, 'Horario configurado');
 
     /* ── ADMIN: Horario — guardar celda ── */
@@ -735,6 +830,7 @@ if ($method === 'POST') {
         $suplente_id = !empty($d['docente_suplente_id']) ? s($d['docente_suplente_id']) : null;
         $stmt->execute([$hc['id'],$dia,$franja,$materia_id,$docente_id,$suplente_id,
             (int)($d['es_descanso']??0),!empty($d['nombre_descanso'])?s($d['nombre_descanso']):null]);
+        gds_audit('horario_celda', 'curso=' . ($d['curso'] ?? '') . ' dia=' . ($d['dia'] ?? ''));
         ok(null, 'Celda guardada');
 
     /* ── ADMIN: Utiles Escolares ── */
@@ -750,12 +846,11 @@ if ($method === 'POST') {
             $db->prepare("DELETE FROM utiles_escolares WHERE grado_id=? AND ano_lectivo=?")
                ->execute([$grado_id,$ano]);
             $ins = $db->prepare("
-                INSERT INTO utiles_escolares (grado_id,item,cantidad,precio,observacion,orden,ano_lectivo)
-                VALUES (?,?,?,?,?,?,?)
+                INSERT INTO utiles_escolares (grado_id,item,cantidad,observacion,orden,ano_lectivo)
+                VALUES (?,?,?,?,?,?)
             ");
             foreach ($items as $i => $item) {
-                $precio = isset($item['precio']) && $item['precio'] !== '' ? (float)$item['precio'] : null;
-                $ins->execute([$grado_id,s($item['item']??''),s($item['cantidad']??'1'),$precio,
+                $ins->execute([$grado_id,s($item['item']??''),s($item['cantidad']??'1'),
                     s($item['observacion']??''),$i,$ano]);
             }
             $db->commit();
@@ -763,6 +858,7 @@ if ($method === 'POST') {
             $db->rollBack();
             err('Error al guardar utiles: ' . ($e->getMessage()));
         }
+        gds_audit('utiles_save', 'grado_id=' . ($d['grado_id'] ?? ''));
         ok(null, 'Utiles guardados');
 
     /* ── ADMIN: Servicios ──
@@ -823,7 +919,16 @@ if ($method === 'POST') {
         $sql = "UPDATE servicios SET " . implode(',', $campos) . " WHERE id=?";
         $stmt = $db->prepare($sql);
         $stmt->execute($valores);
+        gds_audit('servicio_save', 'id=' . ($d['id'] ?? 'new'));
         ok(null, 'Servicio actualizado');
+
+    case 'admin_servicio_delete':
+        requireAdmin();
+        $id = s($d['id'] ?? '');
+        if (!$id) err('id requerido');
+        $db->prepare("UPDATE servicios SET activo=0 WHERE id=?")->execute([$id]);
+        gds_audit('servicio_delete', 'id=' . $id);
+        ok(null, 'Servicio eliminado');
 
     /* ── ADMIN: Descuentos ── */
     case 'admin_descuento_save':
@@ -833,7 +938,21 @@ if ($method === 'POST') {
         if (!$clave || !$pct) err('clave_storage y porcentaje requeridos');
         $db->prepare("UPDATE descuentos SET porcentaje=? WHERE clave_storage=?")
            ->execute([$pct,$clave]);
+        gds_audit('descuento_save', 'clave=' . ($d['clave_storage'] ?? ''));
         ok(null, 'Descuento actualizado');
+
+    case 'admin_costos_save':
+        requireAdmin();
+        $costos = $d['costos'] ?? [];
+        if (!is_array($costos)) err('costos debe ser un objeto');
+        $json = json_encode($costos, JSON_UNESCAPED_UNICODE);
+        $stmt = $db->prepare("
+            INSERT INTO config_sistema (clave, valor, descripcion, es_privado)
+            VALUES ('costos_inscripcion', ?, 'Costos de inscripcion (matricula, pension, etc.)', 1)
+            ON DUPLICATE KEY UPDATE valor=VALUES(valor), actualizado_en=CURRENT_TIMESTAMP
+        ");
+        $stmt->execute([$json]);
+        ok(null, 'Costos actualizados');
 
     /* ── ADMIN: Periodicos ── */
     case 'admin_periodico_save':
@@ -844,6 +963,7 @@ if ($method === 'POST') {
             ON DUPLICATE KEY UPDATE
               nombre=VALUES(nombre),anio=VALUES(anio),img=VALUES(img),url=VALUES(url),activo=1
         ")->execute([$id,s($d['nombre']??''),(int)($d['anio']??date('Y')),$d['img']??'',$d['url']??'#']);
+        gds_audit('periodico_save', 'id=' . ($d['id'] ?? 'new'));
         ok(null, 'Periodico guardado');
 
     case 'admin_periodico_delete':
@@ -851,6 +971,7 @@ if ($method === 'POST') {
         $id = s($d['id']??'');
         if (!$id) err('id requerido');
         $db->prepare("UPDATE periodicos SET activo=0 WHERE id=?")->execute([$id]);
+        gds_audit('periodico_delete', 'id=' . $id);
         ok(null, 'Periodico eliminado');
 
     /* ── ADMIN: Documentos ── */
@@ -865,6 +986,7 @@ if ($method === 'POST') {
               url=VALUES(url),tamano_kb=VALUES(tamano_kb),publicado=1
         ")->execute([$id,s($d['nombre']??''),s($d['descripcion']??''),
             s($d['tipo']??'PDF'),$d['url']??'',(int)($d['tamano_kb']??0)?:(null)]);
+        gds_audit('documento_save', 'id=' . ($d['id'] ?? 'new'));
         ok(null, 'Documento guardado');
 
     case 'admin_documento_delete':
@@ -872,6 +994,7 @@ if ($method === 'POST') {
         $id = s($d['id']??'');
         if (!$id) err('id requerido');
         $db->prepare("UPDATE documentos SET publicado=0 WHERE id=?")->execute([$id]);
+        gds_audit('documento_delete', 'id=' . $id);
         ok(null, 'Documento eliminado');
 
     /* ── ADMIN: Promociones Grado 11 ── */
@@ -884,6 +1007,7 @@ if ($method === 'POST') {
             ON DUPLICATE KEY UPDATE
               anio=VALUES(anio),nombre_grupo=VALUES(nombre_grupo),foto=VALUES(foto)
         ")->execute([$id,(int)($d['anio']??date('Y')),s($d['nombreGrupo']??''),$d['foto']??'']);
+        gds_audit('promocion_save', 'id=' . ($d['id'] ?? 'new'));
         ok(null, 'Promocion guardada');
 
     case 'admin_promocion_delete':
@@ -891,6 +1015,7 @@ if ($method === 'POST') {
         $id = s($d['id']??'');
         if (!$id) err('id requerido');
         $db->prepare("DELETE FROM promociones_grado11 WHERE id=?")->execute([$id]);
+        gds_audit('promocion_delete', 'id=' . $id);
         ok(null, 'Promocion eliminada');
 
     /* ── ADMIN: Estados ── */

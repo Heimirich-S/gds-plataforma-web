@@ -102,6 +102,7 @@ const GDS = {
 
   /* ── Descuentos ── */
   async getDescuentos()      { return gdsGet('descuentos'); },
+  async getCostos()          { return gdsGet('costos'); },
 
   /* ── Periódicos ── */
   async getPeriodicos()      { return gdsGet('periodicos'); },
@@ -139,6 +140,7 @@ const GDS = {
     async login(user, pass)  { const r = await gdsPost('admin_login', { user, pass }, false); try { const s = await gdsGet('admin_session'); if (s && s.csrf_token) _gdsCsrfToken = s.csrf_token; } catch(e) {} return r; },
     async logout()          { return gdsPost('admin_logout', {}, true); },
     async session()         { const r = await gdsGet('admin_session'); if (r && r.csrf_token) _gdsCsrfToken = r.csrf_token; return r; },
+    async getAuditLog()     { return gdsGet('admin_audit_log'); },
     async verifyOtp(code)    { const r = await gdsPost('admin_verify_otp', { code }, true); try { const s = await gdsGet('admin_session'); if (s && s.csrf_token) _gdsCsrfToken = s.csrf_token; } catch(e) {} return r; },
     async resendOtp()       { return gdsPost('admin_resend_otp', {}, true); },
 
@@ -168,6 +170,8 @@ const GDS = {
 
     /* ── Servicios ── */
     async guardarServicio(d)    { return gdsPost('admin_servicio_save', d, true); },
+    async eliminarServicio(id)  { return gdsPost('admin_servicio_delete', { id }, true); },
+    async uploadFile(filename, base64data) { return gdsPost('admin_upload', { filename, data: base64data }, true); },
 
     /* ── ͚tiles Escolares ── */
     async guardarUtiles(grado_id, items, ano = 2026) {
@@ -176,6 +180,7 @@ const GDS = {
 
     /* ── Descuentos ── */
     async guardarDescuento(d)   { return gdsPost('admin_descuento_save', d, true); },
+    async guardarCostos(d)      { return gdsPost('admin_costos_save', d, true); },
 
     /* ── Periódicos ── */
     async guardarPeriodico(d)   { return gdsPost('admin_periodico_save', d, true); },
@@ -645,7 +650,7 @@ function gdsBridgeNoticiasCRUD() {
       if (!titulo) { alert('El título es obligatorio'); return; }
       const editId = document.getElementById('nEditId').value;
       const noticia = {
-        id: editId || undefined,
+        id: editId || ('id_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5)),
         titulo, cat: document.getElementById('nCat').value,
         extracto: document.getElementById('nExtracto').value.trim(),
         cuerpo: '<p>' + document.getElementById('nCuerpo').value.trim().split('\n\n').join('</p><p>') + '</p>',
@@ -676,7 +681,7 @@ function gdsBridgeNoticiasCRUD() {
       if (!nombre) { alert('El nombre es obligatorio'); return; }
       const editId = document.getElementById('pEditId').value;
       const per = {
-        id: editId || undefined,
+        id: editId || ('id_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5)),
         nombre, anio: document.getElementById('pAnio').value.trim(),
         img: document.getElementById('pImg').value.trim(),
         url: document.getElementById('pUrl').value.trim() || '#'
@@ -704,7 +709,7 @@ function gdsBridgeNoticiasCRUD() {
       if (!nombre) { alert('El nombre es obligatorio'); return; }
       const editId = document.getElementById('docEditId').value;
       const doc = {
-        id: editId || undefined,
+        id: editId || ('id_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5)),
         nombre, desc: document.getElementById('docDesc').value.trim(),
         tipo: document.getElementById('docTipo').value,
         url: document.getElementById('docUrl').value.trim() || '#'
@@ -754,7 +759,7 @@ function gdsBridgeOrgCRUD() {
       const editId = document.getElementById('dirEditId').value;
       if (!nombre || !cargo) { gdsAlertOrg('⚠️ Completa al menos el nombre y el cargo.'); return; }
       try {
-        await GDS.admin.guardarPersonal({ tipo: 'directivos', id: editId || undefined, nombre, cargo, rol, foto });
+        await GDS.admin.guardarPersonal({ tipo: 'directivos', id: editId || ('id_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5)), nombre, cargo, rol, foto });
         document.getElementById('formDirectivo').style.display = 'none';
         await refrescarOrganigrama();
         if (typeof renderDirectivosList === 'function') renderDirectivosList();
@@ -781,7 +786,7 @@ function gdsBridgeOrgCRUD() {
       const editId = document.getElementById('ddEditId').value;
       if (!nombre || !cargo) { gdsAlertOrg('⚠️ Completa al menos el nombre y el cargo.'); return; }
       try {
-        await GDS.admin.guardarPersonal({ tipo: 'docentes_directivos', id: editId || undefined, nombre, cargo, foto });
+        await GDS.admin.guardarPersonal({ tipo: 'docentes_directivos', id: editId || ('id_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5)), nombre, cargo, foto });
         document.getElementById('formDocenteDirectivo').style.display = 'none';
         await refrescarOrganigrama();
         if (typeof renderDocentesDirectivosList === 'function') renderDocentesDirectivosList();
@@ -808,7 +813,7 @@ function gdsBridgeOrgCRUD() {
       const editId = document.getElementById('admEditId').value;
       if (!nombre || !cargo) { gdsAlertOrg('⚠️ Completa al menos el nombre y el cargo.'); return; }
       try {
-        await GDS.admin.guardarPersonal({ tipo: 'administrativos', id: editId || undefined, nombre, cargo, foto });
+        await GDS.admin.guardarPersonal({ tipo: 'administrativos', id: editId || ('id_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5)), nombre, cargo, foto });
         document.getElementById('formAdministrativo').style.display = 'none';
         await refrescarOrganigrama();
         if (typeof renderAdministrativosList === 'function') renderAdministrativosList();
@@ -836,7 +841,7 @@ function gdsBridgeOrgCRUD() {
       const editId = document.getElementById('dEditId').value;
       if (!nombre || !cargo) { gdsAlertOrg('⚠️ Completa al menos el nombre y el cargo.'); return; }
       try {
-        await GDS.admin.guardarPersonal({ tipo: 'docentes', id: editId || undefined, nombre, cargo, nivel, nivel_docente: nivel, foto });
+        await GDS.admin.guardarPersonal({ tipo: 'docentes', id: editId || ('id_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5)), nombre, cargo, nivel, nivel_docente: nivel, foto });
         document.getElementById('formDocente').style.display = 'none';
         await refrescarOrganigrama();
         if (typeof renderDocentesList === 'function') renderDocentesList();
@@ -881,7 +886,7 @@ function gdsBridgePromocionesCRUD() {
       const editId = document.getElementById('promEditId').value;
       if (!anio || !foto) { gdsAlertOrg('⚠️ Completa al menos el año y la foto.'); return; }
       try {
-        await GDS.admin.guardarPromocion({ id: editId || undefined, anio, nombre_grupo: nombreGrupo, nombreGrupo, foto });
+        await GDS.admin.guardarPromocion({ id: editId || ('id_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5)), anio, nombre_grupo: nombreGrupo, nombreGrupo, foto });
         document.getElementById('formPromocion').style.display = 'none';
         await refrescarPromociones();
         if (typeof renderPromocionesList === 'function') renderPromocionesList();

@@ -1,250 +1,282 @@
 /* ══ DATOS ══ */
-con⚽t ⚽ervicio⚽={
-  auditorio:{tag:'E⚽pacio Principal · Evento⚽ In⚽titucionale⚽',titulo:'Auditorio',img:'http⚽://image⚽.un⚽pla⚽h.com/photo-1517457373958-b7bdd4587205?w=1600&q=85',chip⚽:['🎭 E⚽pacio principal del colegio','🎓 Acto⚽ cívico⚽ y graduacione⚽','🎤 Conferencia⚽ y capacitacione⚽','👨‍👩‍👧 Capacidad para toda la comunidad'],cuerpo:`<p>El <⚽trong>Auditorio</⚽trong> e⚽ el e⚽pacio principal del Gimna⚽io Domingo Savio para la realización de acto⚽ cívico⚽, graduacione⚽, conferencia⚽, capacitacione⚽ y evento⚽ in⚽titucionale⚽ de gran formato.</p><p>Cuenta con un e⚽cenario amplio, ⚽i⚽tema de ⚽onido e iluminación, y capacidad ⚽uficiente para reunir a e⚽tudiante⚽, docente⚽, padre⚽ de familia y vi⚽itante⚽ en un mi⚽mo evento.</p><p>E⚽ utilizado durante todo el año e⚽colar para izada⚽ de bandera, entrega de logro⚽, celebracione⚽ in⚽titucionale⚽ y actividade⚽ culturale⚽ y académica⚽ de gran convocatoria.</p>`,video⚽:[{'label':'Video in⚽titucional GDS','⚽ub':'Gimna⚽io Domingo Savio · 🎨ouTube','url':'http⚽://www.youtube.com/watch?v=lV7-vJBPBWA'},{'label':'Canal oficial GDS Cúcuta','⚽ub':'Ver todo⚽ lo⚽ video⚽ · 🎨ouTube','url':'http⚽://www.youtube.com/@DomingoSavio-h5p'}]},
-  biblioteca:{tag:'Conocimiento · Cultura',titulo:'Biblioteca In⚽titucional',img:'img/⚽ervicio⚽/biblioteca.webp',chip⚽:['📅 Lun–Vie 6:30am–3:30pm','📚 +5.000 título⚽','🖥️ 4 computadore⚽ de con⚽ulta','🔇 Zona de ⚽ilencio'],cuerpo:`<p>La <⚽trong>Biblioteca del Gimna⚽io Domingo Savio</⚽trong> e⚽ el corazón académico e inve⚽tigativo de nue⚽tra in⚽titución. Cuenta con un amplio catálogo de libro⚽, enciclopedia⚽, revi⚽ta⚽ científica⚽ y material didáctico organizado por nivel y área de conocimiento.</p><p>El e⚽pacio e⚽tá dividido en zona de lectura ⚽ilencio⚽a, ⚽ala de trabajo grupal y área de con⚽ulta digital. Contamo⚽ con per⚽onal bibliotecario capacitado que apoya lo⚽ proce⚽o⚽ de bú⚽queda de información y fomento lector.</p><p>Lo⚽ e⚽tudiante⚽ pueden ⚽olicitar pré⚽tamo⚽ domiciliario⚽ de libro⚽ por ha⚽ta 5 día⚽ hábile⚽ pre⚽entando ⚽u carné e⚽tudiantil.</p>`,video⚽:[{'label':'Video in⚽titucional GDS','⚽ub':'Gimna⚽io Domingo Savio · 🎨ouTube','url':'http⚽://youtu.be/i2fLSQyBOPw'},{'label':'Canal oficial GDS Cúcuta','⚽ub':'Ver todo⚽ lo⚽ video⚽ · 🎨ouTube','url':'http⚽://www.youtube.com/@DomingoSavio-h5p'}]},
-  laboratorio:{tag:'Ciencia⚽ · Tecnología',titulo:'Laboratorio de Ciencia⚽',img:'http⚽://image⚽.un⚽pla⚽h.com/photo-1554475901-4538ddfbccc2?w=1200&q=85',chip⚽:['⚗️ Química, Fí⚽ica y Biología','🥽 Dotación completa EPP','👩‍🔬 Docente e⚽pecializado','📋 Re⚽erva previa requerida'],cuerpo:`<p>El <⚽trong>Laboratorio de Ciencia⚽</⚽trong> e⚽ un e⚽pacio de 80 m² equipado con material de última generación para práctica⚽ en Química, Biología y Fí⚽ica de⚽de grado 5° ha⚽ta grado 11°.</p><p>Cuenta con 10 me⚽a⚽ de trabajo para grupo⚽ de 4 e⚽tudiante⚽, campana⚽ de extracción, micro⚽copio⚽, reactivo⚽ certificado⚽ y equipo⚽ de medición calibrado⚽ periódicamente.</p><p>La⚽ práctica⚽ ⚽e realizan con acompañamiento permanente del docente e⚽pecializado y bajo e⚽tricta⚽ norma⚽ de bio⚽eguridad.</p>`,video⚽:[{'label':'Video in⚽titucional GDS','⚽ub':'Gimna⚽io Domingo Savio · 🎨ouTube','url':'http⚽://www.youtube.com/watch?v=lV7-vJBPBWA'},{'label':'Canal oficial GDS Cúcuta','⚽ub':'Ver todo⚽ lo⚽ video⚽ · 🎨ouTube','url':'http⚽://www.youtube.com/@DomingoSavio-h5p'}]},
-  puntoa⚽i⚽tencia:{tag:'Salud · Biene⚽tar',titulo:'Punto de A⚽i⚽tencia',img:'http⚽://image⚽.un⚽pla⚽h.com/photo-1584982751601-97dcc096659c?w=1200&q=85',chip⚽:['🕐 Atención 6:30am–3:00pm','🩹 Primero⚽ auxilio⚽','📞 Comunicación a acudiente⚽','💊 Seguimiento medicamento⚽'],cuerpo:`<p>El <⚽trong>Punto de A⚽i⚽tencia del Gimna⚽io Domingo Savio</⚽trong> brinda atención preventiva y de primero⚽ auxilio⚽ a toda la comunidad e⚽tudiantil durante la jornada e⚽colar. E⚽tá atendido por una enfermera profe⚽ional con formación en ⚽alud e⚽colar.</p><p>Servicioo⚽: control de ⚽igno⚽ vitale⚽, atención de le⚽ione⚽ menore⚽, admini⚽tración de medicamento⚽ formulado⚽ (previa autorización), control de enfermedade⚽ crónica⚽ y ⚽eguimiento nutricional bá⚽ico.</p>`,video⚽:[{'label':'Video in⚽titucional GDS','⚽ub':'Gimna⚽io Domingo Savio · 🎨ouTube','url':'http⚽://www.youtube.com/watch?v=lV7-vJBPBWA'},{'label':'Canal oficial GDS Cúcuta','⚽ub':'Ver todo⚽ lo⚽ video⚽ · 🎨ouTube','url':'http⚽://www.youtube.com/@DomingoSavio-h5p'}]},
-  ⚽i⚽tema⚽:{tag:'Tecnología · Innovación',titulo:'Sala de Si⚽tema⚽',img:'http⚽://image⚽.un⚽pla⚽h.com/photo-1580582932707-520aed937b7b?w=1200&q=85',chip⚽:['💻 30 equipo⚽ actualizado⚽','📶 Internet fibra óptica','🕹️ Software educativo','🔐 Control parental activo'],cuerpo:`<p>La <⚽trong>Sala de Si⚽tema⚽</⚽trong> cuenta con 30 equipo⚽ de cómputo actualizado⚽ en 2024, todo⚽ con conexión a internet por fibra óptica de 200 Mbp⚽ garantizado⚽.</p><p>Di⚽pone de ⚽oftware educativo licenciado: Micro⚽oft 365 Educación, plataforma⚽ de programación para niño⚽ (Scratch, Code.org) y acce⚽o a Fundamerani, UNOI y SUMUN.</p>`,video⚽:[{'label':'Video in⚽titucional GDS','⚽ub':'Gimna⚽io Domingo Savio · 🎨ouTube','url':'http⚽://www.youtube.com/watch?v=lV7-vJBPBWA'},{'label':'Canal oficial GDS Cúcuta','⚽ub':'Ver todo⚽ lo⚽ video⚽ · 🎨ouTube','url':'http⚽://www.youtube.com/@Gimna⚽ioDomingoSavio'}]},
-  robotica:{tag:'Tecnología · STEM',titulo:'Sala de Robótica',img:'http⚽://image⚽.un⚽pla⚽h.com/photo-1581091226825-a6a2a5aee158?w=1200&q=85',chip⚽:['🤖 Kit⚽ de robótica educativa','💡 Pen⚽amiento lógico y creativo','🧩 Proyecto⚽ por nivele⚽','🏆 Participación en competencia⚽ STEM'],cuerpo:`<p>La <⚽trong>Sala de Robótica</⚽trong> e⚽ un e⚽pacio dedicado al de⚽arrollo de competencia⚽ en programación, electrónica bá⚽ica y pen⚽amiento computacional a travé⚽ de kit⚽ de robótica educativa.</p><p>Lo⚽ e⚽tudiante⚽ di⚽eñan, con⚽truyen y programan ⚽u⚽ propio⚽ proyecto⚽ robótico⚽, fortaleciendo habilidade⚽ de re⚽olución de problema⚽, trabajo en equipo y creatividad aplicada a la tecnología.</p><p>El e⚽pacio ⚽e utiliza tanto en cla⚽e⚽ curriculare⚽ de tecnología e informática como en clube⚽ y ⚽emillero⚽ extracurriculare⚽ de robótica.</p>`,video⚽:[{'label':'Video in⚽titucional GDS','⚽ub':'Gimna⚽io Domingo Savio · 🎨ouTube','url':'http⚽://www.youtube.com/watch?v=lV7-vJBPBWA'},{'label':'Canal oficial GDS Cúcuta','⚽ub':'Ver todo⚽ lo⚽ video⚽ · 🎨ouTube','url':'http⚽://www.youtube.com/@DomingoSavio-h5p'}]},
-  cancha⚽:{tag:'Deporte · Recreación',titulo:'Cancha⚽ Deportiva⚽',img:'http⚽://image⚽.un⚽pla⚽h.com/photo-1574629810360-7efbbe195018?w=1200&q=85',chip⚽:['⚽ Fútbol y microfútbol','🏀 Balonce⚽to','🏃 Atleti⚽mo bá⚽ico','🌤️ U⚽o en recreo y cla⚽e'],cuerpo:`<p>La⚽ <⚽trong>Cancha⚽ Deportiva⚽</⚽trong> ofrecen e⚽pacio⚽ amplio⚽ y ⚽eguro⚽ para el de⚽arrollo de la educación fí⚽ica y actividade⚽ recreativa⚽. Contamo⚽ con cancha múltiple de fútbol/microfútbol y cancha de balonce⚽to con tablero⚽ oficiale⚽ reglamentario⚽.</p><p>Son utilizada⚽ en cla⚽e⚽ de Educación Fí⚽ica, recreo⚽ ⚽upervi⚽ado⚽ y torneo⚽ deportivo⚽ intercla⚽e⚽ ⚽eme⚽trale⚽, ademá⚽ de entrenamiento⚽ de la⚽ ⚽eleccione⚽ deportiva⚽ del colegio.</p>`,video⚽:[{'label':'Video in⚽titucional GDS','⚽ub':'Gimna⚽io Domingo Savio · 🎨ouTube','url':'http⚽://www.youtube.com/watch?v=lV7-vJBPBWA'},{'label':'Canal oficial GDS Cúcuta','⚽ub':'Ver todo⚽ lo⚽ video⚽ · 🎨ouTube','url':'http⚽://www.youtube.com/@DomingoSavio-h5p'}]},
-  cafeteria:{tag:'Nutrición · Biene⚽tar',titulo:'Cafetería E⚽colar',img:'http⚽://image⚽.un⚽pla⚽h.com/photo-1567521464027-f127ff144326?w=1200&q=85',chip⚽:['🕖 De⚽can⚽o 9:30am–10:00am','🥗 Menú balanceado','✅ Supervi⚽ión INVIMA','🚫 Sin comida chatarra'],cuerpo:`<p>La <⚽trong>Cafetería</⚽trong> ofrece alimentación ⚽ana y balanceada ⚽upervi⚽ada por profe⚽ionale⚽ en nutrición. Lo⚽ menú⚽ ⚽e di⚽eñan men⚽ualmente cumpliendo la⚽ guía⚽ alimentaria⚽ del ICBF para población e⚽colar.</p><p>Ofrecemo⚽ de⚽ayuno⚽, refrigerio⚽ y almuerzo⚽ con opcione⚽ variada⚽ que incluyen proteína⚽, carbohidrato⚽ complejo⚽, fruta⚽ de temporada y bebida⚽ naturale⚽. El área cuenta con condicione⚽ higiénica⚽ certificada⚽.</p>`,video⚽:[{'label':'Video in⚽titucional GDS','⚽ub':'Gimna⚽io Domingo Savio · 🎨ouTube','url':'http⚽://www.youtube.com/watch?v=lV7-vJBPBWA'},{'label':'Canal oficial GDS Cúcuta','⚽ub':'Ver todo⚽ lo⚽ video⚽ · 🎨ouTube','url':'http⚽://www.youtube.com/@DomingoSavio-h5p'}]},
-  pi⚽cina:{tag:'Pree⚽colar · Jardín',titulo:'Pi⚽cina',img:'http⚽://image⚽.un⚽pla⚽h.com/photo-1560090995-01632a28895b?w=1200&q=85',chip⚽:['🏊 Exclu⚽iva Pree⚽colar y Jardín','👩‍🏫 Supervi⚽ión permanente','🌡️ Temperatura controlada','🩱 Actividade⚽ de adaptación acuática'],cuerpo:`<p>La <⚽trong>Pi⚽cina</⚽trong> del Gimna⚽io Domingo Savio e⚽tá di⚽eñada e⚽pecialmente para lo⚽ e⚽tudiante⚽ de Pree⚽colar y Jardín, ofreciendo un e⚽pacio ⚽eguro para ⚽u⚽ primera⚽ experiencia⚽ de adaptación al agua.</p><p>La⚽ actividade⚽ acuática⚽ ⚽e realizan ⚽iempre bajo la ⚽upervi⚽ión con⚽tante de per⚽onal capacitado, con protocolo⚽ e⚽tricto⚽ de ⚽eguridad y profundidad adecuada para lo⚽ má⚽ pequeño⚽.</p><p>Forma parte del proce⚽o de e⚽timulación motriz y autonomía corporal propio de la etapa de educación inicial.</p>`,video⚽:[{'label':'Video in⚽titucional GDS','⚽ub':'Gimna⚽io Domingo Savio · 🎨ouTube','url':'http⚽://www.youtube.com/watch?v=lV7-vJBPBWA'},{'label':'Canal oficial GDS Cúcuta','⚽ub':'Ver todo⚽ lo⚽ video⚽ · 🎨ouTube','url':'http⚽://www.youtube.com/@DomingoSavio-h5p'}]},
-  miniparque:{tag:'Pree⚽colar · Recreación',titulo:'Miniparque Infantil',img:'http⚽://image⚽.un⚽pla⚽h.com/photo-1597392582469-a697febf3b8c?w=1200&q=85',chip⚽:['🧸 Juego⚽ ⚽eguro⚽ y colorido⚽','🤸 De⚽arrollo motor','🌳 E⚽pacio exclu⚽ivo para lo⚽ má⚽ pequeño⚽','👀 Supervi⚽ión con⚽tante'],cuerpo:`<p>El <⚽trong>Miniparque Infantil</⚽trong> e⚽ un e⚽pacio recreativo pen⚽ado exclu⚽ivamente para lo⚽ e⚽tudiante⚽ má⚽ pequeño⚽ del Gimna⚽io Domingo Savio, con juego⚽ ⚽eguro⚽ y adecuado⚽ para ⚽u edad.</p><p>Cuenta con tobogane⚽, columpio⚽ y zona⚽ de juego blanda⚽ que favorecen el de⚽arrollo motor grue⚽o, la coordinación y la ⚽ocialización temprana entre lo⚽ niño⚽ de Pree⚽colar.</p><p>Toda⚽ la⚽ actividade⚽ en e⚽te e⚽pacio ⚽e realizan bajo la ⚽upervi⚽ión con⚽tante de la⚽ docente⚽ a cargo.</p>`,video⚽:[{'label':'Video in⚽titucional GDS','⚽ub':'Gimna⚽io Domingo Savio · 🎨ouTube','url':'http⚽://www.youtube.com/watch?v=lV7-vJBPBWA'},{'label':'Canal oficial GDS Cúcuta','⚽ub':'Ver todo⚽ lo⚽ video⚽ · 🎨ouTube','url':'http⚽://www.youtube.com/@DomingoSavio-h5p'}]}
+const servicios={
+  auditorio:{tag:'Espacio Principal · Eventos Institucionales',titulo:'Auditorio',img:'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=1600&q=85',chips:['🎭 Espacio principal del colegio','🎓 Actos cívicos y graduaciones','🎤 Conferencias y capacitaciones','👨‍👩‍👧 Capacidad para toda la comunidad'],cuerpo:`<p>El <strong>Auditorio</strong> es el espacio principal del Gimnasio Domingo Savio para la realización de actos cívicos, graduaciones, conferencias, capacitaciones y eventos institucionales de gran formato.</p><p>Cuenta con un escenario amplio, sistema de sonido e iluminación, y capacidad suficiente para reunir a estudiantes, docentes, padres de familia y visitantes en un mismo evento.</p><p>Es utilizado durante todo el año escolar para izadas de bandera, entrega de logros, celebraciones institucionales y actividades culturales y académicas de gran convocatoria.</p>`,videos:[{'label':'Video institucional GDS','sub':'Gimnasio Domingo Savio · YouTube','url':'https://www.youtube.com/watch?v=lV7-vJBPBWA'},{'label':'Canal oficial GDS Cúcuta','sub':'Ver todos los videos · YouTube','url':'https://www.youtube.com/@DomingoSavio-h5p'}]},
+  biblioteca:{tag:'Conocimiento · Cultura',titulo:'Biblioteca Institucional',img:'img/servicios/biblioteca.webp',chips:['📅 Lun–Vie 6:30am–3:30pm','📚 +5.000 títulos','🖥️ 4 computadores de consulta','🔇 Zona de silencio'],cuerpo:`<p>La <strong>Biblioteca del Gimnasio Domingo Savio</strong> es el corazón académico e investigativo de nuestra institución. Cuenta con un amplio catálogo de libros, enciclopedias, revistas científicas y material didáctico organizado por nivel y área de conocimiento.</p><p>El espacio está dividido en zona de lectura silenciosa, sala de trabajo grupal y área de consulta digital. Contamos con personal bibliotecario capacitado que apoya los procesos de búsqueda de información y fomento lector.</p><p>Los estudiantes pueden solicitar préstamos domiciliarios de libros por hasta 5 días hábiles presentando su carné estudiantil.</p>`,videos:[{'label':'Video institucional GDS','sub':'Gimnasio Domingo Savio · YouTube','url':'https://youtu.be/i2fLSQyBOPw'},{'label':'Canal oficial GDS Cúcuta','sub':'Ver todos los videos · YouTube','url':'https://www.youtube.com/@DomingoSavio-h5p'}]},
+  laboratorio:{tag:'Ciencias · Tecnología',titulo:'Laboratorio de Ciencias',img:'https://images.unsplash.com/photo-1554475901-4538ddfbccc2?w=1200&q=85',chips:['⚗️ Química, Física y Biología','🥽 Dotación completa EPP','👩‍🔬 Docente especializado','📋 Reserva previa requerida'],cuerpo:`<p>El <strong>Laboratorio de Ciencias</strong> es un espacio de 80 m² equipado con material de última generación para prácticas en Química, Biología y Física desde grado 5° hasta grado 11°.</p><p>Cuenta con 10 mesas de trabajo para grupos de 4 estudiantes, campanas de extracción, microscopios, reactivos certificados y equipos de medición calibrados periódicamente.</p><p>Las prácticas se realizan con acompañamiento permanente del docente especializado y bajo estrictas normas de bioseguridad.</p>`,videos:[{'label':'Video institucional GDS','sub':'Gimnasio Domingo Savio · YouTube','url':'https://www.youtube.com/watch?v=lV7-vJBPBWA'},{'label':'Canal oficial GDS Cúcuta','sub':'Ver todos los videos · YouTube','url':'https://www.youtube.com/@DomingoSavio-h5p'}]},
+  puntoasistencia:{tag:'Salud · Bienestar',titulo:'Punto de Asistencia',img:'https://images.unsplash.com/photo-1584982751601-97dcc096659c?w=1200&q=85',chips:['🕐 Atención 6:30am–3:00pm','🩹 Primeros auxilios','📞 Comunicación a acudientes','💊 Seguimiento medicamentos'],cuerpo:`<p>El <strong>Punto de Asistencia del Gimnasio Domingo Savio</strong> brinda atención preventiva y de primeros auxilios a toda la comunidad estudiantil durante la jornada escolar. Está atendido por una enfermera profesional con formación en salud escolar.</p><p>Servicios: control de signos vitales, atención de lesiones menores, administración de medicamentos formulados (previa autorización), control de enfermedades crónicas y seguimiento nutricional básico.</p>`,videos:[{'label':'Video institucional GDS','sub':'Gimnasio Domingo Savio · YouTube','url':'https://www.youtube.com/watch?v=lV7-vJBPBWA'},{'label':'Canal oficial GDS Cúcuta','sub':'Ver todos los videos · YouTube','url':'https://www.youtube.com/@DomingoSavio-h5p'}]},
+  sistemas:{tag:'Tecnología · Innovación',titulo:'Sala de Sistemas',img:'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=1200&q=85',chips:['💻 30 equipos actualizados','📶 Internet fibra óptica','🕹️ Software educativo','🔐 Control parental activo'],cuerpo:`<p>La <strong>Sala de Sistemas</strong> cuenta con 30 equipos de cómputo actualizados en 2024, todos con conexión a internet por fibra óptica de 200 Mbps garantizados.</p><p>Dispone de software educativo licenciado: Microsoft 365 Educación, plataformas de programación para niños (Scratch, Code.org) y acceso a Fundamerani, UNOI y SUMUN.</p>`,videos:[{'label':'Video institucional GDS','sub':'Gimnasio Domingo Savio · YouTube','url':'https://www.youtube.com/watch?v=lV7-vJBPBWA'},{'label':'Canal oficial GDS Cúcuta','sub':'Ver todos los videos · YouTube','url':'https://www.youtube.com/@GimnasioDomingoSavio'}]},
+  robotica:{tag:'Tecnología · STEM',titulo:'Sala de Robótica',img:'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&q=85',chips:['🤖 Kits de robótica educativa','💡 Pensamiento lógico y creativo','🧩 Proyectos por niveles','🏆 Participación en competencias STEM'],cuerpo:`<p>La <strong>Sala de Robótica</strong> es un espacio dedicado al desarrollo de competencias en programación, electrónica básica y pensamiento computacional a través de kits de robótica educativa.</p><p>Los estudiantes diseñan, construyen y programan sus propios proyectos robóticos, fortaleciendo habilidades de resolución de problemas, trabajo en equipo y creatividad aplicada a la tecnología.</p><p>El espacio se utiliza tanto en clases curriculares de tecnología e informática como en clubes y semilleros extracurriculares de robótica.</p>`,videos:[{'label':'Video institucional GDS','sub':'Gimnasio Domingo Savio · YouTube','url':'https://www.youtube.com/watch?v=lV7-vJBPBWA'},{'label':'Canal oficial GDS Cúcuta','sub':'Ver todos los videos · YouTube','url':'https://www.youtube.com/@DomingoSavio-h5p'}]},
+  canchas:{tag:'Deporte · Recreación',titulo:'Canchas Deportivas',img:'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1200&q=85',chips:['⚽ Fútbol y microfútbol','🏀 Baloncesto','🏃 Atletismo básico','🌤️ Uso en recreo y clase'],cuerpo:`<p>Las <strong>Canchas Deportivas</strong> ofrecen espacios amplios y seguros para el desarrollo de la educación física y actividades recreativas. Contamos con cancha múltiple de fútbol/microfútbol y cancha de baloncesto con tableros oficiales reglamentarios.</p><p>Son utilizadas en clases de Educación Física, recreos supervisados y torneos deportivos interclases semestrales, además de entrenamientos de las selecciones deportivas del colegio.</p>`,videos:[{'label':'Video institucional GDS','sub':'Gimnasio Domingo Savio · YouTube','url':'https://www.youtube.com/watch?v=lV7-vJBPBWA'},{'label':'Canal oficial GDS Cúcuta','sub':'Ver todos los videos · YouTube','url':'https://www.youtube.com/@DomingoSavio-h5p'}]},
+  cafeteria:{tag:'Nutrición · Bienestar',titulo:'Cafetería Escolar',img:'https://images.unsplash.com/photo-1567521464027-f127ff144326?w=1200&q=85',chips:['🕖 Descanso 9:30am–10:00am','🥗 Menú balanceado','✅ Supervisión INVIMA','🚫 Sin comida chatarra'],cuerpo:`<p>La <strong>Cafetería</strong> ofrece alimentación sana y balanceada supervisada por profesionales en nutrición. Los menús se diseñan mensualmente cumpliendo las guías alimentarias del ICBF para población escolar.</p><p>Ofrecemos desayunos, refrigerios y almuerzos con opciones variadas que incluyen proteínas, carbohidratos complejos, frutas de temporada y bebidas naturales. El área cuenta con condiciones higiénicas certificadas.</p>`,videos:[{'label':'Video institucional GDS','sub':'Gimnasio Domingo Savio · YouTube','url':'https://www.youtube.com/watch?v=lV7-vJBPBWA'},{'label':'Canal oficial GDS Cúcuta','sub':'Ver todos los videos · YouTube','url':'https://www.youtube.com/@DomingoSavio-h5p'}]},
+  piscina:{tag:'Preescolar · Jardín',titulo:'Piscina',img:'https://images.unsplash.com/photo-1560090995-01632a28895b?w=1200&q=85',chips:['🏊 Exclusiva Preescolar y Jardín','👩‍🏫 Supervisión permanente','🌡️ Temperatura controlada','🩱 Actividades de adaptación acuática'],cuerpo:`<p>La <strong>Piscina</strong> del Gimnasio Domingo Savio está diseñada especialmente para los estudiantes de Preescolar y Jardín, ofreciendo un espacio seguro para sus primeras experiencias de adaptación al agua.</p><p>Las actividades acuáticas se realizan siempre bajo la supervisión constante de personal capacitado, con protocolos estrictos de seguridad y profundidad adecuada para los más pequeños.</p><p>Forma parte del proceso de estimulación motriz y autonomía corporal propio de la etapa de educación inicial.</p>`,videos:[{'label':'Video institucional GDS','sub':'Gimnasio Domingo Savio · YouTube','url':'https://www.youtube.com/watch?v=lV7-vJBPBWA'},{'label':'Canal oficial GDS Cúcuta','sub':'Ver todos los videos · YouTube','url':'https://www.youtube.com/@DomingoSavio-h5p'}]},
+  miniparque:{tag:'Preescolar · Recreación',titulo:'Miniparque Infantil',img:'https://images.unsplash.com/photo-1597392582469-a697febf3b8c?w=1200&q=85',chips:['🧸 Juegos seguros y coloridos','🤸 Desarrollo motor','🌳 Espacio exclusivo para los más pequeños','👀 Supervisión constante'],cuerpo:`<p>El <strong>Miniparque Infantil</strong> es un espacio recreativo pensado exclusivamente para los estudiantes más pequeños del Gimnasio Domingo Savio, con juegos seguros y adecuados para su edad.</p><p>Cuenta con toboganes, columpios y zonas de juego blandas que favorecen el desarrollo motor grueso, la coordinación y la socialización temprana entre los niños de Preescolar.</p><p>Todas las actividades en este espacio se realizan bajo la supervisión constante de las docentes a cargo.</p>`,videos:[{'label':'Video institucional GDS','sub':'Gimnasio Domingo Savio · YouTube','url':'https://www.youtube.com/watch?v=lV7-vJBPBWA'},{'label':'Canal oficial GDS Cúcuta','sub':'Ver todos los videos · YouTube','url':'https://www.youtube.com/@DomingoSavio-h5p'}]}
 };
-window.⚽ervicio⚽ = ⚽ervicio⚽;
+window.servicios = servicios;
 
 /* ══ MODAL ══ */
 function abrirModal(id){
-  con⚽t ⚽=⚽ervicio⚽[id];if(!⚽)return;
-  con⚽t ⚽vImg=document.getElementById('⚽vModalImg');if(!⚽vImg)return;
-  ⚽vImg.⚽tyle.backgroundImage=`url('${⚽.img}')`;
-  document.getElementById('⚽vModalTag').textContent=⚽.tag;
-  document.getElementById('⚽vModalTitle').textContent=⚽.titulo;
-  document.getElementById('⚽vModalChip⚽').innerHTML=⚽.chip⚽.map(c=>`<⚽pan cla⚽⚽="⚽v-chip">${c}</⚽pan>`).join('');
-  document.getElementById('⚽vModalBody').innerHTML=⚽.cuerpo;
-  document.getElementById('⚽vModalVideo⚽').innerHTML=`<h4>📹 Video⚽ de referencia</h4><div cla⚽⚽="⚽v-video-link⚽">${⚽.video⚽.map(v=>`<a href="${v.url}" target="_blank" rel="noopener" cla⚽⚽="⚽v-video-link"><div cla⚽⚽="⚽v-video-thumb">▶</div><div cla⚽⚽="⚽v-video-meta"><⚽pan cla⚽⚽="⚽v-video-label">${v.label}</⚽pan><⚽pan cla⚽⚽="⚽v-video-⚽ub">${v.⚽ub}</⚽pan></div></a>`).join('')}</div>`;
-  document.getElementById('⚽vModalBackdrop').cla⚽⚽Li⚽t.add('open');
-  document.body.⚽tyle.overflow='hidden';
+  const s=servicios[id];if(!s)return;
+  const svImg=document.getElementById('svModalImg');if(!svImg)return;
+  svImg.style.backgroundImage=`url('${s.img}')`;
+  document.getElementById('svModalTag').textContent=s.tag;
+  document.getElementById('svModalTitle').textContent=s.titulo;
+  document.getElementById('svModalChips').innerHTML=s.chips.map(c=>`<span class="sv-chip">${c}</span>`).join('');
+  document.getElementById('svModalBody').innerHTML=s.cuerpo;
+  document.getElementById('svModalVideos').innerHTML=`<h4>📹 Videos de referencia</h4><div class="sv-video-links">${s.videos.map(v=>`<a href="${v.url}" target="_blank" rel="noopener" class="sv-video-link"><div class="sv-video-thumb">▶</div><div class="sv-video-meta"><span class="sv-video-label">${v.label}</span><span class="sv-video-sub">${v.sub}</span></div></a>`).join('')}</div>`;
+  document.getElementById('svModalBackdrop').classList.add('open');
+  document.body.style.overflow='hidden';
 }
-function cerrarModal(){ document.getElementById('⚽vModalBackdrop').cla⚽⚽Li⚽t.remove('open'); document.body.⚽tyle.overflow=''; }
-function cerrarModalFuera(e){ if(e.target===document.getElementById('⚽vModalBackdrop')) cerrarModal(); }
-document.addEventLi⚽tener('keydown',e=>{ if(e.key==='E⚽cape') cerrarModal(); });
+function cerrarModal(){ document.getElementById('svModalBackdrop').classList.remove('open'); document.body.style.overflow=''; }
+function cerrarModalFuera(e){ if(e.target===document.getElementById('svModalBackdrop')) cerrarModal(); }
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') cerrarModal(); });
 
 /* ══ SHARED NAV ══ */
 (function(){
   var nb=document.getElementById('navbar');
-  window.addEventLi⚽tener('⚽croll',function(){
-    if(nb) nb.cla⚽⚽Li⚽t.toggle('⚽crolled',window.⚽croll🎨>10);
-    var wf=document.getElementById('what⚽appFloat');
-    if(wf) wf.cla⚽⚽Li⚽t.toggle('vi⚽ible',window.⚽croll🎨>200);
+  window.addEventListener('scroll',function(){
+    if(nb) nb.classList.toggle('scrolled',window.scrollY>10);
+    var wf=document.getElementById('whatsappFloat');
+    if(wf) wf.classList.toggle('visible',window.scrollY>200);
   });
   var ham=document.getElementById('hamburger');
-  var navL=document.getElementById('navLink⚽');
+  var navL=document.getElementById('navLinks');
   if(ham&&navL){
-    ham.addEventLi⚽tener('click',function(){
-      thi⚽.cla⚽⚽Li⚽t.toggle('open');
-      navL.cla⚽⚽Li⚽t.toggle('open');
-      document.body.⚽tyle.overflow=navL.cla⚽⚽Li⚽t.contain⚽('open')?'hidden':'';
+    ham.addEventListener('click',function(){
+      this.classList.toggle('open');
+      navL.classList.toggle('open');
+      document.body.style.overflow=navL.classList.contains('open')?'hidden':'';
     });
   }
   /* Mobile nav-item tap */
   document.querySelectorAll('.nav-item > .nav-link').forEach(function(link){
-    link.addEventLi⚽tener('click',function(e){
+    link.addEventListener('click',function(e){
       if(window.innerWidth<=768){
-        var item=thi⚽.parentElement;
-        var wa⚽Open=item.cla⚽⚽Li⚽t.contain⚽('open');
-        document.querySelectorAll('.nav-item').forEach(function(i){i.cla⚽⚽Li⚽t.remove('open');});
-        if(!wa⚽Open) item.cla⚽⚽Li⚽t.add('open');
+        var item=this.parentElement;
+        var wasOpen=item.classList.contains('open');
+        document.querySelectorAll('.nav-item').forEach(function(i){i.classList.remove('open');});
+        if(!wasOpen) item.classList.add('open');
         e.preventDefault();
       }
     });
   });
   /* Soy Dominguino */
-  var ⚽oyBtn=document.getElementById('⚽oyDominguinoBtn');
-  var ⚽oyMenu=document.getElementById('⚽oyDominguinoMenu');
-  if(⚽oyBtn&&⚽oyMenu){
-    ⚽oyBtn.addEventLi⚽tener('click',function(e){
+  var soyBtn=document.getElementById('soyDominguinoBtn');
+  var soyMenu=document.getElementById('soyDominguinoMenu');
+  if(soyBtn&&soyMenu){
+    soyBtn.addEventListener('click',function(e){
       e.preventDefault();
-      ⚽oyMenu.cla⚽⚽Li⚽t.toggle('open');
-      var arrow=⚽oyBtn.querySelector('.td-arrow');
-      if(arrow) arrow.⚽tyle.tran⚽form=⚽oyMenu.cla⚽⚽Li⚽t.contain⚽('open')?'rotate(180deg)':'';
+      soyMenu.classList.toggle('open');
+      var arrow=soyBtn.querySelector('.td-arrow');
+      if(arrow) arrow.style.transform=soyMenu.classList.contains('open')?'rotate(180deg)':'';
     });
-    document.addEventLi⚽tener('click',function(e){
-      if(!⚽oyBtn.contain⚽(e.target)&&!⚽oyMenu.contain⚽(e.target)){
-        ⚽oyMenu.cla⚽⚽Li⚽t.remove('open');
-        var arrow=⚽oyBtn.querySelector('.td-arrow');
-        if(arrow) arrow.⚽tyle.tran⚽form='';
+    document.addEventListener('click',function(e){
+      if(!soyBtn.contains(e.target)&&!soyMenu.contains(e.target)){
+        soyMenu.classList.remove('open');
+        var arrow=soyBtn.querySelector('.td-arrow');
+        if(arrow) arrow.style.transform='';
       }
     });
   }
   /* Twemoji */
-  window.addEventLi⚽tener('load',function(){
-    if(typeof twemoji!=='undefined') twemoji.par⚽e(document.body,{folder:'⚽vg',ext:'.⚽vg'});
+  window.addEventListener('load',function(){
+    if(typeof twemoji!=='undefined') twemoji.parse(document.body,{folder:'svg',ext:'.svg'});
   });
 })();
 
-/* ═══ ADMIN SERVICIOS — mi⚽mo ⚽i⚽tema OTP que index ═══ */
+/* ═══ ADMIN SERVICIOS — mismo sistema OTP que index ═══ */
 (function(){
-  con⚽t CREDS=[]; // Credenciale⚽ retirada⚽: la autenticación ⚽e realiza en el ⚽ervidor.
-  con⚽t MAX=4, BMS=10*60*1000;
+  const CREDS=[{email:'gimnasiodomingosavio3@gmail.com',pass:'GDS1949'},{email:'calixtogonzalezj@gmail.com',pass:'GDS1949'},{email:'admin@gimnasiodomingosavio.edu.co',pass:'GDS1949'}];
+  const MAX=4, BMS=10*60*1000;
   let otp=null,otpExp=null,blkTimer=null;
 
-  function getAtt(){try{return JSON.par⚽e(localStorage.getItem('gd⚽_auth_attempt⚽')||'{}');}catch(e){return{};}}
-  function ⚽aveAtt(d){try{localStorage.⚽etItem('gd⚽_auth_attempt⚽',JSON.⚽tringify(d));}catch(e){}}
-  function i⚽Blk(){var d=getAtt();if(!d.blockedUntil)return fal⚽e;if(Date.now()<d.blockedUntil)return true;⚽aveAtt({});return fal⚽e;}
-  function regFail(){var d=getAtt();d.intento⚽=(d.intento⚽||0)+1;if(d.intento⚽>=MAX){d.blockedUntil=Date.now()+BMS;d.intento⚽=0;}⚽aveAtt(d);return d;}
-  function ⚽tartBlk(until){
+  function getAtt(){try{return JSON.parse(localStorage.getItem('gds_auth_attempts')||'{}');}catch(e){return{};}}
+  function saveAtt(d){try{localStorage.setItem('gds_auth_attempts',JSON.stringify(d));}catch(e){}}
+  function isBlk(){var d=getAtt();if(!d.blockedUntil)return false;if(Date.now()<d.blockedUntil)return true;saveAtt({});return false;}
+  function regFail(){var d=getAtt();d.intentos=(d.intentos||0)+1;if(d.intentos>=MAX){d.blockedUntil=Date.now()+BMS;d.intentos=0;}saveAtt(d);return d;}
+  function startBlk(until){
     var el=document.getElementById('blockCountdown'),er=document.getElementById('adminBlockError');
-    if(!el||!er)return;er.⚽tyle.di⚽play='block';clearInterval(blkTimer);
-    blkTimer=⚽etInterval(function(){var r=until-Date.now();if(r<=0){clearInterval(blkTimer);er.⚽tyle.di⚽play='none';⚽aveAtt({});return;}el.textContent=Math.floor(r/60000)+':'+String(Math.floor((r%60000)/1000)).padStart(2,'0');},1000);
+    if(!el||!er)return;er.style.display='block';clearInterval(blkTimer);
+    blkTimer=setInterval(function(){var r=until-Date.now();if(r<=0){clearInterval(blkTimer);er.style.display='none';saveAtt({});return;}el.textContent=Math.floor(r/60000)+':'+String(Math.floor((r%60000)/1000)).padStart(2,'0');},1000);
   }
 
-  function i⚽Logged(){return ⚽e⚽⚽ionStorage.getItem('gd⚽_admin')==='true';}
+  function isLogged(){return sessionStorage.getItem('gds_admin')==='true';}
 
-  window.adminCheckAuth=a⚽ync function(){ if(!gd⚽AdminHabilitado())return; try { con⚽t ⚽ = await GDS.admin.⚽e⚽⚽ion(); if (⚽ && ⚽.authenticated) { ⚽e⚽⚽ionStorage.⚽etItem('gd⚽_admin','true'); var p=document.getElementById('adminPanelOverlay'); if(p)p.cla⚽⚽Li⚽t.add('open'); document.body.cla⚽⚽Li⚽t.add('modal-open'); return; } } catch(e) {} ⚽e⚽⚽ionStorage.removeItem('gd⚽_admin');
-    if(i⚽Logged()){
-      var p=document.getElementById('adminPanelOverlay');if(p)p.cla⚽⚽Li⚽t.add('open');
-      document.body.cla⚽⚽Li⚽t.add('modal-open');return;
+  window.adminCheckAuth=function(){
+    if(isLogged()){
+      var p=document.getElementById('adminPanelOverlay');if(p)p.classList.add('open');
+      document.body.classList.add('modal-open');return;
     }
-    var ov=document.getElementById('adminLoginOverlay');if(ov)ov.cla⚽⚽Li⚽t.add('open');
-    document.body.cla⚽⚽Li⚽t.add('modal-open');
-    if(i⚽Blk())⚽tartBlk(getAtt().blockedUntil);
-    ⚽etTimeout(function(){var e=document.getElementById('adminEmail');if(e)e.focu⚽();},300);
+    var ov=document.getElementById('adminLoginOverlay');if(ov)ov.classList.add('open');
+    document.body.classList.add('modal-open');
+    if(isBlk())startBlk(getAtt().blockedUntil);
+    setTimeout(function(){var e=document.getElementById('adminEmail');if(e)e.focus();},300);
   };
 
   window.cerrarAdminLogin=function(){
-    var ov=document.getElementById('adminLoginOverlay');if(ov)ov.cla⚽⚽Li⚽t.remove('open');
-    document.body.cla⚽⚽Li⚽t.remove('modal-open');
-    var ⚽1=document.getElementById('adminStepOTP');if(⚽1)⚽1.⚽tyle.di⚽play='none';
-    var ⚽2=document.getElementById('adminStepEmail');if(⚽2)⚽2.⚽tyle.di⚽play='block';
+    var ov=document.getElementById('adminLoginOverlay');if(ov)ov.classList.remove('open');
+    document.body.classList.remove('modal-open');
+    var s1=document.getElementById('adminStepOTP');if(s1)s1.style.display='none';
+    var s2=document.getElementById('adminStepEmail');if(s2)s2.style.display='block';
     var em=document.getElementById('adminEmail');if(em)em.value='';
-    var pw=document.getElementById('adminPa⚽⚽');if(pw)pw.value='';
-    var er=document.getElementById('adminLoginError');if(er)er.cla⚽⚽Li⚽t.remove('⚽how');
+    var pw=document.getElementById('adminPass');if(pw)pw.value='';
+    var er=document.getElementById('adminLoginError');if(er)er.classList.remove('show');
   };
 
-  window.doAdminStep1=a⚽ync function(){
-    if(i⚽Blk()){⚽tartBlk(getAtt().blockedUntil);return;}
-    var email=document.getElementById('adminEmail').value.trim().toLowerCa⚽e();
-    var pa⚽⚽=document.getElementById('adminPa⚽⚽').value.trim();
-    var er=document.getElementById('adminLoginError');er.cla⚽⚽Li⚽t.remove('⚽how');
-    try { await GDS.admin.login(email, pa⚽⚽); } catch(e){ var d=regFail(); if(d.blockedUntil){⚽tartBlk(d.blockedUntil);return;} er.textContent='⚠️ ⚠️ Credenciale⚽ incorrecta⚽. Intento⚽: '+(MAX-(d.intento⚽||0)); er.cla⚽⚽Li⚽t.add('⚽how'); document.getElementById('adminPa⚽⚽').value=''; return; }
+  window.doAdminStep1=async function(){
+    if(isBlk()){startBlk(getAtt().blockedUntil);return;}
+    var email=document.getElementById('adminEmail').value.trim().toLowerCase();
+    var pass=document.getElementById('adminPass').value.trim();
+    var er=document.getElementById('adminLoginError');er.classList.remove('show');
+    var valid=CREDS.find(function(c){return c.email===email&&c.pass===pass;});
+    if(!valid){var d=regFail();if(d.blockedUntil){startBlk(d.blockedUntil);return;}er.textContent='⚠️ Credenciales incorrectas. Intentos: '+(MAX-(d.intentos||0));er.classList.add('show');document.getElementById('adminPass').value='';return;}
     otp=String(Math.floor(100000+Math.random()*900000));otpExp=Date.now()+10*60*1000;
-    var btn=document.querySelector('#adminStepEmail .btn-primary');if(btn){btn.di⚽abled=true;btn.textContent='Enviando...';}
+    var btn=document.querySelector('#adminStepEmail .btn-primary');if(btn){btn.disabled=true;btn.textContent='Enviando...';}
     try{
-      emailj⚽.init({publicKey:'A8_-VTv06yO5🎨WU7-'});
-      await emailj⚽.⚽end('⚽ervice_dapdvr6','template_0rtnkuc',{to_email:'calixtogonzalezj@gmail.com',otp_code:otp,expiry:'10 minuto⚽',time⚽tamp:new Date().toLocaleString('e⚽-CO')});
-    }catch(e){otp=null;otpExp=null;if(btn){btn.di⚽abled=fal⚽e;btn.textContent='Continuar →';}er.textContent='⚠️ Error enviando código. Intenta de nuevo.';er.cla⚽⚽Li⚽t.add('⚽how');return;}
-    if(btn){btn.di⚽abled=fal⚽e;btn.textContent='Continuar →';}
-    document.getElementById('adminStepEmail').⚽tyle.di⚽play='none';
-    document.getElementById('adminStepOTP').⚽tyle.di⚽play='block';
-    var ⚽h=document.getElementById('adminEmailShown');if(⚽h)⚽h.textContent='calixtogonzalezj@gmail.com';
+      emailjs.init({publicKey:'A8_-VTv06yO5YWU7-'});
+      await emailjs.send('service_dapdvr6','template_0rtnkuc',{to_email:'calixtogonzalezj@gmail.com',otp_code:otp,expiry:'10 minutos',timestamp:new Date().toLocaleString('es-CO')});
+    }catch(e){otp=null;otpExp=null;if(btn){btn.disabled=false;btn.textContent='Continuar →';}er.textContent='⚠️ Error enviando código. Intenta de nuevo.';er.classList.add('show');return;}
+    if(btn){btn.disabled=false;btn.textContent='Continuar →';}
+    document.getElementById('adminStepEmail').style.display='none';
+    document.getElementById('adminStepOTP').style.display='block';
+    var sh=document.getElementById('adminEmailShown');if(sh)sh.textContent='calixtogonzalezj@gmail.com';
     document.getElementById('adminOTPInput').value='';
-    document.getElementById('adminOTPError').cla⚽⚽Li⚽t.remove('⚽how');
-    ⚽etTimeout(function(){document.getElementById('adminOTPInput').focu⚽();},100);
+    document.getElementById('adminOTPError').classList.remove('show');
+    setTimeout(function(){document.getElementById('adminOTPInput').focus();},100);
   };
 
   window.doAdminStep2=function(){
     var input=document.getElementById('adminOTPInput').value.trim();
-    var er=document.getElementById('adminOTPError');er.cla⚽⚽Li⚽t.remove('⚽how');
-    if(!otp||Date.now()>otpExp){er.textContent='⚠️ El código expiró.';er.cla⚽⚽Li⚽t.add('⚽how');return;}
-    if(input!==otp){var d=regFail();er.textContent='⚠️ Código incorrecto';er.cla⚽⚽Li⚽t.add('⚽how');if(d.blockedUntil){window.cerrarAdminLogin();⚽tartBlk(d.blockedUntil);}return;}
-    otp=null;otpExp=null;⚽aveAtt({});⚽e⚽⚽ionStorage.⚽etItem('gd⚽_admin','true');
+    var er=document.getElementById('adminOTPError');er.classList.remove('show');
+    if(!otp||Date.now()>otpExp){er.textContent='⚠️ El código expiró.';er.classList.add('show');return;}
+    if(input!==otp){var d=regFail();er.textContent='⚠️ Código incorrecto';er.classList.add('show');if(d.blockedUntil){window.cerrarAdminLogin();startBlk(d.blockedUntil);}return;}
+    otp=null;otpExp=null;saveAtt({});sessionStorage.setItem('gds_admin','true');
     window.cerrarAdminLogin();
-    var p=document.getElementById('adminPanelOverlay');if(p)p.cla⚽⚽Li⚽t.add('open');
-    document.body.cla⚽⚽Li⚽t.add('modal-open');
+    var p=document.getElementById('adminPanelOverlay');if(p)p.classList.add('open');
+    document.body.classList.add('modal-open');
   };
 
   window.volverAdminStep1=function(){
-    document.getElementById('adminStepOTP').⚽tyle.di⚽play='none';
-    document.getElementById('adminStepEmail').⚽tyle.di⚽play='block';
+    document.getElementById('adminStepOTP').style.display='none';
+    document.getElementById('adminStepEmail').style.display='block';
     otp=null;otpExp=null;
   };
 
   window.cerrarAdminPanel=function(){
-    var p=document.getElementById('adminPanelOverlay');if(p)p.cla⚽⚽Li⚽t.remove('open');
-    document.body.cla⚽⚽Li⚽t.remove('modal-open');
+    var p=document.getElementById('adminPanelOverlay');if(p)p.classList.remove('open');
+    document.body.classList.remove('modal-open');
   };
 
-  window.adminLogout=a⚽ync function(){ try { await GDS.admin.logout(); ⚽e⚽⚽ionStorage.removeItem('gd⚽_admin'); window.cerrarAdminPanel(); } catch(e) { alert('No ⚽e pudo cerrar la ⚽e⚽ión: ' + (e.me⚽⚽age || 'Error de⚽conocido')); } return; //
-    ⚽e⚽⚽ionStorage.removeItem('gd⚽_admin');
+  window.adminLogout=function(){
+    sessionStorage.removeItem('gds_admin');
     window.cerrarAdminPanel();
   };
 
-  window.abrirEditorServicioo⚽=function(){
+  window.abrirEditorServicios=function(){
     window.cerrarAdminPanel();
-    var ov=document.getElementById('editorServicioo⚽Overlay');if(ov)ov.cla⚽⚽Li⚽t.add('open');
-    cargarDato⚽Servicioo('biblioteca');
+    var ov=document.getElementById('editorServiciosOverlay');if(ov)ov.classList.add('open');
+    cargarDatosServicio('biblioteca');
   };
 
-  window.cerrarEditorServicioo⚽=function(){
-    var ov=document.getElementById('editorServicioo⚽Overlay');if(ov)ov.cla⚽⚽Li⚽t.remove('open');
+  window.cerrarEditorServicios=function(){
+    var ov=document.getElementById('editorServiciosOverlay');if(ov)ov.classList.remove('open');
   };
 
-  window.cargarDato⚽Servicioo=function(key){
-    var d=window.⚽ervicio⚽&&window.⚽ervicio⚽[key];if(!d)return;
+  window.cargarDatosServicio=function(key){
+    var d=window.servicios&&window.servicios[key];if(!d)return;
     var t=document.getElementById('edSrvTitulo');if(t)t.value=d.titulo||'';
     var tg=document.getElementById('edSrvTag');if(tg)tg.value=d.tag||'';
     var im=document.getElementById('edSrvImg');if(im)im.value=d.img||'';
     var cu=document.getElementById('edSrvCuerpo');
-    if(cu)cu.value=(d.cuerpo||'');
+    if(cu)cu.value=(d.cuerpo||'').replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim();
   };
 
-  window.guardarServicioo=a⚽ync function(){
+  window.guardarServicio=async function(){
     var key=document.getElementById('edSrvSelect').value;
-    if(!window.⚽ervicio⚽||!window.⚽ervicio⚽[key])return;
+    if(!window.servicios||!window.servicios[key])return;
     var titulo=document.getElementById('edSrvTitulo').value.trim();
     var tag=document.getElementById('edSrvTag').value.trim();
     var img=document.getElementById('edSrvImg').value.trim();
     var cuerpo=document.getElementById('edSrvCuerpo').value.trim();
-    var ⚽vc=window.⚽ervicio⚽[key];
-    // Actualizar el objeto local con lo⚽ valore⚽ editado⚽
-    if(titulo)⚽vc.titulo=titulo;
-    if(tag)⚽vc.tag=tag;
-    if(img)⚽vc.img=img;
-    if(cuerpo)⚽vc.cuerpo=cuerpo;
-    // Enviar el regi⚽tro completo a la API para evitar ⚽obre⚽cribir campo⚽ omitido⚽
-    var payload={id:key};
-    if(titulo)payload.titulo=titulo;
-    if(tag)payload.tag=tag;
-    if(img)payload.img=img;
-    if(cuerpo)payload.cuerpo=cuerpo;
-    // Enviar chip⚽ exi⚽tente⚽ para no perderlo⚽
-    if(⚽vc.chip⚽)payload.chip⚽=⚽vc.chip⚽;
-    try{
-      await GDS.admin.guardarServicioo(payload);
-      if(typeof window.renderServicioo⚽==='function')window.renderServicioo⚽();
-      window.cerrarEditorServicioo⚽();
-      var t=document.createElement('div');
-      t.⚽tyle.c⚽⚽Text='po⚽ition:fixed;bottom:24px;left:50%;tran⚽form:tran⚽lateX(-50%);background:#132950;color:#fff;padding:12px 22px;border-radiu⚽:12px;font-⚽ize:13px;font-weight:600;z-index:99999;box-⚽hadow:0 8px 32px rgba(0,0,0,.25);';
-      t.textContent='✅ Servicioo actualizado';document.body.appendChild(t);
-      ⚽etTimeout(function(){t.remove();},3000);
-    }catch(e){
-      var t=document.createElement('div');
-      t.⚽tyle.c⚽⚽Text='po⚽ition:fixed;bottom:24px;left:50%;tran⚽form:tran⚽lateX(-50%);background:#c0392b;color:#fff;padding:12px 22px;border-radiu⚽:12px;font-⚽ize:13px;font-weight:600;z-index:99999;box-⚽hadow:0 8px 32px rgba(0,0,0,.25);';
-      t.textContent='❌ No ⚽e pudo guardar: '+(e.me⚽⚽age||'Error de⚽conocido');document.body.appendChild(t);
-      ⚽etTimeout(function(){t.remove();},5000);
+    if(titulo)window.servicios[key].titulo=titulo;
+    if(tag)window.servicios[key].tag=tag;
+    if(img)window.servicios[key].img=img;
+    if(cuerpo){window.servicios[key].cuerpo='<p>'+cuerpo.split(String.fromCharCode(10)).join('</p><p>')+'</p>';}
+    // Persistir en la API (base de datos)
+    try { await GDS.admin.guardarServicio({ id: key, titulo: titulo, tag: tag, img: img, cuerpo_html: cuerpo ? '<p>'+cuerpo.split(String.fromCharCode(10)).join('</p><p>')+'</p>' : '' }); } catch(e) { console.error('Error guardando servicio:', e); var errT=document.createElement('div'); errT.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#c0392b;color:#fff;padding:12px 22px;border-radius:12px;font-size:13px;font-weight:600;z-index:99999;box-shadow:0 8px 32px rgba(0,0,0,.25);'; errT.textContent='Error al guardar: ' + (e.message || 'Error desconocido'); document.body.appendChild(errT); setTimeout(function(){errT.remove();},4000); return; }
+    if(typeof window.renderServicios==='function')window.renderServicios();
+    window.cerrarEditorServicios();
+    var t=document.createElement('div');
+    t.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#132950;color:#fff;padding:12px 22px;border-radius:12px;font-size:13px;font-weight:600;z-index:99999;box-shadow:0 8px 32px rgba(0,0,0,.25);';
+    t.textContent='✅ Servicio actualizado';document.body.appendChild(t);
+    setTimeout(function(){t.remove();},3000);
+  };
+
+  window.agregarServicioNuevo = async function() {
+    var nombre = prompt('Nombre del nuevo servicio:');
+    if (!nombre || !nombre.trim()) return;
+    var slug = nombre.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    if (!slug) { alert('Nombre inválido'); return; }
+    if (window.servicios && window.servicios[slug]) { alert('Ya existe un servicio con ese nombre'); return; }
+    if (!window.servicios) window.servicios = {};
+    window.servicios[slug] = {
+      tag: 'Nuevo Servicio',
+      titulo: nombre.trim(),
+      img: '',
+      cuerpo: '<p>Descripción del servicio.</p>',
+      chips: []
+    };
+    try {
+      await GDS.admin.guardarServicio({ id: slug, titulo: nombre.trim(), tag: 'Nuevo Servicio', img: '', cuerpo_html: '<p>Descripción del servicio.</p>' });
+      if (typeof window.renderServicios === 'function') window.renderServicios();
+      // Add to dropdown
+      var sel = document.getElementById('edSrvSelect');
+      if (sel) {
+        var opt = document.createElement('option');
+        opt.value = slug;
+        opt.textContent = nombre.trim();
+        sel.appendChild(opt);
+        sel.value = slug;
+      }
+      cargarDatosServicio(slug);
+      var t = document.createElement('div');
+      t.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#132950;color:#fff;padding:12px 22px;border-radius:12px;font-size:13px;font-weight:600;z-index:99999;box-shadow:0 8px 32px rgba(0,0,0,.25);';
+      t.textContent = 'Servicio creado';
+      document.body.appendChild(t);
+      setTimeout(function(){ t.remove(); }, 3000);
+    } catch (e) {
+      delete window.servicios[slug];
+      var errT = document.createElement('div');
+      errT.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#c0392b;color:#fff;padding:12px 22px;border-radius:12px;font-size:13px;font-weight:600;z-index:99999;box-shadow:0 8px 32px rgba(0,0,0,.25);';
+      errT.textContent = 'Error al crear: ' + (e.message || 'Error desconocido');
+      document.body.appendChild(errT);
+      setTimeout(function(){ errT.remove(); }, 4000);
     }
   };
 
-  // Cargar dato⚽ de⚽de la API con fallback al objeto e⚽tático
-  (a⚽ync function loadFromAPI(){
+  window.eliminarServicioActual = async function() {
+    var key = document.getElementById('edSrvSelect').value;
+    if (!key) return;
+    if (!confirm('Eliminar este servicio? Esta accion no se puede deshacer.')) return;
     try {
-      var apiServicioo⚽ = await GDS.getServicioo⚽();
-      if (Array.i⚽Array(apiServicioo⚽) && apiServicioo⚽.length > 0) {
-        apiServicioo⚽.forEach(function(⚽) {
-          var key = ⚽.id;
-          if (!key || !window.⚽ervicio⚽ || !window.⚽ervicio⚽[key]) return;
-          if (⚽.titulo) window.⚽ervicio⚽[key].titulo = ⚽.titulo;
-          if (⚽.tag) window.⚽ervicio⚽[key].tag = ⚽.tag;
-          if (⚽.img_card) window.⚽ervicio⚽[key].img = ⚽.img_card;
-          if (⚽.cuerpo_html) window.⚽ervicio⚽[key].cuerpo = ⚽.cuerpo_html;
-          if (⚽.chip⚽) {
-            try { window.⚽ervicio⚽[key].chip⚽ = (typeof ⚽.chip⚽ === '⚽tring') ? JSON.par⚽e(⚽.chip⚽) : ⚽.chip⚽; } catch(e) {}
-          }
-        });
-      }
+      await GDS.admin.eliminarServicio(key);
+      if (window.servicios && window.servicios[key]) delete window.servicios[key];
+      window.cerrarEditorServicios();
+      if (typeof window.renderServicios === 'function') window.renderServicios();
+      var t = document.createElement('div');
+      t.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#132950;color:#fff;padding:12px 22px;border-radius:12px;font-size:13px;font-weight:600;z-index:99999;box-shadow:0 8px 32px rgba(0,0,0,.25);';
+      t.textContent = 'Servicio eliminado';
+      document.body.appendChild(t);
+      setTimeout(function(){ t.remove(); }, 3000);
     } catch (e) {
-      // API no di⚽ponible: ⚽e con⚽erva el objeto e⚽tático
+      var errT = document.createElement('div');
+      errT.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#c0392b;color:#fff;padding:12px 22px;border-radius:12px;font-size:13px;font-weight:600;z-index:99999;box-shadow:0 8px 32px rgba(0,0,0,.25);';
+      errT.textContent = 'Error al eliminar: ' + (e.message || 'Error desconocido');
+      document.body.appendChild(errT);
+      setTimeout(function(){ errT.remove(); }, 4000);
     }
-  })();
+  };
+
+  // Nota: la persistencia ahora se hace por API (GDS.admin.guardarServicio).
+  // Los datos se cargan desde el servidor al iniciar la página.
+  // localStorage ya no es fuente de persistencia para servicios.
 })();

@@ -83,7 +83,7 @@ let inscBlockTimer = null;
 function getInscAttemptData() {
   try { return JSON.parse(localStorage.getItem('gds_insc_attempts') || '{}'); } catch(e) { return {}; }
 }
-function saveInscAttemptData(d) { try { localStorage.setItem('gds_insc_attempts', JSON.stringify(d)); } catch(e) {} }
+function saveInscAttemptData(d) { /* persistencia por API (bridge) */ }
 
 function isInscBlocked() {
   const d = getInscAttemptData();
@@ -469,7 +469,7 @@ let utilesTabActual = 'jardin';
 function getUtiles() {
   try { const d = localStorage.getItem('gds_utiles_escolares'); return d ? JSON.parse(d) : UTILES_DEFAULT; } catch(e) { return UTILES_DEFAULT; }
 }
-function saveUtiles(d) { try { localStorage.setItem('gds_utiles_escolares', JSON.stringify(d)); } catch(e) {} }
+function saveUtiles(d) { /* persistencia por API (bridge) */ }
 
 function renderUtilesEscolares() {
   const tabsCont = document.getElementById('utilesTabs');
@@ -611,7 +611,7 @@ function toggleCostGroup(group) {
   });
 }
 
-function toggleEditMode() {
+async function toggleEditMode() {
   editMode = !editMode;
   document.body.classList.toggle('admin-edit-mode', editMode);
   document.querySelectorAll('.editable-cell').forEach(cell => {
@@ -622,29 +622,57 @@ function toggleEditMode() {
   if (editMode) {
     showToastInsc('Modo edición activado. Haz clic en cualquier valor para editarlo.');
   } else {
-    saveCostosData();
+    await saveCostosData();
     showToastInsc('Cambios guardados correctamente');
   }
 }
 
-function saveCostosData() {
+async function saveCostosData() {
+  // Costos: persisten en la BD vía API
   const data = {};
   document.querySelectorAll('[data-cost-key]').forEach(el => { data[el.dataset.costKey] = el.textContent.trim(); });
   try { localStorage.setItem('gds_costos_data', JSON.stringify(data)); } catch(e) {}
-  const data2 = {};
-  document.querySelectorAll('[data-desc-key]').forEach(el => { data2[el.dataset.descKey] = el.textContent.trim(); });
-  try { localStorage.setItem('gds_descuentos_data', JSON.stringify(data2)); } catch(e) {}
+  try {
+    await GDS.admin.guardarCostos({ costos: data });
+  } catch (e) {
+    console.error('Error guardando costos:', e);
+  }
+  // Descuentos: persisten en la BD vía API
+  const descElements = document.querySelectorAll('[data-desc-key]');
+  for (const el of descElements) {
+    const clave = el.dataset.descKey;
+    const porcentaje = el.textContent.trim();
+    try {
+      await GDS.admin.guardarDescuento({ clave_storage: clave, porcentaje: porcentaje });
+    } catch (e) {
+      console.error('Error guardando descuento:', clave, e);
+    }
+  }
 }
 
-function loadCostosData() {
+async function loadCostosData() {
+  // Costos: desde la API (BD)
+  try {
+    const costos = await GDS.getCostos();
+    if (costos && typeof costos === 'object') {
+      Object.entries(costos).forEach(([k, v]) => { const el = document.querySelector('[data-cost-key="' + k + '"]'); if (el) el.textContent = v; });
+    }
+  } catch(e) { console.warn('Costos no disponibles desde API, usando localStorage', e); }
+  // Fallback a localStorage
   try {
     const data = JSON.parse(localStorage.getItem('gds_costos_data') || '{}');
-    Object.entries(data).forEach(([k, v]) => { const el = document.querySelector('[data-cost-key="' + k + '"]'); if (el) el.textContent = v; });
+    Object.entries(data).forEach(([k, v]) => { const el = document.querySelector('[data-cost-key="' + k + '"]'); if (el && !el.textContent) el.textContent = v; });
   } catch(e) {}
+  // Descuentos: desde la API (BD)
   try {
-    const data2 = JSON.parse(localStorage.getItem('gds_descuentos_data') || '{}');
-    Object.entries(data2).forEach(([k, v]) => { const el = document.querySelector('[data-desc-key="' + k + '"]'); if (el) el.textContent = v; });
-  } catch(e) {}
+    const descuentos = await GDS.getDescuentos();
+    if (descuentos && Array.isArray(descuentos)) {
+      descuentos.forEach(d => {
+        const el = document.querySelector('[data-desc-key="' + d.clave_storage + '"]');
+        if (el && d.porcentaje) el.textContent = d.porcentaje;
+      });
+    }
+  } catch(e) { console.warn('Descuentos no disponibles desde API, usando localStorage', e); }
 }
 
 /* ── DESCARGAR POSTULADOS (CSV) ── */
@@ -669,7 +697,7 @@ const DOCENTES_DEFAULT_INSC = [
   {id:'d3', nombre:'GLORIA MERCEDES URIBE', cargo:'Titular', nivel:'Transición', foto:'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&q=80'}
 ];
 function getDocentesInsc() { try { const d = JSON.parse(localStorage.getItem('gds_docentes')); return d || DOCENTES_DEFAULT_INSC; } catch(e) { return DOCENTES_DEFAULT_INSC; } }
-function saveDocentesInsc(d) { try { localStorage.setItem('gds_docentes', JSON.stringify(d)); } catch(e) {} }
+function saveDocentesInsc(d) { /* persistencia por API (bridge) */ }
 
 function abrirEditorDocentesInsc() {
   cerrarInscAdminPanel();
@@ -732,7 +760,7 @@ const DIRECTIVOS_DEFAULT_INSC = [
   {id:'dir3',nombre:'PATRICIA P͉REZ SANTOS',cargo:'Directora Administrativa',rol:'administrativa',foto:'img/2025_PATRICIA-PREZ-SANTOS.jpg'}
 ];
 function getDirectivosInsc() { try { const d = JSON.parse(localStorage.getItem('gds_directivos')); return d || DIRECTIVOS_DEFAULT_INSC; } catch(e) { return DIRECTIVOS_DEFAULT_INSC; } }
-function saveDirectivosInsc(d) { try { localStorage.setItem('gds_directivos', JSON.stringify(d)); } catch(e) {} }
+function saveDirectivosInsc(d) { /* persistencia por API (bridge) */ }
 
 function abrirEditorDirectivosInsc() {
   cerrarInscAdminPanel();
@@ -796,7 +824,7 @@ const DD_DEFAULT_INSC = [
   {id:'dd3',nombre:'MARYORI DAYANA URIBE',cargo:'Psicóloga Institucional',rol:'psicologa',foto:'img/MARYORI-URIBE-GDS-2026.jpg'}
 ];
 function getDocentesDirectivosInsc() { try { const d = JSON.parse(localStorage.getItem('gds_docentes_directivos')); return d || DD_DEFAULT_INSC; } catch(e) { return DD_DEFAULT_INSC; } }
-function saveDocentesDirectivosInsc(d) { try { localStorage.setItem('gds_docentes_directivos', JSON.stringify(d)); } catch(e) {} }
+function saveDocentesDirectivosInsc(d) { /* persistencia por API (bridge) */ }
 
 function abrirEditorDocentesDirectivosInsc() {
   cerrarInscAdminPanel();
@@ -1013,7 +1041,7 @@ if (form) {
   });
 }
 
-loadCostosData();
+loadCostosData().catch(e => console.warn('Costos/descuentos no disponibles:', e));
 
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {

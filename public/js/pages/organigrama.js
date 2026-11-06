@@ -116,7 +116,7 @@ function getDirectivos() {
     return parsed;
   } catch(e) { return DIRECTIVOS_DEFAULT.slice(); }
 }
-function saveDirectivos(d) { try { localStorage.setItem('gds_directivos', JSON.stringify(d)); } catch(e) {} }
+function saveDirectivos(d) { /* persistencia por API (bridge) */ }
 function getDocentesDirectivos() {
   try {
     var stored = localStorage.getItem('gds_docentes_directivos');
@@ -126,7 +126,7 @@ function getDocentesDirectivos() {
     return parsed;
   } catch(e) { return DOCENTES_DIRECTIVOS_DEFAULT.slice(); }
 }
-function saveDocentesDirectivos(d) { try { localStorage.setItem('gds_docentes_directivos', JSON.stringify(d)); } catch(e) {} }
+function saveDocentesDirectivos(d) { /* persistencia por API (bridge) */ }
 function getAdministrativos() {
   try {
     var s = localStorage.getItem('gds_administrativos');
@@ -136,7 +136,7 @@ function getAdministrativos() {
     return parsed;
   } catch(e) { return ADMINISTRATIVOS_DEFAULT.slice(); }
 }
-function saveAdministrativos(d) { try { localStorage.setItem('gds_administrativos', JSON.stringify(d)); } catch(e) {} }
+function saveAdministrativos(d) { /* persistencia por API (bridge) */ }
 function getDocentes() {
   try {
     var stored = localStorage.getItem('gds_docentes');
@@ -146,7 +146,7 @@ function getDocentes() {
     return parsed;
   } catch(e) { return DOCENTES_DEFAULT.slice(); }
 }
-function saveDocentes(d) { try { localStorage.setItem('gds_docentes', JSON.stringify(d)); } catch(e) {} }
+function saveDocentes(d) { /* persistencia por API (bridge) */ }
 
 function gdsAvatar(img, size) {
   size = size || 80;
@@ -208,7 +208,7 @@ const PROMOCIONES_DEFAULT = [
   { id:'promo_2025', anio:'2025', nombreGrupo:'', foto:'img/promociones/promocion-2025.webp' }
 ];
 function getPromociones() { try { const s = localStorage.getItem('gds_promociones'); if (!s) return PROMOCIONES_DEFAULT.slice(); const parsed = JSON.parse(s); return Array.isArray(parsed) ? parsed : PROMOCIONES_DEFAULT.slice(); } catch (e) { return PROMOCIONES_DEFAULT.slice(); } }
-function savePromociones(d) { try { localStorage.setItem('gds_promociones', JSON.stringify(d)); } catch (e) {} }
+function savePromociones(d) { /* persistencia por API (bridge) */ }
 let _promoAnioActivo = null;
 function renderPromocionesTabs() { const wrap = document.getElementById('promoTabs'); if (!wrap) return; const promos = getPromociones(); const anios = [...new Set(promos.map(p => p.anio))].sort((a, b) => b - a); if (!anios.length) { wrap.innerHTML = ''; return; } if (!_promoAnioActivo || !anios.includes(_promoAnioActivo)) _promoAnioActivo = anios[0]; wrap.innerHTML = anios.map(a => `<button class="promo-tab-btn ${a === _promoAnioActivo ? 'active' : ''}" onclick="seleccionarAnioPromocion('${a}')">${a}</button>`).join(''); }
 function seleccionarAnioPromocion(anio) { _promoAnioActivo = anio; renderPromocionesTabs(); renderPromocionesGrid(); }
@@ -319,7 +319,7 @@ const ORG_ADMIN_CREDS = []; // Credenciales retiradas: la autenticación se real
 const ORG_MAX_INT = 4, ORG_BLOCK_MS = 10 * 60 * 1000;
 let _orgOtp = null, _orgOtpExpiry = null, orgBlockTimer = null;
 function getOrgAttempts() { try { return JSON.parse(localStorage.getItem('gds_auth_attempts') || '{}'); } catch(e) { return {}; } }
-function saveOrgAttempts(d) { try { localStorage.setItem('gds_auth_attempts', JSON.stringify(d)); } catch(e) {} }
+function saveOrgAttempts(d) { /* persistencia por API (bridge) */ }
 function isOrgBlocked() { const d = getOrgAttempts(); if (!d.blockedUntil) return false; if (Date.now() < d.blockedUntil) return true; saveOrgAttempts({}); return false; }
 function registerOrgFailed() { const d = getOrgAttempts(); d.intentos = (d.intentos||0)+1; if (d.intentos >= ORG_MAX_INT) { d.blockedUntil = Date.now()+ORG_BLOCK_MS; d.intentos=0; } saveOrgAttempts(d); return d; }
 function startOrgBlockCountdown(until) { const el = document.getElementById('orgBlockCountdown'), errEl = document.getElementById('orgBlockError'); if (!el||!errEl) return; errEl.style.display='block'; clearInterval(orgBlockTimer); orgBlockTimer = setInterval(() => { const rem = until-Date.now(); if(rem<=0){clearInterval(orgBlockTimer);errEl.style.display='none';saveOrgAttempts({});return;} const m=Math.floor(rem/60000),s=Math.floor((rem%60000)/1000); el.textContent=m+':'+String(s).padStart(2,'0'); },1000); }

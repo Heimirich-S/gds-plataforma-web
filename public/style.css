@@ -35,7 +35,7 @@ html:not([data-gds-admin="on"]) .gds-admin-entry { display: none !important; }
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; }
+html { scroll-behavior: smooth; font-size: 16px; scroll-padding-top: 100px; }
 body {
   font-family: var(--font-body);
   background: var(--bg-a);
@@ -171,6 +171,15 @@ img { max-width: 100%; display: block; }
   transition: box-shadow var(--ease), top var(--ease);
 }
 .navbar.scrolled { box-shadow: var(--sombra-md); }
+
+/* Nav social icons */
+.nav-social { display: flex; align-items: center; gap: 6px; margin-left: 12px; }
+.nav-social-btn { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; color: white; transition: transform .2s, opacity .2s; opacity: .85; }
+.nav-social-btn:hover { transform: translateY(-2px); opacity: 1; }
+.nav-social-fb { background: #1877F2; }
+.nav-social-ig { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+.nav-social-wa { background: #25D366; }
+@media (max-width: 768px) { .nav-social { gap: 4px; } .nav-social-btn { width: 28px; height: 28px; } }
 
 .navbar-inner {
   max-width: 1280px;
@@ -561,7 +570,8 @@ img { max-width: 100%; display: block; }
 /* =====================
    SECTIONS GENERAL
    ===================== */
-.section { padding: 76px 20px; }
+.section { padding: 76px 20px; scroll-margin-top: 100px; }
+.elgds-section { scroll-margin-top: 100px; }
 .container { max-width: 1280px; margin: 0 auto; }
 
 .section-header { text-align: center; margin-bottom: 52px; }
@@ -691,7 +701,7 @@ img { max-width: 100%; display: block; }
 /* =====================
    ORGANIGRAMA
    ===================== */
-.organigrama-section { background: var(--bg-b); }
+.organigrama-section { background: var(--bg-b); scroll-margin-top: 100px; }
 .org-level-label {
   text-align: center; font-size: 0.75rem; font-weight: 700;
   color: var(--celeste); letter-spacing: .1em; text-transform: uppercase;
@@ -816,7 +826,7 @@ img { max-width: 100%; display: block; }
 /* =====================
    PERFILES
    ===================== */
-.perfiles-section { background: var(--bg-a); }
+.perfiles-section { background: var(--bg-a); scroll-margin-top: 100px; }
 .perfiles-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; }
 .perfil-card {
   background: white; border-radius: var(--radio-lg); padding: 34px 26px;
@@ -844,7 +854,7 @@ img { max-width: 100%; display: block; }
 /* =====================
    ADMISIONES
    ===================== */
-.admisiones-section { background: white; }
+.admisiones-section { background: white; scroll-margin-top: 100px; }
 .admisiones-tabs { display: flex; gap: 8px; justify-content: center; margin-bottom: 36px; flex-wrap: wrap; }
 .tab-btn {
   padding: 10px 26px; border-radius: 8px;
@@ -948,7 +958,7 @@ img { max-width: 100%; display: block; }
 /* =====================
    NOTICIAS
    ===================== */
-.noticias-section { background: var(--bg-b); }
+.noticias-section { background: var(--bg-b); scroll-margin-top: 100px; }
 .noticias-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-bottom: 28px; }
 .noticia-card {
   background: white; border-radius: var(--radio-lg);
@@ -1051,7 +1061,7 @@ body.modal-open { overflow: hidden !important; }
 /* =====================
    HORARIOS
    ===================== */
-.horarios-section { padding: 0; }
+.horarios-section { padding: 0; scroll-margin-top: 100px; }
 .horarios-inner { display: grid; grid-template-columns: 1fr 1fr; min-height: 400px; }
 .horario-half {
   position: relative; display: flex; align-items: center;
@@ -1231,7 +1241,7 @@ body.modal-open { overflow: hidden !important; }
 /* =====================
    MAPA
    ===================== */
-.mapa-section { background: var(--fondo); }
+.mapa-section { background: var(--fondo); scroll-margin-top: 100px; }
 .mapa-wrapper { display: flex; flex-direction: column; gap: 20px; }
 .mapa-info-cards { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
 .mapa-info-card {
@@ -1246,7 +1256,7 @@ body.modal-open { overflow: hidden !important; }
 /* =====================
    CONVENIOS
    ===================== */
-.convenios-section { background: white; }
+.convenios-section { background: white; scroll-margin-top: 100px; }
 .convenios-track-wrap { overflow: hidden; position: relative; padding: 8px 0; }
 .convenios-track-wrap::before, .convenios-track-wrap::after {
   content:''; position: absolute; top:0; bottom:0; width: 70px; z-index: 2; pointer-events: none;
@@ -1276,7 +1286,7 @@ body.modal-open { overflow: hidden !important; }
 /* =====================
    CTA INSCRIPCIONES
    ===================== */
-.inscripcion-cta-section { background: var(--azul); text-align: center; position: relative; overflow: hidden; }
+.inscripcion-cta-section { background: var(--azul); text-align: center; position: relative; overflow: hidden; scroll-margin-top: 100px; }
 .inscripcion-cta-section::before {
   content: ''; position: absolute; top: -80px; right: -80px;
   width: 320px; height: 320px; border-radius: 50%;
@@ -1331,11 +1341,13 @@ body.modal-open { overflow: hidden !important; }
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  width: 44px;
+  padding: 8px 16px;
+  min-width: 44px;
   height: 44px;
   border-radius: 10px;
   color: #fff;
   flex-shrink: 0;
+  text-decoration: none;
   transition: transform .2s cubic-bezier(0.34,1.56,0.64,1), opacity .15s;
   border: none;
   font-style: normal;
@@ -1353,7 +1365,7 @@ body.modal-open { overflow: hidden !important; }
   pointer-events: none;
 }
 .social-btn-sq svg { width: 22px; height: 22px; flex-shrink: 0; display: block; fill: #fff; color: #fff; opacity: 1; pointer-events: none; position: relative; z-index: 1; }
-.social-btn-sq span { display: none; }
+.social-btn-sq span { display: inline; font-size: 0.85rem; font-weight: 600; color: #fff; }
 .social-btn-sq:hover { transform: translateY(-3px) scale(1.08); }
 .social-btn-sq:active { transform: translateY(0) scale(0.97); }
 .social-btn-sq.fb { background: linear-gradient(135deg, #1877f2 0%, #0a56c2 60%, #1565d8 100%); }
@@ -1601,7 +1613,7 @@ body.modal-open { overflow: hidden !important; }
   .footer-links { grid-template-columns: 1fr 1fr; }
   .footer-col-social { grid-column: 1 / -1; }
   .footer-social-grid { flex-direction: row; flex-wrap: wrap; justify-content: center; }
-  .social-btn-sq { width: 120px; height: 38px; }
+  .social-btn-sq { min-width: 100px; height: 38px; padding: 6px 12px; }
   .footer-bottom { flex-direction: column; text-align: center; }
   .cta-actions { flex-direction: column; align-items: center; }
   .gds-modal-box { padding: 28px 22px 30px; }
@@ -2469,6 +2481,7 @@ img.emoji {
 /* ── BANNER GNOSOFT ─────────────────────────────────────────────────────── */
 .gnosoft-banner {
   position: relative;
+  scroll-margin-top: 100px;
   width: 100%;
   overflow: visible;
   display: flex;
@@ -3755,7 +3768,7 @@ img.emoji {
    Mismo componente animado que .sv-cta-strip de servicios.html,
    reutilizado aquí con prefijo idx- para no interferir con nada.
    ══════════════════════════════════════════════════════════════ */
-.idx-cta-strip {
+.idx-cta-strip { scroll-margin-top: 100px;
   background: linear-gradient(140deg,#060f22 0%,#0d1e3d 40%,#122640 70%,#0d3362 100%);
   padding: 64px 20px 72px; text-align: center; position: relative; overflow: hidden;
   animation: idxCtaPulse 6s ease-in-out infinite;

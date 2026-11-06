@@ -46,7 +46,7 @@
 <div class="topbar">
   <div class="topbar-inner">
     <a href="https://www.fucsalud.edu.co/" target="_blank">FUCS</a>
-    <a href="servicios.html" target="_blank">Servicios</a>
+    <a href="servicios.html">Servicios</a>
     <a href="https://docs.google.com/forms/d/e/1FAIpQLSfj27BVS4PAuod_YNgempDyy9BsuYAiitKUjzrFDE02nFHG_w/viewform" target="_blank">PQRSD</a>
     <a href="#" onclick="abrirFAQ();return false;">Preguntas</a>
     <div class="topbar-dropdown-wrap">
@@ -76,13 +76,13 @@
       </div>
     </div>
   </div>
-  <a href="#inscripciones" class="topbar-cta">Inscripciones</a>
+  <!-- Topbar CTA eliminado: redundante con navbar. Ver Admisiones dropdown -->
 </div>
 
 <!-- NAVBAR -->
 <header class="navbar" id="navbar">
   <div class="navbar-inner">
-    <a href="index.html" target="_blank" class="brand">
+    <a href="index.html" class="brand">
       <div class="brand-logo">
         <img src="img/institucional/escudo-gds.webp" alt="Escudo GDS"/>
       </div>
@@ -99,7 +99,7 @@
           <span class="dd-group-label">Quiénes somos</span>
           <a href="#elgds">Historia</a>
           <div class="dd-divider"></div>
-          <a href="organigrama.html" target="_blank">Organigrama</a>
+          <a href="organigrama.html">Organigrama</a>
           <a href="#comunidad">Perfil Institucional</a>
         </div>
       </div>
@@ -111,7 +111,7 @@
       <div class="nav-item">
         <a href="#admisiones" class="nav-link">Admisiones <span class="chevron">▾</span></a>
         <div class="dropdown">
-          <a href="inscripciones.html" target="_blank">Inscripciones</a>
+          <a href="#inscripciones">Inscripciones Abiertas</a>
           <div class="dd-divider"></div>
           <a href="inscripciones.html#costos">Costos y Pagos</a>
           <a href="inscripciones.html#descuentos">Descuentos</a>
@@ -122,7 +122,7 @@
       <div class="nav-item">
         <a href="#actualidad" class="nav-link">Actualidad <span class="chevron">▾</span></a>
         <div class="dropdown">
-          <a href="noticias.html" target="_blank"  target="_blank">Noticias</a>
+          <a href="noticias.html">Noticias</a>
           <div class="dd-divider"></div>
           <a href="#actualidad">Eventos</a>
         </div>
@@ -139,14 +139,25 @@
       </div>
       <!-- Servicios -->
       <div class="nav-item">
-        <a href="servicios.html" target="_blank" class="nav-link" target="_blank">Servicios</a>
+        <a href="servicios.html" class="nav-link">Servicios</a>
       </div>
-      <a href="inscripciones.html" target="_blank" class="btn-inscripcion" target="_blank">Inscripciones</a>
+      <a href="inscripciones.html" class="btn-inscripcion">Inscripciones</a>
     <button class="gds-admin-entry" onclick="adminCheckAuth()" title="Panel de Administración GDS" style="background:none;border:1px solid rgba(255,255,255,.2);border-radius:8px;color:var(--azul);cursor:pointer;display:inline-flex;align-items:center;gap:7px;padding:6px 14px;font-size:13px;font-family:inherit;transition:background .2s,color .2s,transform .2s;" onmouseover="this.style.background='var(--fondo)';this.style.color='var(--celeste)';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='none';this.style.color='var(--azul)';this.style.transform='none'">
       <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
       Administrador
     </button>
-    </nav>
+        <div class="nav-social">
+      <a href="https://web.facebook.com/gdomingosavio?mibextid=wwXIfr&rdid=lvdOE70mg71ENZyr&share_url=https%3A%2F%2Fweb.facebook.com%2Fshare%2F1NzsphnyDA%2F%3Fmibextid%3DwwXIfr%26_rdc%3D1%26_rdr#" target="_blank" rel="noopener" title="Facebook" class="nav-social-btn nav-social-fb">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/gimnasiodomingosavio/" target="_blank" rel="noopener" title="Instagram" class="nav-social-btn nav-social-ig">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      </a>
+      <a href="https://wa.me/573157859157" target="_blank" rel="noopener" title="WhatsApp" class="nav-social-btn nav-social-wa">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      </a>
+    </div>
+</nav>
     <button class="hamburger" id="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -166,7 +177,7 @@
         <h1 class="hero-title">Formamos<br><em>Líderes</em><br>Dominguinos</h1>
         <p class="hero-sub">En unión y compromiso, educamos para la vida con valores, excelencia y alegría.</p>
         <div class="hero-actions">
-          <a href="inscripciones.html" target="_blank" class="btn-primary" target="_blank">Inscríbete ahora</a>
+          <a href="inscripciones.html" class="btn-primary">Inscríbete ahora</a>
           <a href="#elgds" class="btn-ghost">Conoce el GDS</a>
         </div>
       </div>
@@ -581,7 +592,7 @@
         <div class="perfil-icon-wrap green-icon">👩‍🏫</div>
         <h3>Perfil del Docente</h3>
         <p>Profesional íntegro, comprometido con la formación ética, académica y ciudadana. Creativo, reflexivo e innovador, guía a sus estudiantes con sensibilidad y compromiso.</p>
-        <div class="perfil-tags"><span>Innovador</span><span>͍ntegro</span><span>Empático</span><span>Líder</span></div>
+        <div class="perfil-tags"><span>Innovador</span><span>Íntegro</span><span>Empático</span><span>Líder</span></div>
       </div>
     </div>
   </div>
@@ -615,7 +626,7 @@
         <div><h4>¿Qué necesitas para inscribirte?</h4><p>Registro civil o tarjeta de identidad · Foto reciente 3͗4 · Boletín del año anterior · Certificado de vacunas (preescolar) · Documento del acudiente</p></div>
       </div>
       <div class="admisiones-cta">
-        <a href="inscripciones.html" target="_blank" class="btn-primary large">Iniciar inscripción</a>
+        <a href="inscripciones.html" class="btn-primary large">Iniciar inscripción</a>
         <a href="https://docs.google.com/forms/d/e/1FAIpQLSe9pyryy26i0UuSrBkbwwIW-BPtLWRYRaw6bLWmAt5QB4HcrA/viewform?pli=1" target="_blank" class="btn-secondary large">Enviar formulario directo</a>
         <button onclick="abrirFAQ()" class="btn-outline large">Preguntas frecuentes</button>
       </div>
@@ -684,7 +695,7 @@
     <div class="noticias-aviso">
       <span>💡</span>
       <div>
-        <strong>¿Sabías que?</strong> Los <strong>Documentos Institucionales</strong> (Políticas de Bioseguridad, Protocolos, etc.) y los <strong>Periódicos GDS "El Dominguino"</strong> están disponibles para descargar en <a href="noticias.html" target="_blank" style="color:var(--celeste);font-weight:700;">Ver Todas las Noticias</a>. ¡Son completamente gratuitos!
+        <strong>¿Sabías que?</strong> Los <strong>Documentos Institucionales</strong> (Políticas de Bioseguridad, Protocolos, etc.) y los <strong>Periódicos GDS "El Dominguino"</strong> están disponibles para descargar en <a href="noticias.html" style="color:var(--celeste);font-weight:700;">Ver Todas las Noticias</a>. ¡Son completamente gratuitos!
       </div>
     </div>
 
@@ -692,7 +703,7 @@
     <div class="noticias-grid" id="noticiasIndexGrid"></div>
 
     <div class="section-cta" style="margin-top:28px;">
-      <a href="noticias.html" target="_blank" class="btn-secondary">Ver todas las noticias · Documentos y Periódicos GDS</a>
+      <a href="noticias.html" class="btn-secondary">Ver todas las noticias · Documentos y Periódicos GDS</a>
     </div>
   </div>
 </section>
@@ -962,9 +973,9 @@
       </div>
       <div class="footer-col">
         <h4>P&aacute;ginas</h4>
-        <a href="inscripciones.html" target="_blank">Inscripciones</a>
-        <a href="noticias.html" target="_blank">Noticias</a>
-        <a href="servicios.html" target="_blank">Servicios</a>
+        <a href="inscripciones.html">Inscripciones</a>
+        <a href="noticias.html">Noticias</a>
+        <a href="servicios.html">Servicios</a>
       </div>
       <div class="footer-col">
         <h4>Contacto</h4>
@@ -977,16 +988,13 @@
       <div class="footer-col footer-col-social">
         <h4>Redes Sociales</h4>
         <div class="footer-social-grid">
-          <a href="https://www.facebook.com/share/1CM7g1wcfe/" target="_blank" class="social-btn-sq fb" title="Facebook" style="display:flex;align-items:center;justify-content:center;">
-            <svg viewBox="0 0 24 24" width="22" height="22" style="display:block;flex-shrink:0;"><path fill="#fff" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          <a href="https://web.facebook.com/gdomingosavio?mibextid=wwXIfr&rdid=lvdOE70mg71ENZyr&share_url=https%3A%2F%2Fweb.facebook.com%2Fshare%2F1NzsphnyDA%2F%3Fmibextid%3DwwXIfr%26_rdc%3D1%26_rdr#" target="_blank" class="social-btn-sq fb" title="Facebook" style="display:flex;align-items:center;justify-content:center;">
             <span>Facebook</span>
           </a>
-          <a href="https://www.instagram.com/gimnasiodomingosavio?igsh=d2Fydjk0OWlyendr" target="_blank" class="social-btn-sq ig" title="Instagram" style="display:flex;align-items:center;justify-content:center;">
-            <svg viewBox="0 0 24 24" width="22" height="22" style="display:block;flex-shrink:0;"><path fill="#fff" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          <a href="https://www.instagram.com/gimnasiodomingosavio/" target="_blank" class="social-btn-sq ig" title="Instagram" style="display:flex;align-items:center;justify-content:center;">
             <span>Instagram</span>
           </a>
           <a href="https://wa.me/573157859157" target="_blank" class="social-btn-sq wa" title="WhatsApp" style="display:flex;align-items:center;justify-content:center;">
-            <svg viewBox="0 0 24 24" width="22" height="22" style="display:block;flex-shrink:0;"><path fill="#fff" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             <span>WhatsApp</span>
           </a>
         </div>
@@ -1001,7 +1009,7 @@
 
 <!-- WHATSAPP FLOTANTE -->
 <a href="https://wa.me/573157859157" target="_blank" class="whatsapp-float" id="whatsappFloat" aria-label="WhatsApp">
-  <svg viewBox="0 0 24 24"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  
 </a>
 
 <!-- MODAL FILOSOF͍A DOMINGUINA (diseño mejorado) -->
@@ -1047,7 +1055,7 @@
       <div class="faq-q-item"><div class="faq-q-question" onclick="toggleFaq(this)">¿Cómo puedo contactar al colegio? <span class="faq-q-arrow">▾</span></div><div class="faq-q-answer">PBX: 5750230 · Celular: 315 785 9157 · WhatsApp: +57 315 785 9157 · Correo: educacion@gimnasiodomingosavio.edu.co · Dirección: Calle 9 #9E-77, La Riviera, Cúcuta.</div></div>
     </div>
     <div style="margin-top:22px; display:flex; gap:10px; justify-content:flex-end;">
-      <a href="inscripciones.html" target="_blank" class="btn-primary small">Iniciar inscripción</a>
+      <a href="inscripciones.html" class="btn-primary small">Iniciar inscripción</a>
       <button class="btn-secondary" style="padding:8px 18px;font-size:13px;" onclick="cerrarModal('faqModal')">Cerrar</button>
     </div>
   </div>
@@ -1670,7 +1678,7 @@ function renderNoticiasIndex() {
   const todas = getNoticiasIndex();
 
   if (!todas.length) {
-    grid.innerHTML = '<p style="text-align:center;color:var(--muted);padding:30px 0;grid-column:1/-1;">Aún no hay noticias publicadas. Adminístralas desde <a href="noticias.html" target="_blank" style="color:var(--celeste);font-weight:700;">noticias.html</a>.</p>';
+    grid.innerHTML = '<p style="text-align:center;color:var(--muted);padding:30px 0;grid-column:1/-1;">Aún no hay noticias publicadas. Adminístralas desde <a href="noticias.html" style="color:var(--celeste);font-weight:700;">noticias.html</a>.</p>';
     return;
   }
 
@@ -1895,7 +1903,7 @@ function abrirNoticia(id) {
     <img src="${n.img}" alt="${n.titulo}" class="modal-img"/>
     <div class="modal-cuerpo">${n.cuerpo}</div>
     <div class="modal-footer-btns">
-      <a href="noticias.html" target="_blank" class="btn-primary">Ver todas las noticias</a>
+      <a href="noticias.html" class="btn-primary">Ver todas las noticias</a>
       <a href="https://wa.me/573157859157?text=Hola, quiero más información sobre: ${encodeURIComponent(n.titulo)}" target="_blank" class="btn-whatsapp">Compartir</a>
     </div>`;
   document.getElementById('noticiaModal').classList.add('open');
@@ -2660,7 +2668,7 @@ document.querySelectorAll('.link-educacion').forEach(enlace => {
 
     const section = document.getElementById('educacion');
     if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
 
@@ -2681,7 +2689,7 @@ function manejarRutaEducacion() {
 
     const section = document.getElementById('educacion');
     if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
 
@@ -2707,7 +2715,7 @@ document.querySelectorAll('.link-filosofia').forEach(boton => {
 
     const section = document.getElementById('elgds');
     if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
 
