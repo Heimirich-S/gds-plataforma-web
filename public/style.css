@@ -35,7 +35,7 @@ html:not([data-gds-admin="on"]) .gds-admin-entry { display: none !important; }
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; font-size: 16px; scroll-padding-top: 100px; }
+html { scroll-behavior: smooth; font-size: 16px; }
 body {
   font-family: var(--font-body);
   background: var(--bg-a);
@@ -570,8 +570,8 @@ img { max-width: 100%; display: block; }
 /* =====================
    SECTIONS GENERAL
    ===================== */
-.section { padding: 76px 20px; scroll-margin-top: 100px; }
-.elgds-section { scroll-margin-top: 100px; }
+.section { padding: 76px 20px; }
+.elgds-section { }
 .container { max-width: 1280px; margin: 0 auto; }
 
 .section-header { text-align: center; margin-bottom: 52px; }
@@ -701,7 +701,7 @@ img { max-width: 100%; display: block; }
 /* =====================
    ORGANIGRAMA
    ===================== */
-.organigrama-section { background: var(--bg-b); scroll-margin-top: 100px; }
+.organigrama-section { background: var(--bg-b); }
 .org-level-label {
   text-align: center; font-size: 0.75rem; font-weight: 700;
   color: var(--celeste); letter-spacing: .1em; text-transform: uppercase;
@@ -826,7 +826,7 @@ img { max-width: 100%; display: block; }
 /* =====================
    PERFILES
    ===================== */
-.perfiles-section { background: var(--bg-a); scroll-margin-top: 100px; }
+.perfiles-section { background: var(--bg-a); }
 .perfiles-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; }
 .perfil-card {
   background: white; border-radius: var(--radio-lg); padding: 34px 26px;
@@ -854,7 +854,7 @@ img { max-width: 100%; display: block; }
 /* =====================
    ADMISIONES
    ===================== */
-.admisiones-section { background: white; scroll-margin-top: 100px; }
+.admisiones-section { background: white; }
 .admisiones-tabs { display: flex; gap: 8px; justify-content: center; margin-bottom: 36px; flex-wrap: wrap; }
 .tab-btn {
   padding: 10px 26px; border-radius: 8px;
@@ -958,7 +958,7 @@ img { max-width: 100%; display: block; }
 /* =====================
    NOTICIAS
    ===================== */
-.noticias-section { background: var(--bg-b); scroll-margin-top: 100px; }
+.noticias-section { background: var(--bg-b); }
 .noticias-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-bottom: 28px; }
 .noticia-card {
   background: white; border-radius: var(--radio-lg);
@@ -1061,7 +1061,7 @@ body.modal-open { overflow: hidden !important; }
 /* =====================
    HORARIOS
    ===================== */
-.horarios-section { padding: 0; scroll-margin-top: 100px; }
+.horarios-section { padding: 0; }
 .horarios-inner { display: grid; grid-template-columns: 1fr 1fr; min-height: 400px; }
 .horario-half {
   position: relative; display: flex; align-items: center;
@@ -1241,7 +1241,7 @@ body.modal-open { overflow: hidden !important; }
 /* =====================
    MAPA
    ===================== */
-.mapa-section { background: var(--fondo); scroll-margin-top: 100px; }
+.mapa-section { background: var(--fondo); }
 .mapa-wrapper { display: flex; flex-direction: column; gap: 20px; }
 .mapa-info-cards { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
 .mapa-info-card {
@@ -1256,7 +1256,7 @@ body.modal-open { overflow: hidden !important; }
 /* =====================
    CONVENIOS
    ===================== */
-.convenios-section { background: white; scroll-margin-top: 100px; }
+.convenios-section { background: white; }
 .convenios-track-wrap { overflow: hidden; position: relative; padding: 8px 0; }
 .convenios-track-wrap::before, .convenios-track-wrap::after {
   content:''; position: absolute; top:0; bottom:0; width: 70px; z-index: 2; pointer-events: none;
@@ -1286,7 +1286,7 @@ body.modal-open { overflow: hidden !important; }
 /* =====================
    CTA INSCRIPCIONES
    ===================== */
-.inscripcion-cta-section { background: var(--azul); text-align: center; position: relative; overflow: hidden; scroll-margin-top: 100px; }
+.inscripcion-cta-section { background: var(--azul); text-align: center; position: relative; overflow: hidden; }
 .inscripcion-cta-section::before {
   content: ''; position: absolute; top: -80px; right: -80px;
   width: 320px; height: 320px; border-radius: 50%;
@@ -2481,7 +2481,6 @@ img.emoji {
 /* ── BANNER GNOSOFT ─────────────────────────────────────────────────────── */
 .gnosoft-banner {
   position: relative;
-  scroll-margin-top: 100px;
   width: 100%;
   overflow: visible;
   display: flex;
@@ -3768,7 +3767,7 @@ img.emoji {
    Mismo componente animado que .sv-cta-strip de servicios.html,
    reutilizado aquí con prefijo idx- para no interferir con nada.
    ══════════════════════════════════════════════════════════════ */
-.idx-cta-strip { scroll-margin-top: 100px;
+.idx-cta-strip {
   background: linear-gradient(140deg,#060f22 0%,#0d1e3d 40%,#122640 70%,#0d3362 100%);
   padding: 64px 20px 72px; text-align: center; position: relative; overflow: hidden;
   animation: idxCtaPulse 6s ease-in-out infinite;

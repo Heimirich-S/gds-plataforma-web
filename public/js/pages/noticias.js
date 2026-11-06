@@ -186,14 +186,14 @@ if (urlParams.get('admin') === '1' && isAdminLogged()) {
   document.getElementById('adminToolbar').classList.add('visible');
   document.querySelectorAll('.admin-only-btn').forEach(b => b.style.display = 'inline-flex');
   const tab = urlParams.get('tab');
-  if (tab === 'periodicos') setTimeout(() => document.getElementById('seccPeriodicos').scrollIntoView({behavior:'smooth', block:'start'}), 600);
-  if (tab === 'documentos') setTimeout(() => document.getElementById('seccDocumentos').scrollIntoView({behavior:'smooth', block:'start'}), 600);
+  if (tab === 'periodicos') setTimeout(() => document.getElementById('seccPeriodicos').scrollIntoView({behavior:'smooth'}), 600);
+  if (tab === 'documentos') setTimeout(() => document.getElementById('seccDocumentos').scrollIntoView({behavior:'smooth'}), 600);
 }
 
 function mostrarTabAdmin(tab) {
   if (tab === 'noticias') { document.getElementById('vistaLista').classList.remove('hidden'); document.getElementById('noticiaDetalle').classList.remove('active'); window.scrollTo({top:300,behavior:'smooth'}); }
-  if (tab === 'periodicos') document.getElementById('seccPeriodicos').scrollIntoView({behavior:'smooth', block:'start'});
-  if (tab === 'documentos') document.getElementById('seccDocumentos').scrollIntoView({behavior:'smooth', block:'start'});
+  if (tab === 'periodicos') document.getElementById('seccPeriodicos').scrollIntoView({behavior:'smooth'});
+  if (tab === 'documentos') document.getElementById('seccDocumentos').scrollIntoView({behavior:'smooth'});
 }
 
 /* ── NOTICIAS DATA ── */
