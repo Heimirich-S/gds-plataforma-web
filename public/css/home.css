@@ -113,9 +113,6 @@
     min-width: 70px !important;
   }
 
-  .nav-links {
-    justify-content: flex-start !important;
-  }
 }
 
 @media (max-width: 480px) {

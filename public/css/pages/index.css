@@ -89,7 +89,4 @@
   justify-content:center !important;
 }
 
-/* Mobile nav compact */
-@media (max-width:768px) {
-  .nav-links { justify-content:flex-start !important; }
-}
+

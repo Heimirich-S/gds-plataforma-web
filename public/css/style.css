@@ -3803,3 +3803,47 @@ img.emoji {
 @media (max-width: 600px) {
   .idx-cta-cards { flex-direction: column; align-items: center; }
 }
+@media (min-width: 769px) {
+  .navbar-inner { flex-wrap: wrap; }
+  .nav-links { flex-wrap: wrap; }
+  .hamburger { display: none !important; }
+}
+.nav-item:first-child .dropdown {
+  left: 0;
+  transform: translateX(0) translateY(-8px) scale(0.96);
+  transform-origin: top left;
+}
+.nav-item:first-child:hover .dropdown,
+.nav-item:first-child.dropdown-open .dropdown {
+  transform: translateX(0) translateY(0) scale(1);
+}
+.nav-item:first-child .dropdown::before {
+  left: 16px;
+  transform: translateX(0);
+}
+.whatsapp-float svg { width: 28px; height: 28px; fill: #fff; color: #fff; display: block; }
+.whatsapp-float { display: none; }
+@media (max-width: 768px) {
+  .whatsapp-float { display: flex !important; align-items: center; justify-content: center; }
+}
+/* === UNIFIED NAVBAR SHIELD === */
+.navbar-inner {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+.nav-links {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+  white-space: nowrap !important;
+  gap: 12px;
+}
+.nav-link {
+  white-space: nowrap !important;
+}
